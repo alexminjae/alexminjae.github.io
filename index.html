@@ -187,16 +187,17 @@
     /* Company Logo Overlay Style */
     .thumb-logo {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 55px;        /* Slightly larger container */
-        height: 55px;
+        top: 10px;          /* Moved up slightly since it's bigger */
+        right: 10px;
+        width: 60px;        /* Increased circle size so logo stays visible */
+        height: 60px;
         object-fit: contain;
         z-index: 2;
         background: #fff;
-        padding: 12px;      /* <--- INCREASED to 12px to force the logo smaller */
+        padding: 12px;      /* This padding ensures the square corners don't touch the circle edge */
         border-radius: 50%;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-sizing: border-box; /* key to keeping dimensions stable */
     }
     
     /* Fix for RTL rows to keep logo on the right visually */
