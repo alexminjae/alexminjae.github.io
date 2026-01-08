@@ -184,18 +184,18 @@
     /* Hover effect only zooms the main image, not the logo */
     .project-row:hover .main-thumb { transform: scale(1.02); }
 
-    /* Company Logo Overlay Style - ROUNDED SQUARE FIX */
+    /* Company Logo Overlay Style */
     .thumb-logo {
         position: absolute;
         top: 15px;
-        right: 15px;
+        right: 15px;        /* This ensures it is ALWAYS on the right */
         width: 50px;
         height: 50px;
         object-fit: contain;
         z-index: 2;
         background: #fff;
-        padding: 4px;       /* Small padding creates a nice frame */
-        border-radius: 8px; /* Rounded Square = No Cut Corners */
+        padding: 4px;       
+        border-radius: 8px; 
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
