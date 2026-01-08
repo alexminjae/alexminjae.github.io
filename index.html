@@ -184,7 +184,7 @@
     /* Hover effect only zooms the main image, not the logo */
     .project-row:hover .main-thumb { transform: scale(1.02); }
 
-    /* Company Logo Overlay Style - FIXED GEOMETRY */
+    /* Company Logo Overlay Style - ROUNDED SQUARE FIX */
     .thumb-logo {
         position: absolute;
         top: 15px;
@@ -194,22 +194,11 @@
         object-fit: contain;
         z-index: 2;
         background: #fff;
-        /* 8px padding creates the exact "Inscribed Square" fit for a 50px circle */
-        padding: 8px; 
-        border-radius: 50%;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        box-sizing: border-box;
-    }
-        
-        /* GEOMETRY: 15% padding creates the "Inscribed Square."
-           (Image becomes ~70% of the circle, so the diagonal = diameter)
-        */
-        padding: 15%; 
-        
-        border-radius: 50%;
+        padding: 4px;       /* Small padding creates a nice frame */
+        border-radius: 8px; /* Rounded Square = No Cut Corners */
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
-    
+
     /* Fix for RTL rows to keep logo on the right visually */
     .project-row:nth-child(even) .thumb-logo {
         right: auto;
@@ -407,7 +396,7 @@
 </section>
 
 <section id="projects">
-    <h2>Projects</h2>
+    <h2>Selected Projects</h2>
     
     <div class="project-row" onclick="openModal('modal-piezo')">
         <div class="project-img-wrapper">
