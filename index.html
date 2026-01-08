@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /* GLOBAL */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       max-width: 900px;
@@ -66,7 +71,7 @@
       text-decoration: underline;
     }
 
-    /* FADE ANIMATION */
+    /* FADE-IN ANIMATION */
     .fade {
       opacity: 0;
       transform: translateY(20px);
@@ -219,8 +224,14 @@
         for fastener validation testing, replacing manual curve inspection.
       </p>
 
-      <img src="ttf_1.png" class="modal-img" alt="TTF plot">
-      <img src="ttf_2.png" class="modal-img" alt="TTF detection">
+      <p>
+        Implemented slope-based yield detection with percentage drop thresholds
+        and angular constraints to reliably identify yield, snug, and peak
+        prevailing torque across multiple data formats.
+      </p>
+
+      <img src="ttf_1.png" class="modal-img" alt="Torque to failure plot">
+      <img src="ttf_2.png" class="modal-img" alt="Automated detection">
     </div>
   </div>
 
@@ -233,8 +244,23 @@
       <p class="subtle">Tesla · Materials Engineering Intern</p>
 
       <p>
-        Designed and validated protective caps for piezoelectric sensors used
-        in sealing applications, balancing durability and signal integrity.
+        Designed and productionized protective caps for piezoelectric sensors
+        used in vehicle durability testing, ensuring reliable data collection
+        in wet and high-impact environments.
+      </p>
+
+      <p>
+        The primary challenge was balancing full water sealing with fast,
+        tool-less installation while supporting multiple bolt sizes and vehicle
+        configurations. To address this, I developed a parametric cap system
+        that automatically adapts to bolt geometry, enabling rapid generation
+        of variants without redesign.
+      </p>
+
+      <p>
+        The final solution was mass-produced and deployed across durability
+        instrumentation builds, supporting multiple drive types and achieving
+        consistent waterproof performance with quick hand-press installation.
       </p>
 
       <img src="cap_1.png" class="modal-img" alt="Cap design">
