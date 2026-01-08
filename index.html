@@ -110,7 +110,7 @@
       line-height: 1.4;
       max-width: 500px;
       color: var(--text-secondary);
-      border: none; /* Removed the brutalist border */
+      border: none;
       padding: 0;
       margin-bottom: 40px;
     }
@@ -197,6 +197,9 @@
 
     .project-row:nth-child(even) { direction: rtl; }
     .project-row:nth-child(even) .project-text { direction: ltr; }
+    /* Fix alignment for RTL rows */
+    .project-row:nth-child(even) .project-tags { justify-content: flex-start; direction: ltr; }
+
 
     .project-img-wrapper {
         position: relative;
@@ -227,14 +230,22 @@
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
-    .tags {
-        font-size: 0.7rem;
-        font-weight: 700;
-        color: var(--accent);
-        text-transform: uppercase;
-        margin-bottom: 12px;
-        display: block;
-        letter-spacing: 0.5px;
+    /* PROJECT TAG PILLS (The requested change) */
+    .project-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+
+    .tag-pill {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        background: #f5f5f7; /* Very light gray to match body */
+        padding: 6px 12px;
+        border-radius: 50px; /* Full pill shape */
+        border: 1px solid rgba(0,0,0,0.05);
     }
 
     .project-text h3 {
@@ -482,7 +493,11 @@
             <img src="cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
         </div>
         <div class="project-text">
-            <span class="tags">Tesla · CATIA V6 · ANSYS FEA</span>
+            <div class="project-tags">
+                <span class="tag-pill">Tesla</span>
+                <span class="tag-pill">CATIA V6</span>
+                <span class="tag-pill">ANSYS FEA</span>
+            </div>
             <h3>Piezo Protection Cap</h3>
             <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Achieved 100% water-proof rate.</p>
             <span class="impact-stat">Result: Mass produced 7+ variants</span>
@@ -495,7 +510,11 @@
             <img src="ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
         </div>
         <div class="project-text">
-            <span class="tags">Tesla · Python · Automation</span>
+            <div class="project-tags">
+                <span class="tag-pill">Tesla</span>
+                <span class="tag-pill">Python</span>
+                <span class="tag-pill">Automation</span>
+            </div>
             <h3>Torque Data Processor</h3>
             <p>Built an automation tool for torque-to-failure data acquisition. Deployed to Gigafactories worldwide.</p>
             <span class="impact-stat">Impact: Saved 10+ hours per joint</span>
@@ -508,7 +527,11 @@
             <img src="reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
         </div>
         <div class="project-text">
-            <span class="tags">ZF Group · PTC Creo · GD&T</span>
+            <div class="project-tags">
+                <span class="tag-pill">ZF Group</span>
+                <span class="tag-pill">PTC Creo</span>
+                <span class="tag-pill">GD&T</span>
+            </div>
             <h3>ReAX Transport Fixtures</h3>
             <p>Modeled damage-prevention connectors for international transportation to Germany and China.</p>
         </div>
@@ -520,7 +543,11 @@
             <img src="per_thumbnail.png" class="main-thumb" alt="Racing Wing">
         </div>
         <div class="project-text">
-            <span class="tags">Purdue Racing · SolidWorks · CFD</span>
+            <div class="project-tags">
+                <span class="tag-pill">Purdue Racing</span>
+                <span class="tag-pill">SolidWorks</span>
+                <span class="tag-pill">CFD</span>
+            </div>
             <h3>Formula SAE Aerodynamics</h3>
             <p>Modeled front/rear wings and optimized downforce using ANSYS CFD.</p>
             <span class="impact-stat">Result: 30% Drag Reduction</span>
@@ -532,7 +559,10 @@
             <img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
         </div>
         <div class="project-text">
-            <span class="tags">Siemens NX · Machining</span>
+            <div class="project-tags">
+                <span class="tag-pill">Siemens NX</span>
+                <span class="tag-pill">Machining</span>
+            </div>
             <h3>Pipsqueak Stirling Engine</h3>
             <p>Fully functional engine assembly on a custom pirate ship model. 260 hours of modeling.</p>
         </div>
@@ -543,7 +573,10 @@
             <img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
         </div>
         <div class="project-text">
-            <span class="tags">Siemens NX · Surfacing</span>
+            <div class="project-tags">
+                <span class="tag-pill">Siemens NX</span>
+                <span class="tag-pill">Surfacing</span>
+            </div>
             <h3>Pagani Huayra Components</h3>
             <p>Modeled complex wheel spokes and exhaust manifold based on the Roadster.</p>
         </div>
@@ -554,7 +587,11 @@
             <img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
         </div>
         <div class="project-text">
-            <span class="tags">MATLAB · C · Systems</span>
+            <div class="project-tags">
+                <span class="tag-pill">MATLAB</span>
+                <span class="tag-pill">C</span>
+                <span class="tag-pill">Systems</span>
+            </div>
             <h3>Campus Mobility Roundabout</h3>
             <p>Automated roundabout system with ultrasonic pedestrian detection.</p>
             <span class="impact-stat">Result: 90% Peer Satisfactory Rate</span>
