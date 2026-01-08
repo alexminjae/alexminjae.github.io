@@ -71,41 +71,74 @@
       margin: auto;
     }
 
-    /* ABOUT (HERO) */
+    /* HERO (About Section) */
     .hero {
-      min-height: 90vh; /* Full screen landing */
+      min-height: 100vh;
       display: grid;
       grid-template-columns: 1.5fr 1fr;
       align-items: center;
       gap: 60px;
     }
 
-    .hero h1 {
-      font-size: clamp(3.5rem, 8vw, 7rem); /* Big responsive text */
+    .hero-text h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
       line-height: 0.95;
       margin-bottom: 30px;
     }
 
-    .hero p {
-      font-size: 1.3rem; /* Slightly larger for the subtitle */
+    .hero-text p {
+      font-size: 1.15rem;
       color: var(--gray);
       max-width: 500px;
       border-left: 3px solid #000;
       padding-left: 20px;
       font-weight: 400;
+      margin-bottom: 40px;
     }
 
-    .hero-img-container {
-        position: relative;
+    /* Status Badge Style */
+    .status-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 1px solid #000;
+        border-radius: 50px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(5px);
     }
 
-    .hero img {
+    .status-dot {
+        height: 8px; width: 8px;
+        background-color: #28a745;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    /* Tech Stack List */
+    .hero-stack {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    .stack-item {
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 2px;
+        color: #333;
+    }
+
+    .hero-img-container img {
         width: 100%;
         max-width: 420px;
         border-radius: 4px;
         display: block;
         margin-left: auto;
-        /* No filters, clean photo */
         box-shadow: 20px 20px 0px var(--light);
     }
 
@@ -119,9 +152,9 @@
         cursor: pointer;
         border-bottom: 1px solid var(--border);
         padding-bottom: 80px;
+        position: relative;
     }
 
-    /* Alternate Layout */
     .project-row:nth-child(even) { direction: rtl; }
     .project-row:nth-child(even) .project-text { direction: ltr; }
 
@@ -138,9 +171,7 @@
         transition: transform 0.5s ease;
     }
 
-    .project-row:hover img {
-        transform: scale(1.02);
-    }
+    .project-row:hover img { transform: scale(1.02); }
 
     .tags {
         font-size: 0.75rem;
@@ -181,9 +212,7 @@
         transition: background 0.2s;
     }
     .job-item:hover { background: #fafafa; }
-    
     .company-logo { width: 60px; height: 60px; object-fit: contain; }
-    
     .job-details h3 { font-size: 1.5rem; margin-bottom: 5px; }
     .job-details p { color: var(--gray); font-size: 1rem; }
     .job-year { font-weight: 700; font-family: 'Space Grotesk'; }
@@ -227,8 +256,9 @@
 
     .modal-content {
         max-width: 1000px;
-        margin: 80px auto;
+        margin: 60px auto; /* More space for nav buttons */
         padding: 40px 5%;
+        position: relative;
     }
 
     .close-btn {
@@ -241,6 +271,23 @@
     }
     .close-btn:hover { transform: rotate(90deg); }
 
+    /* MODAL NAVIGATION BUTTONS */
+    .nav-btn {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 3rem;
+        cursor: pointer;
+        z-index: 2002;
+        padding: 20px;
+        user-select: none;
+        transition: transform 0.2s;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    .nav-btn:hover { transform: translateY(-50%) scale(1.2); }
+    .prev-btn { left: 20px; }
+    .next-btn { right: 20px; }
+
     .modal-header h2 { font-size: 3rem; margin-bottom: 10px; }
     .modal-meta { color: var(--gray); margin-bottom: 60px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
     
@@ -250,22 +297,11 @@
         gap: 60px;
         margin-bottom: 80px;
     }
-    
     .modal-section h4 { margin-bottom: 15px; font-size: 1.1rem; }
     .modal-section p { margin-bottom: 25px; color: #444; }
     .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: #444; }
-    .modal-section li { margin-bottom: 10px; }
-
-    .modal-gallery {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-    }
-    .modal-gallery img {
-        width: 100%;
-        border-radius: 4px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
+    .modal-gallery { display: flex; flex-direction: column; gap: 40px; }
+    .modal-gallery img { width: 100%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
 
     /* MOBILE */
     @media (max-width: 768px) {
@@ -277,6 +313,11 @@
         nav div { gap: 15px; }
         nav a { font-size: 11px; }
         .contact-links { flex-direction: column; gap: 20px; }
+        
+        /* Mobile Nav Buttons */
+        .nav-btn { top: auto; bottom: 20px; font-size: 2rem; background: #fff; border: 1px solid #ddd; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
     }
   </style>
 </head>
@@ -295,11 +336,24 @@
 
 <section id="about" class="hero">
     <div class="hero-text">
+        <div class="status-badge">
+            <span class="status-dot"></span> Based in Seoul / West Lafayette
+        </div>
+
         <h1>Minjae<br>Kim</h1>
         <p>
-            Mechanical Engineering @ Purdue.<br>
-            Previously ZF, Tesla.
+            Mechanical Engineer bridging the gap between <strong>Hardware Design</strong> and <strong>Test Automation</strong>.
+            <br><br>
+            Proven track record at <strong>Tesla</strong> & <strong>ZF Group</strong>.
         </p>
+
+        <div class="hero-stack">
+            <span class="stack-item">CATIA V6</span>
+            <span class="stack-item">Siemens NX</span>
+            <span class="stack-item">Python</span>
+            <span class="stack-item">MATLAB</span>
+            <span class="stack-item">ANSYS</span>
+        </div>
     </div>
     <div class="hero-img-container">
         <img src="minjaekim_profile.jpg" alt="Minjae Kim">
@@ -416,217 +470,4 @@
 
 <div id="modal-piezo" class="modal">
     <span class="close-btn" onclick="closeModal('modal-piezo')">&times;</span>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Piezo Protection Cap</h2>
-            <p class="modal-meta">Tesla · CATIA V6 · ANSYS FEA</p>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>Challenge</h4>
-                <p>Piezo sensors used for vehicle durability testing were exposed to impact and moisture.</p>
-                <h4>Solution</h4>
-                <p>Designed bolt caps using CATIA V6. Created a "Powercopy" script to automatically generate caps based on bolt dimensions. Tested using Nylon, ASA, and TPU materials.</p>
-            </div>
-            <div class="modal-section">
-                <h4>Results</h4>
-                <ul>
-                    <li>Mass produced 7+ variants for durability testing.</li>
-                    <li>Achieved 100% water-proof seal.</li>
-                    <li>Designed for easy hand-installation.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <img src="cap_1.png">
-            <img src="cap_2.png">
-        </div>
-    </div>
-</div>
-
-<div id="modal-torque" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-torque')">&times;</span>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Torque Data Processor</h2>
-            <p class="modal-meta">Tesla · Python · Pandas · GUI</p>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>Challenge</h4>
-                <p>Manual processing of torque-to-failure data was time-consuming and prone to error.</p>
-                <h4>Solution</h4>
-                <p>Built a Python automation tool (Pandas, Numpy, Matplotlib) with a GUI for engineers to actively use during testing.</p>
-            </div>
-            <div class="modal-section">
-                <h4>Impact</h4>
-                <ul>
-                    <li>Deployed to Gigafactories in Berlin, Shanghai, Reno, and Fremont.</li>
-                    <li>Saved 10+ hours of analysis time per joint.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <img src="ttf_1.png">
-            <img src="ttf_2.png">
-        </div>
-    </div>
-</div>
-
-<div id="modal-zf" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-zf')">&times;</span>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>ReAX Transport Fixtures</h2>
-            <p class="modal-meta">ZF Group · PTC Creo · GD&T</p>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>Objective</h4>
-                <p>Prevent connector joints on ReAX systems from damage during international shipping.</p>
-                <h4>Engineering</h4>
-                <p>Modeled 3 different connector types in PTC Creo. Applied GD&T to all parts and 3D printed for immediate usage.</p>
-            </div>
-            <div class="modal-section">
-                <h4>Outcome</h4>
-                <p>Final models were used for successful shipments to Germany and China facilities.</p>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <img src="reax_1.png">
-            <img src="reax_2.png">
-            <img src="reax_3.png">
-        </div>
-    </div>
-</div>
-
-<div id="modal-per" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-per')">&times;</span>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Formula SAE Aerodynamics</h2>
-            <p class="modal-meta">Purdue Electric Racing · SolidWorks · ANSYS</p>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>Design</h4>
-                <p>Modeled front and rear wings using SolidWorks. Constructed airfoils using carbon fiber, aluminum end caps, and foam inserts.</p>
-            </div>
-            <div class="modal-section">
-                <h4>Validation</h4>
-                <p>Performed ANSYS CFD simulations and verified in the Purdue wind tunnel.</p>
-                <h4>Results</h4>
-                <ul>
-                    <li>Optimized downforce and drag by 30%.</li>
-                    <li>Developed a standardized team-wide CFD process.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <img src="per_1.png">
-            <img src="per_2.png">
-            <img src="per_3.png">
-            <img src="per_4.png">
-            <img src="per_5.png">
-        </div>
-    </div>
-</div>
-
-<div id="modal-stirling" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-stirling')">&times;</span>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Pipsqueak Stirling Engine</h2>
-            <p class="modal-meta">Personal Project · Siemens NX</p>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <p>Designed and modeled a fully functional stirling engine assembled on a custom pirate ship model.</p>
-                <ul>
-                    <li>Modeled 18 individually designed parts in Siemens NX.</li>
-                    <li>Applied GD&T for all assembly components.</li>
-                    <li>Utilized materials including brass, nylon, and polished metal.</li>
-                    <li>Total effort: 260 hours of modeling.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <img src="ship_1.png">
-            <img src="ship_2.png">
-            <img src="ship_3.png">
-            <img src="ship_4.png">
-            <img src="ship_5.png">
-            <img src="ship_6.png">
-        </div>
-    </div>
-</div>
-
-<div id="modal-pagani" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-pagani')">&times;</span>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Pagani Huayra Components</h2>
-            <p class="modal-meta">Personal Project · Siemens NX</p>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <p>Reverse-engineered wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
-                <ul>
-                    <li>Modeled in Siemens NX with full GD&T application.</li>
-                    <li>Designed for manufacturing with Iron 40 and light weight alloys.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <img src="pagani_1.png">
-            <img src="pagani_2.jpg">
-            <img src="pagani_3.png">
-        </div>
-    </div>
-</div>
-
-<div id="modal-campus" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-campus')">&times;</span>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Campus Mobility Roundabout</h2>
-            <p class="modal-meta">Team Project · MATLAB · C</p>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <p>Identified safety risks at busy campus intersections. Designed an automatic roundabout system with ultrasonic pedestrian detection.</p>
-                <ul>
-                    <li>Simulated traffic flow using MATLAB.</li>
-                    <li>Programmed signal display logic in C.</li>
-                    <li>Achieved 90% peer satisfactory rate.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <img src="roundabout_1.png">
-        </div>
-    </div>
-</div>
-
-<script>
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = "block";
-        document.body.style.overflow = "hidden"; // Prevent scrolling background
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-
-    // Close modal if clicking outside the content box
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-    }
-</script>
-
-</body>
-</html>
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8
