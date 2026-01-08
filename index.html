@@ -184,7 +184,7 @@
     /* Hover effect only zooms the main image, not the logo */
     .project-row:hover .main-thumb { transform: scale(1.02); }
 
-    /* Company Logo Overlay Style - GEOMETRIC FIT */
+    /* Company Logo Overlay Style - FIXED GEOMETRY */
     .thumb-logo {
         position: absolute;
         top: 15px;
@@ -194,6 +194,12 @@
         object-fit: contain;
         z-index: 2;
         background: #fff;
+        /* 8px padding creates the exact "Inscribed Square" fit for a 50px circle */
+        padding: 8px; 
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-sizing: border-box;
+    }
         
         /* GEOMETRY: 15% padding creates the "Inscribed Square."
            (Image becomes ~70% of the circle, so the diagonal = diameter)
