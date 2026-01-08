@@ -48,7 +48,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
+      z-index: 5000; /* High z-index but lower than modal */
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
@@ -71,13 +71,14 @@
       margin: auto;
     }
 
-    /* HERO (About Section) */
+    /* ABOUT (HERO) */
     .hero {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1.5fr 1fr;
       align-items: center;
       gap: 60px;
+      padding-top: 150px; /* Offset for fixed nav */
     }
 
     .hero-text h1 {
@@ -142,7 +143,14 @@
         box-shadow: 20px 20px 0px var(--light);
     }
 
-    /* PROJECTS GRID */
+    /* PROJECTS SECTION */
+    #projects h2 {
+        font-size: 3rem;
+        margin-bottom: 80px;
+        border-bottom: 1px solid #000;
+        padding-bottom: 20px;
+    }
+
     .project-row {
         display: grid;
         grid-template-columns: 1.5fr 1fr;
@@ -200,14 +208,14 @@
     }
 
     /* EXPERIENCE */
-    #experience h2 { font-size: 3rem; margin-bottom: 60px; }
+    #experience h2 { font-size: 3rem; margin-bottom: 60px; border-bottom: 1px solid #000; padding-bottom: 20px; }
 
     .job-item {
         display: grid;
         grid-template-columns: 80px 1fr auto;
         gap: 40px;
         padding: 40px 0;
-        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
         align-items: start;
         transition: background 0.2s;
     }
@@ -244,7 +252,7 @@
     .modal {
         display: none; 
         position: fixed; 
-        z-index: 2000; 
+        z-index: 10001; /* Extremely high to sit over everything */
         left: 0; top: 0; 
         width: 100%; height: 100%; 
         background-color: rgba(255,255,255,0.99); 
@@ -256,7 +264,7 @@
 
     .modal-content {
         max-width: 1000px;
-        margin: 60px auto; /* More space for nav buttons */
+        margin: 60px auto; 
         padding: 40px 5%;
         position: relative;
     }
@@ -266,7 +274,7 @@
         top: 30px; right: 40px;
         font-size: 40px;
         cursor: pointer;
-        z-index: 2001;
+        z-index: 10002;
         transition: transform 0.2s;
     }
     .close-btn:hover { transform: rotate(90deg); }
@@ -278,7 +286,7 @@
         transform: translateY(-50%);
         font-size: 3rem;
         cursor: pointer;
-        z-index: 2002;
+        z-index: 10002;
         padding: 20px;
         user-select: none;
         transition: transform 0.2s;
@@ -361,6 +369,7 @@
 </section>
 
 <section id="projects">
+    <h2>Selected Projects</h2>
     
     <div class="project-row" onclick="openModal('modal-piezo')">
         <div class="project-img-wrapper"><img src="cap_thumbnail.png" alt="Tesla Piezo"></div>
@@ -470,4 +479,266 @@
 
 <div id="modal-piezo" class="modal">
     <span class="close-btn" onclick="closeModal('modal-piezo')">&times;</span>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+    
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Piezo Protection Cap</h2>
+            <p class="modal-meta">Tesla · CATIA V6 · ANSYS FEA</p>
+        </div>
+        <div class="modal-text">
+            <div class="modal-section">
+                <h4>Challenge</h4>
+                <p>Piezo sensors used for vehicle durability testing were exposed to impact and moisture.</p>
+                <h4>Solution</h4>
+                <p>Designed bolt caps using CATIA V6. Created a "Powercopy" script to automatically generate caps based on bolt dimensions. Tested using Nylon, ASA, and TPU materials.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Results</h4>
+                <ul>
+                    <li>Mass produced 7+ variants for durability testing.</li>
+                    <li>Achieved 100% water-proof seal.</li>
+                    <li>Designed for easy hand-installation.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-gallery">
+            <img src="cap_1.png">
+            <img src="cap_2.png">
+        </div>
+    </div>
+</div>
+
+<div id="modal-torque" class="modal">
+    <span class="close-btn" onclick="closeModal('modal-torque')">&times;</span>
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Torque Data Processor</h2>
+            <p class="modal-meta">Tesla · Python · Pandas · GUI</p>
+        </div>
+        <div class="modal-text">
+            <div class="modal-section">
+                <h4>Challenge</h4>
+                <p>Manual processing of torque-to-failure data was time-consuming and prone to error.</p>
+                <h4>Solution</h4>
+                <p>Built a Python automation tool (Pandas, Numpy, Matplotlib) with a GUI for engineers to actively use during testing.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Impact</h4>
+                <ul>
+                    <li>Deployed to Gigafactories in Berlin, Shanghai, Reno, and Fremont.</li>
+                    <li>Saved 10+ hours of analysis time per joint.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-gallery">
+            <img src="ttf_1.png">
+            <img src="ttf_2.png">
+        </div>
+    </div>
+</div>
+
+<div id="modal-zf" class="modal">
+    <span class="close-btn" onclick="closeModal('modal-zf')">&times;</span>
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>ReAX Transport Fixtures</h2>
+            <p class="modal-meta">ZF Group · PTC Creo · GD&T</p>
+        </div>
+        <div class="modal-text">
+            <div class="modal-section">
+                <h4>Objective</h4>
+                <p>Prevent connector joints on ReAX systems from damage during international shipping.</p>
+                <h4>Engineering</h4>
+                <p>Modeled 3 different connector types in PTC Creo. Applied GD&T to all parts and 3D printed for immediate usage.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Outcome</h4>
+                <p>Final models were used for successful shipments to Germany and China facilities.</p>
+            </div>
+        </div>
+        <div class="modal-gallery">
+            <img src="reax_1.png">
+            <img src="reax_2.png">
+            <img src="reax_3.png">
+        </div>
+    </div>
+</div>
+
+<div id="modal-per" class="modal">
+    <span class="close-btn" onclick="closeModal('modal-per')">&times;</span>
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Formula SAE Aerodynamics</h2>
+            <p class="modal-meta">Purdue Electric Racing · SolidWorks · ANSYS</p>
+        </div>
+        <div class="modal-text">
+            <div class="modal-section">
+                <h4>Design</h4>
+                <p>Modeled front and rear wings using SolidWorks. Constructed airfoils using carbon fiber, aluminum end caps, and foam inserts.</p>
+            </div>
+            <div class="modal-section">
+                <h4>Validation</h4>
+                <p>Performed ANSYS CFD simulations and verified in the Purdue wind tunnel.</p>
+                <h4>Results</h4>
+                <ul>
+                    <li>Optimized downforce and drag by 30%.</li>
+                    <li>Developed a standardized team-wide CFD process.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-gallery">
+            <img src="per_1.png">
+            <img src="per_2.png">
+            <img src="per_3.png">
+            <img src="per_4.png">
+            <img src="per_5.png">
+        </div>
+    </div>
+</div>
+
+<div id="modal-stirling" class="modal">
+    <span class="close-btn" onclick="closeModal('modal-stirling')">&times;</span>
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Pipsqueak Stirling Engine</h2>
+            <p class="modal-meta">Personal Project · Siemens NX</p>
+        </div>
+        <div class="modal-text">
+            <div class="modal-section">
+                <p>Designed and modeled a fully functional stirling engine assembled on a custom pirate ship model.</p>
+                <ul>
+                    <li>Modeled 18 individually designed parts in Siemens NX.</li>
+                    <li>Applied GD&T for all assembly components.</li>
+                    <li>Utilized materials including brass, nylon, and polished metal.</li>
+                    <li>Total effort: 260 hours of modeling.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-gallery">
+            <img src="ship_1.png">
+            <img src="ship_2.png">
+            <img src="ship_3.png">
+            <img src="ship_4.png">
+            <img src="ship_5.png">
+            <img src="ship_6.png">
+        </div>
+    </div>
+</div>
+
+<div id="modal-pagani" class="modal">
+    <span class="close-btn" onclick="closeModal('modal-pagani')">&times;</span>
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Pagani Huayra Components</h2>
+            <p class="modal-meta">Personal Project · Siemens NX</p>
+        </div>
+        <div class="modal-text">
+            <div class="modal-section">
+                <p>Reverse-engineered wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
+                <ul>
+                    <li>Modeled in Siemens NX with full GD&T application.</li>
+                    <li>Designed for manufacturing with Iron 40 and light weight alloys.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-gallery">
+            <img src="pagani_1.png">
+            <img src="pagani_2.jpg">
+            <img src="pagani_3.png">
+        </div>
+    </div>
+</div>
+
+<div id="modal-campus" class="modal">
+    <span class="close-btn" onclick="closeModal('modal-campus')">&times;</span>
+    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Campus Mobility Roundabout</h2>
+            <p class="modal-meta">Team Project · MATLAB · C</p>
+        </div>
+        <div class="modal-text">
+            <div class="modal-section">
+                <p>Identified safety risks at busy campus intersections. Designed an automatic roundabout system with ultrasonic pedestrian detection.</p>
+                <ul>
+                    <li>Simulated traffic flow using MATLAB.</li>
+                    <li>Programmed signal display logic in C.</li>
+                    <li>Achieved 90% peer satisfactory rate.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-gallery">
+            <img src="roundabout_1.png">
+        </div>
+    </div>
+</div>
+
+<script>
+    // Project IDs in order for navigation
+    const projects = ['modal-piezo', 'modal-torque', 'modal-zf', 'modal-per', 'modal-stirling', 'modal-pagani', 'modal-campus'];
+    let currentModalId = null;
+
+    function openModal(modalId) {
+        if (!document.getElementById(modalId)) {
+            console.error("Modal not found: " + modalId);
+            return;
+        }
+        document.getElementById(modalId).style.display = "block";
+        document.body.style.overflow = "hidden"; // Prevent scrolling background
+        currentModalId = modalId;
+    }
+
+    function closeModal(modalId) {
+        if (document.getElementById(modalId)) {
+            document.getElementById(modalId).style.display = "none";
+        }
+        document.body.style.overflow = "auto";
+        currentModalId = null;
+    }
+
+    function changeProject(direction) {
+        if (!currentModalId) return;
+
+        // Find current index
+        let currentIndex = projects.indexOf(currentModalId);
+        if (currentIndex === -1) return;
+        
+        // Calculate new index with wrapping
+        let newIndex = currentIndex + direction;
+        if (newIndex >= projects.length) newIndex = 0; // Wrap to start
+        if (newIndex < 0) newIndex = projects.length - 1; // Wrap to end
+
+        // Switch Modals
+        closeModal(currentModalId);
+        openModal(projects[newIndex]);
+    }
+
+    // Close modal if clicking outside the content box
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeModal(event.target.id);
+        }
+    }
+</script>
+
+</body>
+</html>
