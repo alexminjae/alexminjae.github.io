@@ -48,7 +48,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 5000; /* High z-index but lower than modal */
+      z-index: 5000;
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
@@ -78,7 +78,7 @@
       grid-template-columns: 1.5fr 1fr;
       align-items: center;
       gap: 60px;
-      padding-top: 150px; /* Offset for fixed nav */
+      padding-top: 150px;
     }
 
     .hero-text h1 {
@@ -252,7 +252,7 @@
     .modal {
         display: none; 
         position: fixed; 
-        z-index: 10001; /* Extremely high to sit over everything */
+        z-index: 10001; 
         left: 0; top: 0; 
         width: 100%; height: 100%; 
         background-color: rgba(255,255,255,0.99); 
@@ -369,7 +369,7 @@
 </section>
 
 <section id="projects">
-    <h2>Projects</h2>
+    <h2>Selected Projects</h2>
     
     <div class="project-row" onclick="openModal('modal-piezo')">
         <div class="project-img-wrapper"><img src="cap_thumbnail.png" alt="Tesla Piezo"></div>
@@ -731,6 +731,19 @@
         closeModal(currentModalId);
         openModal(projects[newIndex]);
     }
+
+    // Event Listeners for Keyboard Navigation (Esc + Arrows)
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape" && currentModalId) {
+            closeModal(currentModalId);
+        }
+        if (event.key === "ArrowLeft" && currentModalId) {
+            changeProject(-1);
+        }
+        if (event.key === "ArrowRight" && currentModalId) {
+            changeProject(1);
+        }
+    });
 
     // Close modal if clicking outside the content box
     window.onclick = function(event) {
