@@ -7,17 +7,27 @@
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 720px;
+      max-width: 800px;
       margin: 80px auto;
       padding: 0 20px;
       line-height: 1.6;
       color: #111;
     }
-    h1, h2 {
+    h1, h2, h3 {
       line-height: 1.2;
     }
     section {
-      margin-bottom: 48px;
+      margin-bottom: 64px;
+    }
+    img {
+      width: 100%;
+      max-width: 600px;
+      margin: 16px 0;
+      display: block;
+    }
+    a {
+      color: #111;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -25,20 +35,21 @@
 
 <section>
   <h1>Minjae Kim</h1>
-  <p>Mechanical Engineering @ Purdue</p>
+  <p>Mechanical Engineering @ Purdue · Tesla · ZF</p>
 </section>
 
 <section>
-  <h2>Projects</h2>
-  <ul>
-    <li>Water-sealing piezo caps</li>
-    <li>Pagani parts</li>
-    <li>Purdue Electric Racing project</li>
-    <li>ZF REAX connection CAD</li>
-    <li>Virtual roundabout project</li>
-    <li>Pipsqueak Stirling engine ship</li>
-    <li>Torque-to-failure analysis script</li>
-  </ul>
+  <h2>Selected Projects</h2>
+
+  <!-- CAP PROJECT -->
+  <article>
+    <a href="cap.html">
+      <img src="cap_thumbnail.png" alt="Piezo protection cap thumbnail">
+    </a>
+    <h3>Piezo Sensor Protection Cap</h3>
+    <p>Waterproof protection caps for piezo sensors used in vehicle durability testing.</p>
+  </article>
+
 </section>
 
 </body>
