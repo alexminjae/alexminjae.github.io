@@ -6,96 +6,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* ===== RESET ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0b0b0b;
-      color: #f2f2f2;
+      background: #ffffff;
+      color: #111;
       line-height: 1.65;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* ===== NAV ===== */
+    /* NAV */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.95);
       padding: 16px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid #e6e6e6;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .nav-left img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+    nav strong { font-size: 16px; }
 
     nav a {
       margin-left: 28px;
       font-weight: 500;
-      opacity: 0.85;
+      color: #333;
     }
 
-    nav a:hover {
-      opacity: 1;
-    }
+    nav a:hover { text-decoration: underline; }
 
-    /* ===== SECTIONS ===== */
+    /* SECTIONS */
     section {
       padding: 140px 10%;
       max-width: 1200px;
       margin: auto;
     }
 
-    .section-dark {
-      background: #0b0b0b;
+    .section-white { background: #ffffff; }
+    .section-light { background: #f6f7f8; }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .section-darker {
-      background: #121212;
-    }
-
-    h1 {
-      font-size: 52px;
-      margin-bottom: 20px;
-      letter-spacing: -0.5px;
-    }
-
-    h2 {
-      font-size: 34px;
-      margin-bottom: 28px;
-      letter-spacing: -0.3px;
-    }
+    h1 { font-size: 56px; margin-bottom: 16px; }
+    h2 { font-size: 34px; margin-bottom: 28px; }
+    h3 { font-size: 18px; margin-bottom: 6px; }
 
     p {
-      max-width: 700px;
-      opacity: 0.82;
+      max-width: 720px;
       font-size: 17px;
+      color: #444;
     }
 
-    /* ===== PROJECT GRID ===== */
+    /* PROJECTS */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -103,16 +78,17 @@
     }
 
     .project-card {
-      background: #181818;
+      background: #fff;
       border-radius: 14px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid #e3e3e3;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.08);
     }
 
     .project-card img {
@@ -121,51 +97,54 @@
       object-fit: cover;
     }
 
-    .project-info {
-      padding: 18px;
-    }
-
-    .project-info h3 {
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
+    .project-info { padding: 18px; }
 
     .project-info p {
       font-size: 14px;
-      opacity: 0.6;
+      color: #666;
     }
 
-    /* ===== MODAL ===== */
+    /* MODAL */
     .modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.94);
+      background: rgba(0,0,0,0.6);
       z-index: 2000;
       overflow-y: auto;
     }
 
     .modal-content {
       max-width: 900px;
-      margin: 90px auto;
+      margin: 80px auto;
       padding: 48px;
-      background: #141414;
-      border-radius: 18px;
+      background: #fff;
+      border-radius: 16px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .modal-header img {
+      height: 36px;
+      object-fit: contain;
     }
 
     .close {
-      font-size: 34px;
+      font-size: 30px;
       cursor: pointer;
       float: right;
-      opacity: 0.6;
+      color: #777;
     }
 
-    .close:hover {
-      opacity: 1;
-    }
+    .close:hover { color: #000; }
 
     .modal-subtitle {
-      opacity: 0.55;
+      color: #777;
       margin-bottom: 26px;
     }
 
@@ -179,169 +158,160 @@
     .modal-gallery img {
       width: 100%;
       border-radius: 10px;
+      border: 1px solid #ddd;
     }
 
-    /* ===== CONTACT LINKS ===== */
+    /* CONTACT */
     .contact-links a {
       display: block;
-      margin-top: 12px;
-      opacity: 0.75;
-    }
-
-    .contact-links a:hover {
-      opacity: 1;
+      margin-top: 10px;
+      color: #333;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-left">
-      <img src="minjaekim_profile.jpg" alt="Minjae Kim">
-      <span>Minjae Kim</span>
-    </div>
-    <div>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+<nav>
+  <strong>Minjae Kim</strong>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-  <!-- ABOUT -->
-  <section id="about" class="section-dark">
-    <h1>Mechanical Engineer</h1>
-    <p>
-      Mechanical engineering student with industry experience in vehicle durability
-      testing, mechanical design, and automation. Focused on building robust,
-      production-ready engineering solutions.
-    </p>
-  </section>
+<section id="home" class="section-white hero">
+  <h1>Minjae Kim</h1>
+  <p>
+    Mechanical engineer with experience in vehicle durability testing,
+    mechanical design, and engineering automation. Focused on building
+    reliable, production-ready systems.
+  </p>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section-darker">
-    <h2>Projects</h2>
+<section id="projects" class="section-light">
+  <h2>Projects</h2>
 
-    <div class="projects-grid">
+  <div class="projects-grid">
 
-      <!-- TESLA -->
-      <div class="project-card" onclick="openModal('teslaModal')">
-        <img src="cap_thumbnail.png">
-        <div class="project-info">
-          <h3>Tesla — Materials Engineering Intern</h3>
-          <p>Piezo Sensor Protection System</p>
-        </div>
+    <div class="project-card" onclick="openModal('teslaModal')">
+      <img src="cap_thumbnail.png">
+      <div class="project-info">
+        <h3>Tesla — Materials Engineering Intern</h3>
+        <p>Piezo Sensor Protection System</p>
       </div>
+    </div>
 
-      <!-- ZF -->
-      <div class="project-card" onclick="openModal('zfModal')">
-        <img src="reax_thumbnail.png">
-        <div class="project-info">
-          <h3>ZF — ReAX Connector Transport Protection</h3>
-          <p>Mechanical Design Engineering</p>
-        </div>
+    <div class="project-card" onclick="openModal('ttfModal')">
+      <img src="ttf_thumbnail.png">
+      <div class="project-info">
+        <h3>Tesla — Torque-to-Failure Analysis</h3>
+        <p>Data Analysis / Automation</p>
       </div>
-
     </div>
-  </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section-dark">
-    <h2>Experience</h2>
-    <p>
-      Tesla · ZF Friedrichshafen · Purdue Electric Racing · Undergraduate Research
-    </p>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section-darker">
-    <h2>Contact</h2>
-
-    <div class="contact-links">
-      <a href="mailto:alexminjaekim@gmail.com">alexminjaekim@gmail.com</a>
-      <a href="https://www.linkedin.com/in/alexminjaekim" target="_blank">
-        linkedin.com/in/alexminjaekim
-      </a>
-      <a href="https://github.com/alexminjae" target="_blank">
-        github.com/alexminjae
-      </a>
+    <div class="project-card" onclick="openModal('zfModal')">
+      <img src="reax_thumbnail.png">
+      <div class="project-info">
+        <h3>ZF — ReAX Connector Transport Protection</h3>
+        <p>Mechanical Design Engineering</p>
+      </div>
     </div>
-  </section>
 
-  <!-- TESLA MODAL -->
-  <div id="teslaModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('teslaModal')">&times;</span>
+  </div>
+</section>
 
+<section id="experience" class="section-white">
+  <h2>Experience</h2>
+  <p>Tesla · ZF Friedrichshafen · Purdue Electric Racing · Undergraduate Research</p>
+</section>
+
+<section id="contact" class="section-light">
+  <h2>Contact</h2>
+  <div class="contact-links">
+    <a href="mailto:alexminjaekim@gmail.com">alexminjaekim@gmail.com</a>
+    <a href="https://www.linkedin.com/in/alexminjaekim" target="_blank">
+      linkedin.com/in/alexminjaekim
+    </a>
+    <a href="https://github.com/alexminjae" target="_blank">
+      github.com/alexminjae
+    </a>
+  </div>
+</section>
+
+<!-- TESLA MODAL -->
+<div id="teslaModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('teslaModal')">&times;</span>
+    <div class="modal-header">
+      <img src="teslalogo.png">
       <h2>Tesla — Materials Engineering Intern</h2>
-      <p class="modal-subtitle">Piezo Sensor Protection System</p>
-
-      <p>
-        Designed and productionized protective caps for piezoelectric sensors used
-        in vehicle durability testing, ensuring reliable data collection in wet and
-        high-impact environments.
-      </p>
-
-      <p>
-        Developed a parametric cap system enabling rapid generation of variants
-        across multiple bolt geometries without redesign.
-      </p>
-
-      <p>
-        The solution was mass-produced and deployed across durability
-        instrumentation builds with consistent waterproof performance.
-      </p>
-
-      <div class="modal-gallery">
-        <img src="cap_1.png">
-        <img src="cap_2.png">
-      </div>
+    </div>
+    <p class="modal-subtitle">Piezo Sensor Protection System</p>
+    <p>
+      Designed and productionized protective caps for piezoelectric sensors used
+      in vehicle durability testing, ensuring reliable data collection in harsh
+      environments.
+    </p>
+    <div class="modal-gallery">
+      <img src="cap_1.png">
+      <img src="cap_2.png">
     </div>
   </div>
+</div>
 
-  <!-- ZF MODAL -->
-  <div id="zfModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('zfModal')">&times;</span>
+<!-- TTF MODAL -->
+<div id="ttfModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('ttfModal')">&times;</span>
+    <div class="modal-header">
+      <img src="teslalogo.png">
+      <h2>Torque-to-Failure Analysis Automation</h2>
+    </div>
+    <p class="modal-subtitle">Data Analysis & Engineering Tooling</p>
+    <p>
+      Developed an automated torque-to-failure analysis pipeline to identify
+      snug torque, peak prevailing torque, and yield points from test data,
+      replacing manual interpretation with a repeatable algorithmic process.
+    </p>
+    <div class="modal-gallery">
+      <img src="ttf_1.png">
+      <img src="ttf_2.png">
+    </div>
+  </div>
+</div>
 
+<!-- ZF MODAL -->
+<div id="zfModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('zfModal')">&times;</span>
+    <div class="modal-header">
+      <img src="zflogo.png">
       <h2>ZF — ReAX Connector Transport Protection</h2>
-      <p class="modal-subtitle">Mechanical Design Engineering</p>
-
-      <p>
-        Designed protective transport fixtures for ReAX connector assemblies to
-        prevent joint damage during international shipment.
-      </p>
-
-      <p>
-        Developed connector-specific designs to constrain joints under handling
-        and vibration without introducing stress concentrations.
-      </p>
-
-      <p>
-        Fixtures were successfully used during shipments to Germany and China,
-        eliminating connector damage and rework.
-      </p>
-
-      <div class="modal-gallery">
-        <img src="reax_1.png">
-        <img src="reax_2.png">
-        <img src="reax_3.png">
-      </div>
+    </div>
+    <p class="modal-subtitle">Mechanical Design Engineering</p>
+    <p>
+      Designed protective transport fixtures preventing connector joint damage
+      during international shipment to Germany and China.
+    </p>
+    <div class="modal-gallery">
+      <img src="reax_1.png">
+      <img src="reax_2.png">
+      <img src="reax_3.png">
     </div>
   </div>
+</div>
 
-  <!-- JS -->
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = "block";
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-  </script>
+<script>
+  function openModal(id) {
+    document.getElementById(id).style.display = "block";
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+  }
+</script>
 
 </body>
 </html>
