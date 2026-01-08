@@ -103,6 +103,7 @@
       line-height: 1.05;
       margin-bottom: 24px;
       letter-spacing: -0.03em;
+      text-transform: uppercase; /* CHANGED: Name is now ALL CAPS */
     }
 
     .hero-text p {
@@ -230,12 +231,19 @@
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
-    /* PROJECT TAG PILLS (The requested change) */
-    .project-tags {
+    /* PROJECT TAG PILLS (Used in both Projects List and Modals) */
+    .project-tags, .modal-meta {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
         margin-bottom: 16px;
+    }
+    
+    /* Specific adjustment for Modal Meta spacing */
+    .modal-meta {
+        margin-bottom: 40px; 
+        border-bottom: 1px solid var(--divider); 
+        padding-bottom: 24px; 
     }
 
     .tag-pill {
@@ -400,16 +408,6 @@
     .next-btn { right: 40px; }
 
     .modal-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
-    .modal-meta { 
-        color: var(--accent); 
-        margin-bottom: 40px; 
-        font-size: 0.9rem; 
-        font-weight: 600; 
-        text-transform: uppercase; 
-        letter-spacing: 1px; 
-        border-bottom: 1px solid var(--divider); 
-        padding-bottom: 24px; 
-    }
     
     .modal-text {
         display: grid;
@@ -645,7 +643,11 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>Piezo Protection Cap</h2>
-            <p class="modal-meta">Tesla · CATIA V6 · ANSYS FEA</p>
+            <div class="modal-meta">
+                <span class="tag-pill">Tesla</span>
+                <span class="tag-pill">CATIA V6</span>
+                <span class="tag-pill">ANSYS FEA</span>
+            </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
@@ -678,7 +680,12 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>Torque Data Processor</h2>
-            <p class="modal-meta">Tesla · Python · Pandas · GUI</p>
+            <div class="modal-meta">
+                <span class="tag-pill">Tesla</span>
+                <span class="tag-pill">Python</span>
+                <span class="tag-pill">Pandas</span>
+                <span class="tag-pill">GUI</span>
+            </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
@@ -710,7 +717,11 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>ReAX Transport Fixtures</h2>
-            <p class="modal-meta">ZF Group · PTC Creo · GD&T</p>
+            <div class="modal-meta">
+                <span class="tag-pill">ZF Group</span>
+                <span class="tag-pill">PTC Creo</span>
+                <span class="tag-pill">GD&T</span>
+            </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
@@ -740,7 +751,11 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>Formula SAE Aerodynamics</h2>
-            <p class="modal-meta">Purdue Electric Racing · SolidWorks · ANSYS</p>
+            <div class="modal-meta">
+                <span class="tag-pill">Purdue Racing</span>
+                <span class="tag-pill">SolidWorks</span>
+                <span class="tag-pill">ANSYS</span>
+            </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
@@ -775,7 +790,10 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>Pipsqueak Stirling Engine</h2>
-            <p class="modal-meta">Personal Project · Siemens NX</p>
+            <div class="modal-meta">
+                <span class="tag-pill">Personal Project</span>
+                <span class="tag-pill">Siemens NX</span>
+            </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
@@ -807,7 +825,10 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>Pagani Huayra Components</h2>
-            <p class="modal-meta">Personal Project · Siemens NX</p>
+            <div class="modal-meta">
+                <span class="tag-pill">Personal Project</span>
+                <span class="tag-pill">Siemens NX</span>
+            </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
@@ -834,7 +855,11 @@
     <div class="modal-content">
         <div class="modal-header">
             <h2>Campus Mobility Roundabout</h2>
-            <p class="modal-meta">Team Project · MATLAB · C</p>
+            <div class="modal-meta">
+                <span class="tag-pill">Team Project</span>
+                <span class="tag-pill">MATLAB</span>
+                <span class="tag-pill">C</span>
+            </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
