@@ -4,53 +4,170 @@
   <meta charset="UTF-8">
   <title>Minjae Kim</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 800px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 900px;
       margin: 80px auto;
-      padding: 0 20px;
-      line-height: 1.6;
+      padding: 0 24px;
       color: #111;
+      line-height: 1.6;
     }
-    h1, h2, h3 {
-      line-height: 1.2;
+
+    nav {
+      margin-bottom: 80px;
     }
+
+    nav a {
+      margin-right: 16px;
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+    }
+
     section {
-      margin-bottom: 64px;
+      margin-bottom: 100px;
     }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    details {
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    summary {
+      list-style: none;
+      font-weight: 500;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
     img {
       width: 100%;
-      max-width: 600px;
       margin: 16px 0;
-      display: block;
     }
-    a {
-      color: #111;
-      text-decoration: underline;
+
+    .subtle {
+      color: #555;
+      font-size: 0.95rem;
     }
   </style>
 </head>
+
 <body>
 
-<section>
-  <h1>Minjae Kim</h1>
-  <p>Mechanical Engineering @ Purdue</p>
-</section>
+  <!-- NAV -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<section>
-  <h2>Selected Projects</h2>
+  <!-- HEADER -->
+  <header>
+    <h1>Minjae Kim</h1>
+    <p class="subtle">
+      Mechanical Engineering · Test Automation · Product Validation
+    </p>
+  </header>
 
-  <!-- CAP PROJECT -->
-  <article>
-    <a href="cap.html">
-      <img src="cap_thumbnail.png" alt="Piezo protection cap thumbnail">
-    </a>
-    <h3>Piezo Sensor Protection Cap</h3>
-    <p>Waterproof protection caps for piezo sensors used in vehicle durability testing.</p>
-  </article>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      Mechanical engineering student at Purdue University with experience in
+      fastener validation, test automation, and production-oriented design
+      through Tesla and ZF.
+    </p>
+  </section>
 
-</section>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <details>
+      <summary>
+        Tesla — Materials Engineering Intern · <strong>Automated Torque-to-Failure Analysis</strong>
+      </summary>
+
+      <p>
+        Developed a Python-based tool to automate torque–angle interpretation
+        for fastener validation testing, replacing manual curve inspection.
+      </p>
+
+      <img src="ttf_1.png" alt="Torque to failure curve">
+
+      <p>
+        Implemented slope-based yield detection with percentage drop and angle
+        window constraints to robustly identify yield, snug, and peak prevailing torque.
+      </p>
+
+      <img src="ttf_2.png" alt="Automated torque point detection">
+    </details>
+
+    <details>
+      <summary>
+        Tesla — Materials Engineering Intern · <strong>Piezo Sensor Protection Cap</strong>
+      </summary>
+
+      <p>
+        Designed and validated protective caps for piezoelectric sensors used
+        in sealing applications, balancing durability and signal integrity.
+      </p>
+
+      <img src="cap_1.png" alt="Piezo cap design">
+      <img src="cap_2.png" alt="Piezo cap testing">
+    </details>
+
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <p>
+      <strong>Tesla</strong><br>
+      Materials Engineering Intern
+    </p>
+
+    <p>
+      <strong>ZF</strong><br>
+      Testing & Validation Engineering Co-op
+    </p>
+
+    <p>
+      <strong>Purdue Electric Racing</strong><br>
+      Mechanical Engineer
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Email: your@email.com<br>
+      GitHub: <a href="https://github.com/alexminjae">alexminjae</a><br>
+      LinkedIn: linkedin.com/in/yourprofile
+    </p>
+  </section>
 
 </body>
 </html>
