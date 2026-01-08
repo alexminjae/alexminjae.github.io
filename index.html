@@ -171,7 +171,7 @@
         background: var(--light);
         border-radius: 4px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        position: relative; 
+        position: relative; /* Needed for absolute positioning the logo */
     }
 
     /* Main Thumbnail Image */
@@ -181,20 +181,21 @@
         transition: transform 0.5s ease;
     }
 
+    /* Hover effect only zooms the main image, not the logo */
     .project-row:hover .main-thumb { transform: scale(1.02); }
 
     /* Company Logo Overlay Style - ROUNDED SQUARE FIX */
     .thumb-logo {
         position: absolute;
         top: 15px;
-        right: 15px;        /* Always right */
+        right: 15px;        /* Always right, regardless of row direction */
         width: 50px;
         height: 50px;
         object-fit: contain;
         z-index: 2;
         background: #fff;
-        padding: 4px;       
-        border-radius: 8px; /* Rounded Square */
+        padding: 4px;       /* Small padding creates a nice frame */
+        border-radius: 8px; /* Rounded Square = No Cut Corners */
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
@@ -224,60 +225,20 @@
         display: inline-block;
     }
 
-    /* EXPERIENCE SECTION WITH TIMELINE */
-    #experience h2 { 
-        font-size: 3rem; 
-        margin-bottom: 60px; 
-        border-bottom: 1px solid #000; 
-        padding-bottom: 20px; 
-    }
+    /* EXPERIENCE */
+    #experience h2 { font-size: 3rem; margin-bottom: 60px; border-bottom: 1px solid #000; padding-bottom: 20px; }
 
     .job-item {
         display: grid;
-        grid-template-columns: 80px 1fr auto; /* Logo column is 80px */
+        grid-template-columns: 80px 1fr auto;
         gap: 40px;
         padding: 40px 0;
-        /* border-bottom: 1px solid var(--border);  <-- REMOVED to make timeline cleaner */
+        border-bottom: 1px solid var(--border);
         align-items: start;
-        position: relative; /* Needed for the timeline line */
+        transition: background 0.2s;
     }
-
-    /* THE VERTICAL TIMELINE LINE */
-    .job-item::before {
-        content: '';
-        position: absolute;
-        left: 29px; /* roughly center of the 60px logo (30px) minus half line width */
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: #eaeaea;
-        z-index: 0;
-    }
-
-    /* First Item: Line starts at the center of the logo (70px from top) */
-    /* Calculation: Padding 40px + Logo Center 30px = 70px */
-    .job-item:first-of-type::before {
-        top: 70px; 
-    }
-
-    /* Last Item: Line ends at the center of the logo */
-    .job-item:last-of-type::before {
-        height: 70px;
-        bottom: auto;
-    }
-
-    /* LOGO STYLES */
-    .company-logo { 
-        width: 60px; 
-        height: 60px; 
-        object-fit: contain;
-        position: relative;
-        z-index: 1;
-        background: #fff; /* White bg hides the timeline line behind it */
-    }
-
-    .job-item:hover { background: transparent; } /* Remove hover bg to keep timeline clean */
-    
+    .job-item:hover { background: #fafafa; }
+    .company-logo { width: 60px; height: 60px; object-fit: contain; }
     .job-details h3 { font-size: 1.5rem; margin-bottom: 5px; }
     .job-details p { color: var(--gray); font-size: 1rem; }
     .job-year { font-weight: 700; font-family: 'Space Grotesk'; }
@@ -374,8 +335,6 @@
         .hero h1 { font-size: 3.5rem; }
         .hero { min-height: auto; padding-top: 150px; }
         .project-row:nth-child(even) { direction: ltr; }
-        /* Reset logo position for mobile RTL layout */
-        .project-row:nth-child(even) .thumb-logo { left: auto; right: 15px; }
         .close-btn { top: 20px; right: 20px; font-size: 30px; }
         nav div { gap: 15px; }
         nav a { font-size: 11px; }
