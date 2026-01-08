@@ -1,133 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Minjae Kim</title>
+  <meta charset="UTF-8" />
+  <title>Minjae Kim | Mechanical Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* GLOBAL */
+    /* ===== RESET ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     html {
       scroll-behavior: smooth;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 24px;
-      color: #111;
-      line-height: 1.6;
+      background: #0b0b0b;
+      color: #f2f2f2;
+      line-height: 1.65;
     }
 
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== NAV ===== */
     nav {
-      margin-bottom: 80px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(10px);
+      padding: 16px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .nav-left img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
     nav a {
-      margin-right: 20px;
-      text-decoration: none;
-      color: #111;
+      margin-left: 28px;
       font-weight: 500;
+      opacity: 0.85;
     }
 
+    nav a:hover {
+      opacity: 1;
+    }
+
+    /* ===== SECTIONS ===== */
     section {
-      margin-bottom: 100px;
+      padding: 140px 10%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-dark {
+      background: #0b0b0b;
+    }
+
+    .section-darker {
+      background: #121212;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
+      font-size: 52px;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
     }
 
     h2 {
-      font-size: 1.6rem;
-      margin-bottom: 24px;
+      font-size: 34px;
+      margin-bottom: 28px;
+      letter-spacing: -0.3px;
     }
 
-    .subtle {
-      color: #555;
-      font-size: 0.95rem;
+    p {
+      max-width: 700px;
+      opacity: 0.82;
+      font-size: 17px;
     }
 
-    /* PROJECT GRID */
-    .project-grid {
+    /* ===== PROJECT GRID ===== */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
     }
 
     .project-card {
+      background: #181818;
+      border-radius: 14px;
+      overflow: hidden;
       cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     }
 
     .project-card img {
       width: 100%;
-      border-radius: 6px;
-      margin-bottom: 8px;
+      height: 200px;
+      object-fit: cover;
     }
 
-    .project-card:hover {
-      text-decoration: underline;
+    .project-info {
+      padding: 18px;
     }
 
-    /* FADE-IN ANIMATION */
-    .fade {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
+    .project-info h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
     }
 
-    .fade.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .project-info p {
+      font-size: 14px;
+      opacity: 0.6;
     }
 
-    /* MODAL */
+    /* ===== MODAL ===== */
     .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.6);
       display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
+      z-index: 2000;
+      overflow-y: auto;
     }
 
     .modal-content {
-      background: white;
-      width: 90%;
       max-width: 900px;
-      max-height: 90%;
-      overflow-y: auto;
-      padding: 40px;
-      border-radius: 8px;
-      animation: slideUp 0.3s ease;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      margin: 90px auto;
+      padding: 48px;
+      background: #141414;
+      border-radius: 18px;
     }
 
     .close {
-      font-size: 1.5rem;
+      font-size: 34px;
       cursor: pointer;
       float: right;
+      opacity: 0.6;
     }
 
-    img.modal-img {
+    .close:hover {
+      opacity: 1;
+    }
+
+    .modal-subtitle {
+      opacity: 0.55;
+      margin-bottom: 26px;
+    }
+
+    .modal-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .modal-gallery img {
       width: 100%;
-      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    /* ===== CONTACT LINKS ===== */
+    .contact-links a {
+      display: block;
+      margin-top: 12px;
+      opacity: 0.75;
+    }
+
+    .contact-links a:hover {
+      opacity: 1;
     }
   </style>
 </head>
@@ -136,158 +198,149 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
+    <div class="nav-left">
+      <img src="minjaekim_profile.jpg" alt="Minjae Kim">
+      <span>Minjae Kim</span>
+    </div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
   </nav>
 
-  <!-- HEADER -->
-  <header>
-    <h1>Minjae Kim</h1>
-    <p class="subtle">
-      Mechanical Engineering · Test Automation · Product Validation
-    </p>
-  </header>
-
   <!-- ABOUT -->
-  <section id="about" class="fade">
-    <h2>About</h2>
+  <section id="about" class="section-dark">
+    <h1>Mechanical Engineer</h1>
     <p>
-      Mechanical engineering student at Purdue University with experience in
-      fastener validation, test automation, and production-oriented design
-      through Tesla and ZF.
+      Mechanical engineering student with industry experience in vehicle durability
+      testing, mechanical design, and automation. Focused on building robust,
+      production-ready engineering solutions.
     </p>
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="fade">
+  <section id="projects" class="section-darker">
     <h2>Projects</h2>
 
-    <div class="project-grid">
+    <div class="projects-grid">
 
-      <div class="project-card" onclick="openModal('ttfModal')">
-        <img src="ttf_thumbnail.png" alt="Torque to failure">
-        <strong>Tesla</strong><br>
-        Automated Torque-to-Failure Analysis
+      <!-- TESLA -->
+      <div class="project-card" onclick="openModal('teslaModal')">
+        <img src="cap_thumbnail.png">
+        <div class="project-info">
+          <h3>Tesla — Materials Engineering Intern</h3>
+          <p>Piezo Sensor Protection System</p>
+        </div>
       </div>
 
-      <div class="project-card" onclick="openModal('capModal')">
-        <img src="cap_thumbnail.png" alt="Piezo cap">
-        <strong>Tesla</strong><br>
-        Piezo Sensor Protection Cap
+      <!-- ZF -->
+      <div class="project-card" onclick="openModal('zfModal')">
+        <img src="reax_thumbnail.png">
+        <div class="project-info">
+          <h3>ZF — ReAX Connector Transport Protection</h3>
+          <p>Mechanical Design Engineering</p>
+        </div>
       </div>
 
     </div>
   </section>
 
   <!-- EXPERIENCE -->
-  <section id="experience" class="fade">
+  <section id="experience" class="section-dark">
     <h2>Experience</h2>
-
     <p>
-      <strong>Tesla</strong> — Materials Engineering Intern<br>
-      Fastener validation, test automation, production-oriented design
-    </p>
-
-    <p>
-      <strong>ZF</strong> — Testing & Validation Engineering Co-op<br>
-      Mechanical testing, data analysis, component validation
-    </p>
-
-    <p>
-      <strong>Purdue Electric Racing</strong> — Mechanical Engineer<br>
-      Design, manufacturing, and testing of EV subsystems
+      Tesla · ZF Friedrichshafen · Purdue Electric Racing · Undergraduate Research
     </p>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="fade">
+  <section id="contact" class="section-darker">
     <h2>Contact</h2>
-    <p>
-      Email: alexminjaekim@email.com<br>
-      GitHub: <a href="https://github.com/alexminjae">alexminjae</a><br>
-      LinkedIn: linkedin.com/in/alexminjaekim
-    </p>
+
+    <div class="contact-links">
+      <a href="mailto:alexminjaekim@gmail.com">alexminjaekim@gmail.com</a>
+      <a href="https://www.linkedin.com/in/alexminjaekim" target="_blank">
+        linkedin.com/in/alexminjaekim
+      </a>
+      <a href="https://github.com/alexminjae" target="_blank">
+        github.com/alexminjae
+      </a>
+    </div>
   </section>
 
-  <!-- TTF MODAL -->
-  <div class="modal" id="ttfModal" onclick="closeModal('ttfModal')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <span class="close" onclick="closeModal('ttfModal')">&times;</span>
+  <!-- TESLA MODAL -->
+  <div id="teslaModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('teslaModal')">&times;</span>
 
-      <h2>Automated Torque-to-Failure Analysis</h2>
-      <p class="subtle">Tesla · Materials Engineering Intern</p>
+      <h2>Tesla — Materials Engineering Intern</h2>
+      <p class="modal-subtitle">Piezo Sensor Protection System</p>
 
       <p>
-        Developed a Python-based tool to automate torque–angle interpretation
-        for fastener validation testing, replacing manual curve inspection.
+        Designed and productionized protective caps for piezoelectric sensors used
+        in vehicle durability testing, ensuring reliable data collection in wet and
+        high-impact environments.
       </p>
 
       <p>
-        Implemented slope-based yield detection with percentage drop thresholds
-        and angular constraints to reliably identify yield, snug, and peak
-        prevailing torque across multiple data formats.
+        Developed a parametric cap system enabling rapid generation of variants
+        across multiple bolt geometries without redesign.
       </p>
 
-      <img src="ttf_1.png" class="modal-img" alt="Torque to failure plot">
-      <img src="ttf_2.png" class="modal-img" alt="Automated detection">
+      <p>
+        The solution was mass-produced and deployed across durability
+        instrumentation builds with consistent waterproof performance.
+      </p>
+
+      <div class="modal-gallery">
+        <img src="cap_1.png">
+        <img src="cap_2.png">
+      </div>
     </div>
   </div>
 
-  <!-- CAP MODAL -->
-  <div class="modal" id="capModal" onclick="closeModal('capModal')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <span class="close" onclick="closeModal('capModal')">&times;</span>
+  <!-- ZF MODAL -->
+  <div id="zfModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('zfModal')">&times;</span>
 
-      <h2>Piezo Sensor Protection Cap</h2>
-      <p class="subtle">Tesla · Materials Engineering Intern</p>
+      <h2>ZF — ReAX Connector Transport Protection</h2>
+      <p class="modal-subtitle">Mechanical Design Engineering</p>
 
       <p>
-        Designed and productionized protective caps for piezoelectric sensors
-        used in vehicle durability testing, ensuring reliable data collection
-        in wet and high-impact environments.
+        Designed protective transport fixtures for ReAX connector assemblies to
+        prevent joint damage during international shipment.
       </p>
 
       <p>
-        The primary challenge was balancing full water sealing with fast,
-        tool-less installation while supporting multiple bolt sizes and vehicle
-        configurations. To address this, I developed a parametric cap system
-        that automatically adapts to bolt geometry, enabling rapid generation
-        of variants without redesign.
+        Developed connector-specific designs to constrain joints under handling
+        and vibration without introducing stress concentrations.
       </p>
 
       <p>
-        The final solution was mass-produced and deployed across durability
-        instrumentation builds, supporting multiple drive types and achieving
-        consistent waterproof performance with quick hand-press installation.
+        Fixtures were successfully used during shipments to Germany and China,
+        eliminating connector damage and rework.
       </p>
 
-      <img src="cap_1.png" class="modal-img" alt="Cap design">
-      <img src="cap_2.png" class="modal-img" alt="Cap testing">
+      <div class="modal-gallery">
+        <img src="reax_1.png">
+        <img src="reax_2.png">
+        <img src="reax_3.png">
+      </div>
     </div>
   </div>
 
   <!-- JS -->
   <script>
     function openModal(id) {
-      document.getElementById(id).style.display = "flex";
+      document.getElementById(id).style.display = "block";
     }
 
     function closeModal(id) {
       document.getElementById(id).style.display = "none";
     }
-
-    const faders = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    });
-
-    faders.forEach(el => observer.observe(el));
   </script>
 
 </body>
