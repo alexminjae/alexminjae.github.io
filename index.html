@@ -184,27 +184,20 @@
     /* Hover effect only zooms the main image, not the logo */
     .project-row:hover .main-thumb { transform: scale(1.02); }
 
-    /* Company Logo Overlay Style */
+    /* Company Logo Overlay Style - ROUNDED SQUARE FIX */
     .thumb-logo {
         position: absolute;
         top: 15px;
-        right: 15px;        /* This ensures it is ALWAYS on the right */
+        right: 15px;        /* Always right, regardless of row direction */
         width: 50px;
         height: 50px;
         object-fit: contain;
         z-index: 2;
         background: #fff;
-        padding: 4px;       
-        border-radius: 8px; 
+        padding: 4px;       /* Small padding creates a nice frame */
+        border-radius: 8px; /* Rounded Square = No Cut Corners */
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
-
-    /* Fix for RTL rows to keep logo on the right visually */
-    .project-row:nth-child(even) .thumb-logo {
-        right: auto;
-        left: 15px;
-    }
-
 
     .tags {
         font-size: 0.75rem;
@@ -342,8 +335,6 @@
         .hero h1 { font-size: 3.5rem; }
         .hero { min-height: auto; padding-top: 150px; }
         .project-row:nth-child(even) { direction: ltr; }
-        /* Reset logo position for mobile RTL layout */
-        .project-row:nth-child(even) .thumb-logo { left: auto; right: 15px; }
         .close-btn { top: 20px; right: 20px; font-size: 30px; }
         nav div { gap: 15px; }
         nav a { font-size: 11px; }
