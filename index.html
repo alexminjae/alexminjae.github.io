@@ -6,349 +6,431 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-        --bg: #ffffff;
-        --text: #111;
-        --gray: #666;
-        --light: #f9f9f9;
-        --border: #eaeaea;
+        /* APPLE COLOR PALETTE */
+        --bg-body: #f5f5f7;       /* The classic Apple light gray background */
+        --bg-card: #ffffff;       /* Pure white for cards */
+        --text-primary: #1d1d1f;  /* Apple's "almost black" */
+        --text-secondary: #86868b;/* Apple's gray text */
+        --accent: #0071e3;        /* Apple Blue */
+        --divider: #d2d2d7;
+        
+        --radius-card: 24px;
+        --radius-btn: 980px;      /* Pill shape */
+        
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+        --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+        --shadow-lg: 0 30px 60px rgba(0,0,0,0.12);
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.5;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased; /* Crisp text rendering */
     }
 
     h1, h2, h3, h4 {
-        font-family: 'Space Grotesk', sans-serif;
-        text-transform: uppercase;
-        letter-spacing: -0.5px;
-        color: #000;
+        font-weight: 700;
+        letter-spacing: -0.02em; /* Tight tracking like Apple headers */
+        color: var(--text-primary);
     }
 
-    a { color: inherit; text-decoration: none; }
+    p { color: var(--text-secondary); font-weight: 400; font-size: 1.05rem; }
+    a { color: inherit; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); }
     
-    /* NAV */
+    /* NAV: Glassmorphism */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 20px 5%;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: saturate(180%) blur(20px); /* The "Frosted Glass" effect */
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      padding: 0 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 5000; 
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      z-index: 5000;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    nav strong {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
     }
 
     nav div { display: flex; gap: 30px; }
 
     nav a {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0px;
+      color: var(--text-secondary);
     }
-    nav a:hover { color: var(--gray); }
-    
-    nav strong {
-      text-transform: uppercase;
-      font-family: 'Space Grotesk', sans-serif; /* Optional: Makes it match your headers */
-      letter-spacing: 1px;
-    }
+    nav a:hover { color: var(--accent); }
+
     /* SECTIONS */
     section {
-      padding: 120px 5%;
-      max-width: 1400px;
+      padding: 140px 5%;
+      max-width: 1200px;
       margin: auto;
     }
 
-    /* ABOUT (HERO) */
+    /* HERO */
     .hero {
-      min-height: 100vh;
+      min-height: 90vh;
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: 1.2fr 1fr; /* More space for text */
       align-items: center;
-      gap: 60px;
-      padding-top: 150px; 
+      gap: 80px;
     }
 
     .hero-text h1 {
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      line-height: 0.95;
-      margin-bottom: 30px;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -0.03em;
     }
 
     .hero-text p {
-      font-size: 1.15rem;
-      color: var(--gray);
+      font-size: 1.3rem; /* Larger, readable intro text */
+      line-height: 1.4;
       max-width: 500px;
-      border-left: 3px solid #000;
-      padding-left: 20px;
-      font-weight: 400;
+      color: var(--text-secondary);
+      border: none; /* Removed the brutalist border */
+      padding: 0;
       margin-bottom: 40px;
     }
 
-    /* Status Badge Style */
+    /* Status Badge: Apple Pill Style */
     .status-badge {
-        display: inline-block;
-        padding: 8px 16px;
-        border: 1px solid #000;
-        border-radius: 50px;
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 0.8rem;
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: var(--radius-btn);
+        font-size: 0.75rem;
         font-weight: 600;
         text-transform: uppercase;
-        margin-bottom: 30px;
-        background: rgba(255,255,255,0.5);
-        backdrop-filter: blur(5px);
+        margin-bottom: 24px;
+        background: rgba(255,255,255,0.6);
+        color: var(--text-secondary);
     }
 
     .status-dot {
         height: 8px; width: 8px;
-        background-color: #28a745;
+        background-color: #34c759; /* Apple Green */
         border-radius: 50%;
         display: inline-block;
         margin-right: 8px;
+        box-shadow: 0 0 8px rgba(52, 199, 89, 0.4);
     }
 
-    /* Tech Stack List */
+    /* Tech Stack: Clean pills */
     .hero-stack {
         display: flex;
-        gap: 15px;
+        gap: 10px;
         flex-wrap: wrap;
     }
     .stack-item {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 600;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 2px;
-        color: #333;
+        color: var(--text-primary);
+        background: #fff;
+        padding: 8px 16px;
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+        border: none;
     }
 
     .hero-img-container img {
         width: 100%;
-        max-width: 420px;
-        border-radius: 4px;
+        max-width: 450px;
+        border-radius: 24px; /* Smoother corner radius */
         display: block;
         margin-left: auto;
-        box-shadow: 20px 20px 0px var(--light);
+        box-shadow: var(--shadow-lg); /* Deep, soft shadow */
+        transition: transform 0.5s ease;
     }
+    .hero-img-container img:hover { transform: scale(1.02); }
 
-    /* PROJECTS SECTION */
+    /* PROJECTS: Card Layout */
     #projects h2 {
-        font-size: 3rem;
-        margin-bottom: 80px;
-        border-bottom: 1px solid #000;
-        padding-bottom: 20px;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+        text-align: left;
+        border: none;
     }
 
     .project-row {
+        background: var(--bg-card);
+        border-radius: var(--radius-card);
+        padding: 40px;
         display: grid;
         grid-template-columns: 1.5fr 1fr;
-        gap: 80px;
-        margin-bottom: 150px;
+        gap: 60px;
+        margin-bottom: 40px; /* Spacing between cards */
         align-items: center;
         cursor: pointer;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 80px;
-        position: relative;
+        border: none;
+        box-shadow: var(--shadow-md); /* Floating card effect */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-row:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
     }
 
     .project-row:nth-child(even) { direction: rtl; }
     .project-row:nth-child(even) .project-text { direction: ltr; }
 
     .project-img-wrapper {
+        position: relative;
         overflow: hidden;
-        background: var(--light);
-        border-radius: 4px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        position: relative; /* Needed for absolute positioning the logo */
+        border-radius: 16px; /* Inner radius */
+        box-shadow: var(--shadow-sm);
     }
 
-    /* Main Thumbnail Image */
     .main-thumb {
         width: 100%;
         display: block;
-        transition: transform 0.5s ease;
+        transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
+    .project-row:hover .main-thumb { transform: scale(1.05); }
 
-    /* Hover effect only zooms the main image, not the logo */
-    .project-row:hover .main-thumb { transform: scale(1.02); }
-
-    /* Company Logo Overlay Style - ROUNDED SQUARE FIX */
+    /* Logo Style */
     .thumb-logo {
         position: absolute;
         top: 15px;
-        right: 15px;        /* Always right, regardless of row direction */
+        right: 15px;
         width: 50px;
         height: 50px;
         object-fit: contain;
         z-index: 2;
         background: #fff;
-        padding: 4px;       /* Small padding creates a nice frame */
-        border-radius: 8px; /* Rounded Square = No Cut Corners */
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 4px;
+        border-radius: 12px; /* Smoother rounding */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .tags {
-        font-size: 0.75rem;
-        font-family: 'Space Grotesk', sans-serif;
-        color: var(--gray);
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--accent);
         text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         display: block;
-        font-weight: 600;
+        letter-spacing: 0.5px;
     }
 
     .project-text h3 {
-        font-size: 2.5rem;
-        margin-bottom: 20px;
+        font-size: 2.2rem;
+        margin-bottom: 16px;
         line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+    
+    .project-text p {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
     }
 
     .impact-stat {
-        margin-top: 25px;
+        margin-top: 24px;
         font-weight: 600;
         font-size: 0.9rem;
-        border-top: 1px solid #ddd;
-        padding-top: 15px;
+        color: var(--text-primary);
         display: inline-block;
+        background: #f5f5f7;
+        padding: 8px 16px;
+        border-radius: 8px;
     }
 
-    /* EXPERIENCE */
-    #experience h2 { font-size: 3rem; margin-bottom: 60px; border-bottom: 1px solid #000; padding-bottom: 20px; }
+    /* EXPERIENCE: Clean Timeline */
+    #experience h2 { font-size: 2.5rem; margin-bottom: 60px; border: none; }
 
     .job-item {
         display: grid;
         grid-template-columns: 80px 1fr auto;
         gap: 40px;
         padding: 40px 0;
-        border-bottom: 1px solid var(--border);
-        align-items: start;
-        transition: background 0.2s;
+        padding-left: 40px; /* Space for timeline */
+        align-items: center;
+        position: relative;
+        transition: opacity 0.3s;
     }
-    .job-item:hover { background: #fafafa; }
-    .company-logo { width: 60px; height: 60px; object-fit: contain; }
-    .job-details h3 { font-size: 1.5rem; margin-bottom: 5px; }
-    .job-details p { color: var(--gray); font-size: 1rem; }
-    .job-year { font-weight: 700; font-family: 'Space Grotesk'; }
+    .job-item:hover { opacity: 0.8; }
+
+    /* Timeline Line */
+    .job-item::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--divider);
+        z-index: 0;
+    }
+    .job-item:first-of-type::before { top: 50%; }
+    .job-item:last-of-type::before { height: 50%; bottom: auto; }
+
+    .company-logo { 
+        width: 64px; 
+        height: 64px; 
+        object-fit: contain;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: var(--shadow-sm);
+        padding: 4px;
+    }
+    
+    .job-details h3 { font-size: 1.4rem; margin-bottom: 4px; font-weight: 600; }
+    .job-details p { color: var(--text-secondary); font-size: 1rem; }
+    .job-year { font-weight: 600; color: var(--text-secondary); font-feature-settings: "tnum"; }
 
     /* CONTACT */
-    #contact { text-align: center; padding: 100px 5%; background: var(--light); margin-top: 100px; }
+    #contact { text-align: center; padding: 120px 5%; background: #fff; margin-top: 100px; border-radius: 0; }
     #contact h2 { font-size: 3rem; margin-bottom: 40px; }
     
     .contact-links {
         display: flex;
         justify-content: center;
-        gap: 40px;
+        gap: 20px;
         flex-wrap: wrap;
     }
     
     .contact-btn {
-        padding: 15px 40px;
-        border: 1px solid #000;
-        border-radius: 50px;
-        text-transform: uppercase;
-        font-family: 'Space Grotesk';
+        padding: 16px 32px;
+        background: var(--text-primary);
+        color: #fff;
+        border-radius: var(--radius-btn);
+        font-size: 0.9rem;
         font-weight: 600;
-        background: #fff;
-        transition: all 0.3s;
+        transition: transform 0.2s, background 0.2s;
     }
-    .contact-btn:hover { background: #000; color: #fff; }
+    .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
 
-    /* MODAL (POPUP) STYLES */
+    /* MODAL: Apple Sheet Style */
     .modal {
         display: none; 
         position: fixed; 
         z-index: 10001; 
         left: 0; top: 0; 
         width: 100%; height: 100%; 
-        background-color: rgba(255,255,255,0.99); 
+        background-color: rgba(50, 50, 50, 0.4); /* Dimmed background */
+        backdrop-filter: blur(20px); /* Heavy blur */
+        -webkit-backdrop-filter: blur(20px);
         overflow-y: auto;
-        animation: fadeIn 0.3s;
+        animation: fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
     @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
     .modal-content {
-        max-width: 1000px;
-        margin: 60px auto; 
-        padding: 40px 5%;
+        max-width: 900px;
+        margin: 80px auto; 
+        padding: 60px;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: var(--shadow-lg);
         position: relative;
     }
 
     .close-btn {
         position: fixed;
         top: 30px; right: 40px;
-        font-size: 40px;
+        font-size: 24px;
+        width: 44px; height: 44px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
         cursor: pointer;
         z-index: 10002;
         transition: transform 0.2s;
+        box-shadow: var(--shadow-md);
     }
-    .close-btn:hover { transform: rotate(90deg); }
+    .close-btn:hover { transform: scale(1.1); }
 
-    /* MODAL NAVIGATION BUTTONS */
+    /* Navigation Arrows: Floating circles */
     .nav-btn {
         position: fixed;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 3rem;
+        font-size: 1.5rem;
         cursor: pointer;
         z-index: 10002;
-        padding: 20px;
+        width: 50px; height: 50px;
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: var(--shadow-md);
+        transition: all 0.2s;
         user-select: none;
-        transition: transform 0.2s;
-        font-family: 'Space Grotesk', sans-serif;
     }
-    .nav-btn:hover { transform: translateY(-50%) scale(1.2); }
-    .prev-btn { left: 20px; }
-    .next-btn { right: 20px; }
+    .nav-btn:hover { transform: translateY(-50%) scale(1.1); background: #fff; }
+    .prev-btn { left: 40px; }
+    .next-btn { right: 40px; }
 
-    .modal-header h2 { font-size: 3rem; margin-bottom: 10px; }
-    .modal-meta { color: var(--gray); margin-bottom: 60px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+    .modal-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+    .modal-meta { 
+        color: var(--accent); 
+        margin-bottom: 40px; 
+        font-size: 0.9rem; 
+        font-weight: 600; 
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        border-bottom: 1px solid var(--divider); 
+        padding-bottom: 24px; 
+    }
     
     .modal-text {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 60px;
-        margin-bottom: 80px;
+        margin-bottom: 60px;
     }
-    .modal-section h4 { margin-bottom: 15px; font-size: 1.1rem; }
-    .modal-section p { margin-bottom: 25px; color: #444; }
-    .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: #444; }
-    .modal-gallery { display: flex; flex-direction: column; gap: 40px; }
-    .modal-gallery img { width: 100%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .modal-section h4 { margin-bottom: 12px; font-size: 1.1rem; color: var(--text-primary); }
+    .modal-section p { margin-bottom: 20px; color: var(--text-secondary); }
+    .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--text-secondary); }
+    .modal-gallery { display: flex; flex-direction: column; gap: 30px; }
+    .modal-gallery img { width: 100%; border-radius: 12px; box-shadow: var(--shadow-sm); }
 
     /* MOBILE */
     @media (max-width: 768px) {
-        .hero, .project-row, .modal-text, .job-item { grid-template-columns: 1fr; }
-        .hero h1 { font-size: 3.5rem; }
-        .hero { min-height: auto; padding-top: 150px; }
+        .hero { grid-template-columns: 1fr; padding-top: 120px; gap: 40px; text-align: center; }
+        .hero-text p { margin: 0 auto 40px; }
+        .hero-stack { justify-content: center; }
+        .project-row { grid-template-columns: 1fr; gap: 30px; padding: 30px; }
         .project-row:nth-child(even) { direction: ltr; }
-        .close-btn { top: 20px; right: 20px; font-size: 30px; }
-        nav div { gap: 15px; }
-        nav a { font-size: 11px; }
-        .contact-links { flex-direction: column; gap: 20px; }
+        .thumb-logo { left: auto; right: 15px; } /* Force logo right on mobile */
         
-        /* Mobile Nav Buttons */
-        .nav-btn { top: auto; bottom: 20px; font-size: 2rem; background: #fff; border: 1px solid #ddd; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
+        .modal-content { margin: 60px 20px; padding: 30px; }
+        .modal-text { grid-template-columns: 1fr; gap: 30px; }
+        
+        .nav-btn { top: auto; bottom: 20px; width: 44px; height: 44px; }
         .prev-btn { left: 20px; }
         .next-btn { right: 20px; }
+        .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 20px; }
+        
+        .job-item { grid-template-columns: 64px 1fr; padding-left: 30px; }
+        .job-year { display: none; } /* Hide year on tiny screens if crowded, or move to new line */
     }
   </style>
 </head>
@@ -374,7 +456,7 @@
         <h1>Minjae<br>Kim</h1>
         <p>
             Mechanical Engineer bridging the gap between <strong>Hardware Design</strong> and <strong>Test Automation</strong>.
-            <br><br>
+            <br>
             Proven track record at <strong>Tesla</strong> & <strong>ZF Group</strong>.
         </p>
 
@@ -392,7 +474,7 @@
 </section>
 
 <section id="projects">
-    <h2>Projects</h2>
+    <h2>Selected Projects</h2>
     
     <div class="project-row" onclick="openModal('modal-piezo')">
         <div class="project-img-wrapper">
@@ -446,7 +528,9 @@
     </div>
 
     <div class="project-row" onclick="openModal('modal-stirling')">
-        <div class="project-img-wrapper"><img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine"></div>
+        <div class="project-img-wrapper">
+            <img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
+        </div>
         <div class="project-text">
             <span class="tags">Siemens NX · Machining</span>
             <h3>Pipsqueak Stirling Engine</h3>
@@ -455,7 +539,9 @@
     </div>
 
     <div class="project-row" onclick="openModal('modal-pagani')">
-        <div class="project-img-wrapper"><img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel"></div>
+        <div class="project-img-wrapper">
+            <img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
+        </div>
         <div class="project-text">
             <span class="tags">Siemens NX · Surfacing</span>
             <h3>Pagani Huayra Components</h3>
@@ -464,7 +550,9 @@
     </div>
     
     <div class="project-row" onclick="openModal('modal-campus')">
-        <div class="project-img-wrapper"><img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model"></div>
+        <div class="project-img-wrapper">
+            <img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
+        </div>
         <div class="project-text">
             <span class="tags">MATLAB · C · Systems</span>
             <h3>Campus Mobility Roundabout</h3>
@@ -513,7 +601,7 @@
 </section>
 
 <div id="modal-piezo" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-piezo')">&times;</span>
+    <div class="close-btn" onclick="closeModal('modal-piezo')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
     
@@ -546,7 +634,7 @@
 </div>
 
 <div id="modal-torque" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-torque')">&times;</span>
+    <div class="close-btn" onclick="closeModal('modal-torque')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
 
@@ -578,7 +666,7 @@
 </div>
 
 <div id="modal-zf" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-zf')">&times;</span>
+    <div class="close-btn" onclick="closeModal('modal-zf')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
 
@@ -608,7 +696,7 @@
 </div>
 
 <div id="modal-per" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-per')">&times;</span>
+    <div class="close-btn" onclick="closeModal('modal-per')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
 
@@ -643,7 +731,7 @@
 </div>
 
 <div id="modal-stirling" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-stirling')">&times;</span>
+    <div class="close-btn" onclick="closeModal('modal-stirling')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
 
@@ -675,7 +763,7 @@
 </div>
 
 <div id="modal-pagani" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-pagani')">&times;</span>
+    <div class="close-btn" onclick="closeModal('modal-pagani')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
 
@@ -702,7 +790,7 @@
 </div>
 
 <div id="modal-campus" class="modal">
-    <span class="close-btn" onclick="closeModal('modal-campus')">&times;</span>
+    <div class="close-btn" onclick="closeModal('modal-campus')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
 
