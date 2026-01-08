@@ -184,21 +184,20 @@
     /* Hover effect only zooms the main image, not the logo */
     .project-row:hover .main-thumb { transform: scale(1.02); }
 
-    /* Company Logo Overlay Style - FIXED */
+    /* Company Logo Overlay Style */
     .thumb-logo {
         position: absolute;
         top: 15px;
         right: 15px;
-        width: 50px;  /* Slightly larger for visibility */
-        height: 50px;
-        object-fit: contain; /* Ensures logo fits inside without cutting off */
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
         z-index: 2;
-        background: #fff;
-        padding: 2px; /* Reduced padding so logo fills the circle */
+        background: rgba(255,255,255,0.95);
+        padding: 8px;
         border-radius: 50%;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
     /* Fix for RTL rows to keep logo on the right visually */
     .project-row:nth-child(even) .thumb-logo {
         right: auto;
