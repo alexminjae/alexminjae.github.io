@@ -13,6 +13,7 @@
         --text-primary: #1d1d1f;  
         --text-secondary: #86868b;
         --accent: #0071e3;        
+        --accent-hover: #0077ed;
         --divider: #d2d2d7;
         
         --radius-card: 24px;
@@ -43,7 +44,7 @@
 
     h1, h2, h3, h4 {
         font-weight: 700;
-        letter-spacing: -0.025em; 
+        letter-spacing: -0.02em; 
         color: var(--text-primary);
     }
 
@@ -62,7 +63,7 @@
       top: 0;
       width: 100%;
       height: 60px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       padding: 0 5%;
@@ -70,23 +71,22 @@
       justify-content: space-between;
       align-items: center;
       z-index: 5000;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     nav strong {
       text-transform: uppercase;
       font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0px;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
       color: var(--text-primary);
     }
 
     nav div { display: flex; gap: 30px; }
 
     nav a {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
-      letter-spacing: -0.01em;
       color: var(--text-secondary);
     }
     nav a:hover { color: var(--accent); }
@@ -94,81 +94,80 @@
     /* SECTIONS */
     section {
       padding: 140px 5%;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: auto;
     }
 
-    /* --- UPDATED HERO SECTION (Structured & Widget Style) --- */
+    /* --- UPDATED HERO SECTION (Refined & Structured) --- */
     .hero {
-        min-height: 85vh;
+        min-height: 90vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 100px; /* Space for fixed nav */
+        padding-top: 80px; 
     }
 
-    /* The Main Layout Grid */
     .hero-grid {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr; /* Text on left, Image on right */
-        gap: 60px;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
         align-items: center;
     }
 
-    /* Left Side: Typography & Info Widgets */
+    /* Left Side Content */
     .hero-content {
         display: flex;
         flex-direction: column;
-        gap: 32px; /* Consistent spacing between elements */
+        gap: 40px; 
     }
 
     .hero-header h1 {
-        font-size: clamp(4rem, 8vw, 5.5rem);
+        font-size: clamp(3.8rem, 7vw, 5.2rem);
         font-weight: 700;
         line-height: 1.05;
         letter-spacing: -0.03em;
         color: var(--text-primary);
-        margin-bottom: 16px;
+        margin-bottom: 20px;
     }
 
     .hero-header p {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 500;
         line-height: 1.4;
         color: var(--text-secondary);
         max-width: 90%;
     }
 
-    /* The "Bento" Widget Container for Info */
-    .info-widget-row {
+    /* The "Stats" Row - Replaces old widgets */
+    .hero-stats-row {
         display: flex;
-        gap: 16px;
+        gap: 20px;
         flex-wrap: wrap;
     }
 
-    .info-widget {
+    .stat-box {
         background: #ffffff;
-        padding: 16px 20px;
-        border-radius: 16px;
+        padding: 18px 24px;
+        border-radius: 18px;
         box-shadow: var(--shadow-sm);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         border: 1px solid rgba(0,0,0,0.02);
-        min-width: 180px;
+        min-width: 160px;
+        transition: transform 0.2s;
     }
+    .stat-box:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-    .widget-label {
+    .stat-label {
         font-size: 0.75rem;
         text-transform: uppercase;
-        color: var(--text-secondary);
+        color: #86868b;
         font-weight: 600;
         letter-spacing: 0.05em;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
+        display: block;
     }
 
-    .widget-value {
-        font-size: 1rem;
+    .stat-value {
+        font-size: 1.05rem;
         font-weight: 600;
         color: var(--text-primary);
         display: flex;
@@ -176,42 +175,71 @@
         gap: 8px;
     }
 
-    /* Tech Stack Chips - Clean & Uniform */
+    /* Tech Stack Pills */
+    .stack-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+        display: block;
+    }
+
     .stack-row {
         display: flex;
-        gap: 8px;
+        gap: 10px;
         flex-wrap: wrap;
-        margin-top: 8px;
     }
 
     .stack-chip {
-        background: rgba(0,0,0,0.05); /* Very subtle grey */
+        background: rgba(0,0,0,0.04);
         color: var(--text-primary);
-        padding: 6px 14px;
-        border-radius: 50px; /* Fully rounded pill */
-        font-size: 0.85rem;
-        font-weight: 600;
-        transition: background 0.2s;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.2s;
     }
     .stack-chip:hover {
-        background: rgba(0,0,0,0.1);
+        background: var(--text-primary);
+        color: #fff;
     }
 
-    /* Right Side: Image with "Glass" effect container */
+    /* CTA Button */
+    .hero-cta {
+        margin-top: 10px;
+    }
+    .btn-primary {
+        background: var(--accent);
+        color: white;
+        padding: 14px 28px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover {
+        background: var(--accent-hover);
+        transform: scale(1.02);
+    }
+
+    /* Right Side Image */
     .hero-image-wrapper {
         position: relative;
         border-radius: 32px;
         overflow: hidden;
         box-shadow: var(--shadow-lg);
         background: #fff;
-        line-height: 0; /* Removes bottom space */
+        line-height: 0;
     }
 
     .hero-image-wrapper img {
         width: 100%;
         height: auto;
         display: block;
-        transform: scale(1.01); /* Prevents white bleed lines */
+        transform: scale(1.01);
     }
 
     /* PROJECTS */
@@ -409,7 +437,7 @@
     }
     .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
 
-    /* --- FOOTER STYLE --- */
+    /* FOOTER */
     footer {
         background-color: #ffffff; 
         color: #333333;  
@@ -517,19 +545,19 @@
 
     /* MOBILE */
     @media (max-width: 768px) {
+        .hero { padding-top: 100px; }
         .hero-grid {
             grid-template-columns: 1fr;
             gap: 40px;
-            text-align: left; /* Keep left alignment for structure */
+            text-align: left; 
         }
         .hero-header h1 {
             font-size: 3.5rem;
         }
-        .info-widget-row {
-            flex-direction: column; /* Stack widgets on phone */
+        .hero-stats-row {
             width: 100%;
         }
-        .info-widget {
+        .stat-box {
             width: 100%;
         }
 
@@ -570,28 +598,28 @@
             
             <div class="hero-header">
                 <h1>Minjae Kim</h1>
-                <p>Mechanical Engineer bridging Hardware Design & Test Automation.</p>
+                <p>Mechanical Engineer bridging <strong>Hardware Design</strong> and <strong>Test Automation</strong>.</p>
             </div>
 
-            <div class="info-widget-row">
-                <div class="info-widget">
-                    <span class="widget-label">Education</span>
-                    <div class="widget-value">
-                        <span style="width:8px; height:8px; background:#C28E0E; border-radius:50%; display:inline-block;"></span>
-                        Purdue University
+            <div class="hero-stats-row">
+                <div class="stat-box">
+                    <span class="stat-label">Education</span>
+                    <div class="stat-value">
+                        <span style="width:8px; height:8px; background:#C28E0E; border-radius:50%;"></span>
+                        Purdue ME
                     </div>
-                    <div style="font-size: 0.85rem; color: #86868b; margin-top:2px;">B.S. Mechanical Engineering</div>
                 </div>
 
-                <div class="info-widget">
-                    <span class="widget-label">Current Role</span>
-                    <div class="widget-value">Undergraduate Researcher</div>
-                    <div style="font-size: 0.85rem; color: #86868b; margin-top:2px;">Advanced Multiscale Mfg. Lab</div>
+                <div class="stat-box">
+                    <span class="stat-label">Previously At</span>
+                    <div class="stat-value">
+                        Tesla & ZF Group
+                    </div>
                 </div>
             </div>
 
             <div>
-                <span class="widget-label" style="display:block; margin-bottom:8px;">Core Technologies</span>
+                <span class="stack-label">Core Technologies</span>
                 <div class="stack-row">
                     <span class="stack-chip">CATIA V6</span>
                     <span class="stack-chip">Siemens NX</span>
@@ -599,6 +627,10 @@
                     <span class="stack-chip">MATLAB</span>
                     <span class="stack-chip">ANSYS</span>
                 </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#projects" class="btn-primary">View Projects &#8595;</a>
             </div>
 
         </div>
