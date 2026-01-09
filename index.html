@@ -369,13 +369,14 @@
     }
     .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
 
-    /* --- FOOTER STYLE --- */
+    /* --- FOOTER STYLE (Bright & Slim) --- */
     footer {
-        background-color: #1d1d1f; /* Dark Apple-like background */
-        color: #f5f5f7;
-        padding: 80px 20px;
+        background-color: var(--bg-body); /* Matches light gray body */
+        color: var(--text-primary);
+        padding: 40px 20px; /* Reduced from 80px to 40px */
         text-align: center;
-        margin-top: auto; /* Pushes footer to bottom */
+        margin-top: auto; 
+        border-top: 1px solid rgba(0,0,0,0.05); /* Subtle top separator */
     }
 
     .footer-content {
@@ -383,19 +384,19 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px; /* Reduced gap */
         align-items: center;
     }
 
     .footer-text {
-        font-size: 0.9rem;
-        color: #86868b; /* Muted gray text */
+        font-size: 0.85rem; /* Slightly smaller text */
+        color: var(--text-secondary); /* Cool Gray Text */
         font-weight: 500;
         letter-spacing: 0.02em;
     }
 
     .footer-text strong {
-        color: #f5f5f7; /* White for the name */
+        color: var(--text-primary); 
         font-weight: 600;
     }
 
