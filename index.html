@@ -36,6 +36,9 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased; 
       -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     h1, h2, h3, h4 {
@@ -174,12 +177,12 @@
     /* PROJECTS */
     #projects h2 {
         font-size: 2.5rem;
-        margin-bottom: 30px; /* Reduced to fit filters */
+        margin-bottom: 30px;
         text-align: left;
         border: none;
     }
 
-    /* --- FILTER BUTTONS STYLE --- */
+    /* FILTER BUTTONS */
     .filter-container {
         display: flex;
         gap: 15px;
@@ -187,7 +190,7 @@
     }
 
     .filter-btn {
-        background: #e5e5ea; /* Apple light gray */
+        background: #e5e5ea;
         border: none;
         padding: 10px 24px;
         border-radius: 20px;
@@ -198,22 +201,15 @@
         transition: all 0.2s ease;
     }
 
-    .filter-btn:hover {
-        background: #d1d1d6;
-    }
-
-    .filter-btn.active {
-        background: var(--text-primary); /* Dark Active State */
-        color: #fff;
-    }
-
+    .filter-btn:hover { background: #d1d1d6; }
+    .filter-btn.active { background: var(--text-primary); color: #fff; }
 
     /* PROJECT ROW */
     .project-row {
         background: var(--bg-card);
         border-radius: var(--radius-card);
         padding: 40px;
-        display: grid; /* We use JS to toggle this between 'grid' and 'none' */
+        display: grid;
         grid-template-columns: 1.5fr 1fr;
         gap: 60px;
         margin-bottom: 40px;
@@ -222,8 +218,6 @@
         border: none;
         box-shadow: var(--shadow-md);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        
-        /* Animation for filtering */
         animation: fadeIn 0.5s ease;
     }
 
@@ -374,6 +368,36 @@
         transition: transform 0.2s, background 0.2s;
     }
     .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
+
+    /* --- FOOTER STYLE --- */
+    footer {
+        background-color: #1d1d1f; /* Dark Apple-like background */
+        color: #f5f5f7;
+        padding: 80px 20px;
+        text-align: center;
+        margin-top: auto; /* Pushes footer to bottom */
+    }
+
+    .footer-content {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .footer-text {
+        font-size: 0.9rem;
+        color: #86868b; /* Muted gray text */
+        font-weight: 500;
+        letter-spacing: 0.02em;
+    }
+
+    .footer-text strong {
+        color: #f5f5f7; /* White for the name */
+        font-weight: 600;
+    }
 
     /* MODAL */
     .modal {
@@ -650,7 +674,7 @@
         <img src="purduemelogo.jpg" class="company-logo" alt="Purdue ME">
         <div class="job-details">
             <h3>Undergraduate Researcher</h3>
-            <p>Advanced Multiscale Manufacturing Lab</p>
+            <p>Purdue Smart Manufacturing Lab</p>
         </div>
         <div class="job-year">Present</div>
     </div>
@@ -676,7 +700,7 @@
             <h3>Purdue Electric Racing</h3>
             <p>Aerodynamics Engineer</p>
         </div>
-        <div class="job-year">2023-24</div>
+        <div class="job-year">2022-23</div>
     </div>
 </section>
 
@@ -688,6 +712,15 @@
         <a href="https://github.com/alexminjae" target="_blank" class="contact-btn">GitHub</a>
     </div>
 </section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-text">
+            &copy; 2026<br>
+            <strong>By Minjae Kim</strong>
+        </div>
+    </div>
+</footer>
 
 <div id="modal-piezo" class="modal">
     <div class="close-btn" onclick="closeModal('modal-piezo')">&times;</div>
@@ -976,10 +1009,6 @@
         if (!currentModalId) return;
         let currentIndex = projects.indexOf(currentModalId);
         if (currentIndex === -1) return;
-        
-        // IMPORTANT: We need to filter the navigation list based on what is currently visible!
-        // However, for simplicity in this version, we will scroll through ALL projects. 
-        // If you want next/prev to ONLY show filtered projects, let me know!
         
         let newIndex = currentIndex + direction;
         if (newIndex >= projects.length) newIndex = 0; 
