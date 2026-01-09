@@ -98,80 +98,120 @@
       margin: auto;
     }
 
-    /* HERO */
+    /* --- UPDATED HERO SECTION (Structured & Widget Style) --- */
     .hero {
-      min-height: 90vh;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      align-items: center;
-      gap: 80px;
-    }
-
-    .hero-text h1 {
-      font-size: clamp(3.5rem, 6vw, 5.5rem);
-      line-height: 1.05;
-      margin-bottom: 24px;
-      letter-spacing: -0.04em;
-      text-transform: uppercase; 
-    }
-
-    .hero-text p {
-      font-size: 1.3rem; 
-      line-height: 1.4;
-      max-width: 500px;
-      color: var(--text-secondary);
-      border: none;
-      padding: 0;
-      margin-bottom: 30px;
-    }
-
-    /* EDUCATION TAG */
-    .education-tag {
-        display: inline-flex;
-        align-items: center;
-        margin-bottom: 30px;
-        padding: 12px 20px;
-        background: #fff;
-        border-left: 4px solid var(--purdue-gold); 
-        border-radius: 0 8px 8px 0;
-        font-size: 1rem;
-        color: var(--text-secondary);
-        box-shadow: var(--shadow-sm);
-    }
-
-    .education-tag strong {
-        color: var(--text-primary);
-        margin-right: 12px;
-        font-weight: 600;
-    }
-    
-    .separator { color: #d2d2d7; margin-right: 12px; }
-
-    /* TECH STACK */
-    .hero-stack {
+        min-height: 85vh;
         display: flex;
-        gap: 10px;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 100px; /* Space for fixed nav */
+    }
+
+    /* The Main Layout Grid */
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr; /* Text on left, Image on right */
+        gap: 60px;
+        align-items: center;
+    }
+
+    /* Left Side: Typography & Info Widgets */
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 32px; /* Consistent spacing between elements */
+    }
+
+    .hero-header h1 {
+        font-size: clamp(4rem, 8vw, 5.5rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+    }
+
+    .hero-header p {
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--text-secondary);
+        max-width: 90%;
+    }
+
+    /* The "Bento" Widget Container for Info */
+    .info-widget-row {
+        display: flex;
+        gap: 16px;
         flex-wrap: wrap;
     }
-    .stack-item {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        background: #fff;
-        padding: 8px 16px;
-        border-radius: 8px;
+
+    .info-widget {
+        background: #ffffff;
+        padding: 16px 20px;
+        border-radius: 16px;
         box-shadow: var(--shadow-sm);
-        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 1px solid rgba(0,0,0,0.02);
+        min-width: 180px;
     }
 
-    .hero-img-container img {
-        width: 100%;
-        max-width: 450px;
-        border-radius: 24px;
-        display: block;
-        margin-left: auto;
+    .widget-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+    }
+
+    .widget-value {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Tech Stack Chips - Clean & Uniform */
+    .stack-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+    }
+
+    .stack-chip {
+        background: rgba(0,0,0,0.05); /* Very subtle grey */
+        color: var(--text-primary);
+        padding: 6px 14px;
+        border-radius: 50px; /* Fully rounded pill */
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: background 0.2s;
+    }
+    .stack-chip:hover {
+        background: rgba(0,0,0,0.1);
+    }
+
+    /* Right Side: Image with "Glass" effect container */
+    .hero-image-wrapper {
+        position: relative;
+        border-radius: 32px;
+        overflow: hidden;
         box-shadow: var(--shadow-lg);
-        transition: transform 0.5s ease;
+        background: #fff;
+        line-height: 0; /* Removes bottom space */
+    }
+
+    .hero-image-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transform: scale(1.01); /* Prevents white bleed lines */
     }
 
     /* PROJECTS */
@@ -369,11 +409,11 @@
     }
     .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
 
-    /* --- FOOTER STYLE (Updated) --- */
+    /* --- FOOTER STYLE --- */
     footer {
-        background-color: #ffffff;  /* Explicit White */
-        color: #333333;             /* High contrast dark gray text */
-        padding: 20px 0;            /* Much slimmer padding */
+        background-color: #ffffff; 
+        color: #333333;  
+        padding: 20px 0;
         text-align: center;
         margin-top: auto; 
         border-top: 1px solid rgba(0,0,0,0.08); 
@@ -390,13 +430,13 @@
 
     .footer-text {
         font-size: 0.85rem; 
-        color: #555555;      /* Slightly darker for better readability on white */
+        color: #555555; 
         font-weight: 500;
         letter-spacing: 0.02em;
     }
 
     .footer-text strong {
-        color: #000000;      /* Pure black for name */
+        color: #000000; 
         font-weight: 600;
     }
 
@@ -477,16 +517,20 @@
 
     /* MOBILE */
     @media (max-width: 768px) {
-        .hero { grid-template-columns: 1fr; padding-top: 120px; gap: 40px; text-align: center; }
-        .hero-text p { margin: 0 auto 40px; }
-        .hero-stack { justify-content: center; }
-        
-        .education-tag {
+        .hero-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: left; /* Keep left alignment for structure */
+        }
+        .hero-header h1 {
+            font-size: 3.5rem;
+        }
+        .info-widget-row {
+            flex-direction: column; /* Stack widgets on phone */
             width: 100%;
-            justify-content: center;
-            border-left: none;
-            border-top: 4px solid var(--purdue-gold);
-            border-radius: 0 0 8px 8px;
+        }
+        .info-widget {
+            width: 100%;
         }
 
         .project-row { grid-template-columns: 1fr; gap: 30px; padding: 30px; }
@@ -520,30 +564,49 @@
 </nav>
 
 <section id="about" class="hero">
-    <div class="hero-text">
-        <h1>Minjae<br>Kim</h1>
-        <p>
-            Mechanical Engineer bridging the gap between <strong>Hardware Design</strong> and <strong>Test Automation</strong>.
-            <br>
-            Proven track record at <strong>Tesla</strong> & <strong>ZF Group</strong>.
-        </p>
+    <div class="hero-grid">
+        
+        <div class="hero-content">
+            
+            <div class="hero-header">
+                <h1>Minjae Kim</h1>
+                <p>Mechanical Engineer bridging Hardware Design & Test Automation.</p>
+            </div>
 
-        <div class="education-tag">
-            <strong>Purdue University</strong> 
-            <span class="separator">|</span> 
-            B.S. Mechanical Engineering
+            <div class="info-widget-row">
+                <div class="info-widget">
+                    <span class="widget-label">Education</span>
+                    <div class="widget-value">
+                        <span style="width:8px; height:8px; background:#C28E0E; border-radius:50%; display:inline-block;"></span>
+                        Purdue University
+                    </div>
+                    <div style="font-size: 0.85rem; color: #86868b; margin-top:2px;">B.S. Mechanical Engineering</div>
+                </div>
+
+                <div class="info-widget">
+                    <span class="widget-label">Current Role</span>
+                    <div class="widget-value">Undergraduate Researcher</div>
+                    <div style="font-size: 0.85rem; color: #86868b; margin-top:2px;">Advanced Multiscale Mfg. Lab</div>
+                </div>
+            </div>
+
+            <div>
+                <span class="widget-label" style="display:block; margin-bottom:8px;">Core Technologies</span>
+                <div class="stack-row">
+                    <span class="stack-chip">CATIA V6</span>
+                    <span class="stack-chip">Siemens NX</span>
+                    <span class="stack-chip">Python</span>
+                    <span class="stack-chip">MATLAB</span>
+                    <span class="stack-chip">ANSYS</span>
+                </div>
+            </div>
+
         </div>
 
-        <div class="hero-stack">
-            <span class="stack-item">CATIA V6</span>
-            <span class="stack-item">Siemens NX</span>
-            <span class="stack-item">Python</span>
-            <span class="stack-item">MATLAB</span>
-            <span class="stack-item">ANSYS</span>
+        <div class="hero-image-wrapper">
+            <img src="minjaekim_profile.jpg" alt="Minjae Kim">
         </div>
-    </div>
-    <div class="hero-img-container">
-        <img src="minjaekim_profile.jpg" alt="Minjae Kim">
+
     </div>
 </section>
 
