@@ -8,21 +8,20 @@
   <style>
     :root {
         /* APPLE COLOR PALETTE */
-        --bg-body: #f5f5f7;       /* The classic Apple light gray background */
-        --bg-card: #ffffff;       /* Pure white for cards */
-        --text-primary: #1d1d1f;  /* Apple's "almost black" */
-        --text-secondary: #86868b;/* Apple's gray text */
-        --accent: #0071e3;        /* Apple Blue */
+        --bg-body: #f5f5f7;       
+        --bg-card: #ffffff;       
+        --text-primary: #1d1d1f;  
+        --text-secondary: #86868b;
+        --accent: #0071e3;        
         --divider: #d2d2d7;
         
         --radius-card: 24px;
-        --radius-btn: 980px;      /* Pill shape */
+        --radius-btn: 980px;      
         
         --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
         --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
         --shadow-lg: 0 30px 60px rgba(0,0,0,0.12);
         
-        /* Purdue Gold Accent for Education Section */
         --purdue-gold: #C28E0E;
     }
     
@@ -30,13 +29,12 @@
     html { scroll-behavior: smooth; }
 
     body {
-      /* THE APPLE SYSTEM FONT STACK */
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg-body);
       color: var(--text-primary);
       line-height: 1.5;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased; /* Critical for crisp text on Mac */
+      -webkit-font-smoothing: antialiased; 
       -moz-osx-font-smoothing: grayscale;
     }
 
@@ -176,16 +174,46 @@
     /* PROJECTS */
     #projects h2 {
         font-size: 2.5rem;
-        margin-bottom: 60px;
+        margin-bottom: 30px; /* Reduced to fit filters */
         text-align: left;
         border: none;
     }
 
+    /* --- FILTER BUTTONS STYLE --- */
+    .filter-container {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+
+    .filter-btn {
+        background: #e5e5ea; /* Apple light gray */
+        border: none;
+        padding: 10px 24px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+        background: #d1d1d6;
+    }
+
+    .filter-btn.active {
+        background: var(--text-primary); /* Dark Active State */
+        color: #fff;
+    }
+
+
+    /* PROJECT ROW */
     .project-row {
         background: var(--bg-card);
         border-radius: var(--radius-card);
         padding: 40px;
-        display: grid;
+        display: grid; /* We use JS to toggle this between 'grid' and 'none' */
         grid-template-columns: 1.5fr 1fr;
         gap: 60px;
         margin-bottom: 40px;
@@ -194,6 +222,9 @@
         border: none;
         box-shadow: var(--shadow-md);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        /* Animation for filtering */
+        animation: fadeIn 0.5s ease;
     }
 
     .project-row:hover {
@@ -494,7 +525,13 @@
 <section id="projects">
     <h2>Projects</h2>
     
-    <div class="project-row" onclick="openModal('modal-piezo')">
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+        <button class="filter-btn" onclick="filterProjects('hardware')">Hardware</button>
+        <button class="filter-btn" onclick="filterProjects('software')">Software</button>
+    </div>
+
+    <div class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
         <div class="project-img-wrapper">
             <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
             <img src="cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
@@ -511,7 +548,7 @@
         </div>
     </div>
 
-    <div class="project-row" onclick="openModal('modal-torque')">
+    <div class="project-row" data-category="software" onclick="openModal('modal-torque')">
         <div class="project-img-wrapper">
             <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
             <img src="ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
@@ -528,7 +565,7 @@
         </div>
     </div>
 
-    <div class="project-row" onclick="openModal('modal-zf')">
+    <div class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
         <div class="project-img-wrapper">
             <img src="zflogo.png" class="thumb-logo" alt="ZF Logo">
             <img src="reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
@@ -544,7 +581,7 @@
         </div>
     </div>
 
-    <div class="project-row" onclick="openModal('modal-per')">
+    <div class="project-row" data-category="hardware" onclick="openModal('modal-per')">
         <div class="project-img-wrapper">
             <img src="perlogo.png" class="thumb-logo" alt="PER Logo">
             <img src="per_thumbnail.png" class="main-thumb" alt="Racing Wing">
@@ -561,7 +598,7 @@
         </div>
     </div>
 
-    <div class="project-row" onclick="openModal('modal-stirling')">
+    <div class="project-row" data-category="hardware" onclick="openModal('modal-stirling')">
         <div class="project-img-wrapper">
             <img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
         </div>
@@ -575,7 +612,7 @@
         </div>
     </div>
 
-    <div class="project-row" onclick="openModal('modal-pagani')">
+    <div class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
         <div class="project-img-wrapper">
             <img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
         </div>
@@ -589,7 +626,7 @@
         </div>
     </div>
     
-    <div class="project-row" onclick="openModal('modal-campus')">
+    <div class="project-row" data-category="software" onclick="openModal('modal-campus')">
         <div class="project-img-wrapper">
             <img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
         </div>
@@ -613,7 +650,7 @@
         <img src="purduemelogo.jpg" class="company-logo" alt="Purdue ME">
         <div class="job-details">
             <h3>Undergraduate Researcher</h3>
-            <p>Advanced Multiscale Manufacturing Lab</p>
+            <p>Purdue Smart Manufacturing Lab</p>
         </div>
         <div class="job-year">Present</div>
     </div>
@@ -656,7 +693,6 @@
     <div class="close-btn" onclick="closeModal('modal-piezo')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    
     <div class="modal-content">
         <div class="modal-header">
             <h2>Piezo Protection Cap</h2>
@@ -693,7 +729,6 @@
     <div class="close-btn" onclick="closeModal('modal-torque')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-
     <div class="modal-content">
         <div class="modal-header">
             <h2>Torque Data Processor</h2>
@@ -730,7 +765,6 @@
     <div class="close-btn" onclick="closeModal('modal-zf')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-
     <div class="modal-content">
         <div class="modal-header">
             <h2>ReAX Transport Fixtures</h2>
@@ -764,7 +798,6 @@
     <div class="close-btn" onclick="closeModal('modal-per')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-
     <div class="modal-content">
         <div class="modal-header">
             <h2>Formula SAE Aerodynamics</h2>
@@ -803,7 +836,6 @@
     <div class="close-btn" onclick="closeModal('modal-stirling')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-
     <div class="modal-content">
         <div class="modal-header">
             <h2>Pipsqueak Stirling Engine</h2>
@@ -838,7 +870,6 @@
     <div class="close-btn" onclick="closeModal('modal-pagani')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-
     <div class="modal-content">
         <div class="modal-header">
             <h2>Pagani Huayra Components</h2>
@@ -868,7 +899,6 @@
     <div class="close-btn" onclick="closeModal('modal-campus')">&times;</div>
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-
     <div class="modal-content">
         <div class="modal-header">
             <h2>Campus Mobility Roundabout</h2>
@@ -895,6 +925,32 @@
 </div>
 
 <script>
+    // FILTERING LOGIC
+    function filterProjects(category) {
+        const rows = document.querySelectorAll('.project-row');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        // Update Buttons
+        buttons.forEach(btn => {
+            if (btn.innerText.toLowerCase() === category) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Filter Rows
+        rows.forEach(row => {
+            const projectCat = row.getAttribute('data-category');
+            if (category === 'all' || projectCat === category) {
+                row.style.display = 'grid'; // Restore grid layout
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    // MODAL LOGIC
     const projects = ['modal-piezo', 'modal-torque', 'modal-zf', 'modal-per', 'modal-stirling', 'modal-pagani', 'modal-campus'];
     let currentModalId = null;
 
@@ -920,6 +976,10 @@
         if (!currentModalId) return;
         let currentIndex = projects.indexOf(currentModalId);
         if (currentIndex === -1) return;
+        
+        // IMPORTANT: We need to filter the navigation list based on what is currently visible!
+        // However, for simplicity in this version, we will scroll through ALL projects. 
+        // If you want next/prev to ONLY show filtered projects, let me know!
         
         let newIndex = currentIndex + direction;
         if (newIndex >= projects.length) newIndex = 0; 
