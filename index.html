@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Minjae Kim | Engineering Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -24,6 +24,9 @@
         --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
         --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
         --shadow-lg: 0 30px 60px rgba(0,0,0,0.12);
+        
+        /* Purdue Gold Accent for Education Section */
+        --purdue-gold: #C28E0E;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -103,7 +106,7 @@
       line-height: 1.05;
       margin-bottom: 24px;
       letter-spacing: -0.03em;
-      text-transform: uppercase; /* CHANGED: Name is now ALL CAPS */
+      text-transform: uppercase; 
     }
 
     .hero-text p {
@@ -113,7 +116,32 @@
       color: var(--text-secondary);
       border: none;
       padding: 0;
-      margin-bottom: 40px;
+      margin-bottom: 30px; /* Reduced slightly to fit Education bar */
+    }
+
+    /* --- NEW EDUCATION STYLE --- */
+    .education-tag {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 30px;
+        padding: 12px 20px;
+        background: #fff;
+        border-left: 4px solid var(--purdue-gold); 
+        border-radius: 0 8px 8px 0; /* Soft round on right side only */
+        font-size: 1rem;
+        color: var(--text-secondary);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .education-tag strong {
+        color: var(--text-primary);
+        margin-right: 12px;
+        font-weight: 600;
+    }
+    
+    .separator {
+        color: #d2d2d7;
+        margin-right: 12px;
     }
 
     /* Status Badge: Apple Pill Style */
@@ -165,8 +193,10 @@
         margin-left: auto;
         box-shadow: var(--shadow-lg); /* Deep, soft shadow */
         transition: transform 0.5s ease;
+        
+        /* UPDATED: Hover transform removed as requested */
     }
-    .hero-img-container img:hover { transform: scale(1.02); }
+    /* .hero-img-container img:hover { transform: scale(1.02); } <--- REMOVED */
 
     /* PROJECTS: Card Layout */
     #projects h2 {
@@ -426,6 +456,16 @@
         .hero { grid-template-columns: 1fr; padding-top: 120px; gap: 40px; text-align: center; }
         .hero-text p { margin: 0 auto 40px; }
         .hero-stack { justify-content: center; }
+        
+        /* Mobile Education Tag */
+        .education-tag {
+            width: 100%;
+            justify-content: center;
+            border-left: none;
+            border-top: 4px solid var(--purdue-gold);
+            border-radius: 0 0 8px 8px;
+        }
+
         .project-row { grid-template-columns: 1fr; gap: 30px; padding: 30px; }
         .project-row:nth-child(even) { direction: ltr; }
         .thumb-logo { left: auto; right: 15px; } /* Force logo right on mobile */
@@ -468,6 +508,12 @@
             <br>
             Proven track record at <strong>Tesla</strong> & <strong>ZF Group</strong>.
         </p>
+
+        <div class="education-tag">
+            <strong>Purdue University</strong> 
+            <span class="separator">|</span> 
+            B.S. Mechanical Engineering
+        </div>
 
         <div class="hero-stack">
             <span class="stack-item">CATIA V6</span>
