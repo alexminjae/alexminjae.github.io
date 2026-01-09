@@ -42,7 +42,6 @@
 
     h1, h2, h3, h4 {
         font-weight: 700;
-        /* Apple headers are usually tight. SF Pro Display handles this well. */
         letter-spacing: -0.025em; 
         color: var(--text-primary);
     }
@@ -51,19 +50,19 @@
         color: var(--text-secondary); 
         font-weight: 400; 
         font-size: 1.05rem; 
-        letter-spacing: -0.01em; /* Slight tightening for body text */
+        letter-spacing: -0.01em; 
     }
 
     a { color: inherit; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); }
     
-    /* NAV: Glassmorphism */
+    /* NAV */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
       height: 60px;
       background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: saturate(180%) blur(20px); /* The "Frosted Glass" effect */
+      backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       padding: 0 5%;
       display: flex;
@@ -75,7 +74,7 @@
 
     nav strong {
       text-transform: uppercase;
-      font-weight: 600; /* Slightly lighter bold for Apple style */
+      font-weight: 600;
       font-size: 0.85rem;
       letter-spacing: 0px;
       color: var(--text-primary);
@@ -102,7 +101,7 @@
     .hero {
       min-height: 90vh;
       display: grid;
-      grid-template-columns: 1.2fr 1fr; /* More space for text */
+      grid-template-columns: 1.2fr 1fr;
       align-items: center;
       gap: 80px;
     }
@@ -111,21 +110,21 @@
       font-size: clamp(3.5rem, 6vw, 5.5rem);
       line-height: 1.05;
       margin-bottom: 24px;
-      letter-spacing: -0.04em; /* Tighter for large display text */
+      letter-spacing: -0.04em;
       text-transform: uppercase; 
     }
 
     .hero-text p {
-      font-size: 1.3rem; /* Larger, readable intro text */
+      font-size: 1.3rem; 
       line-height: 1.4;
       max-width: 500px;
       color: var(--text-secondary);
       border: none;
       padding: 0;
-      margin-bottom: 30px; /* Reduced slightly to fit Education bar */
+      margin-bottom: 30px;
     }
 
-    /* --- EDUCATION STYLE --- */
+    /* EDUCATION TAG */
     .education-tag {
         display: inline-flex;
         align-items: center;
@@ -133,7 +132,7 @@
         padding: 12px 20px;
         background: #fff;
         border-left: 4px solid var(--purdue-gold); 
-        border-radius: 0 8px 8px 0; /* Soft round on right side only */
+        border-radius: 0 8px 8px 0;
         font-size: 1rem;
         color: var(--text-secondary);
         box-shadow: var(--shadow-sm);
@@ -145,12 +144,9 @@
         font-weight: 600;
     }
     
-    .separator {
-        color: #d2d2d7;
-        margin-right: 12px;
-    }
+    .separator { color: #d2d2d7; margin-right: 12px; }
 
-    /* Tech Stack: Clean pills */
+    /* TECH STACK */
     .hero-stack {
         display: flex;
         gap: 10px;
@@ -170,14 +166,14 @@
     .hero-img-container img {
         width: 100%;
         max-width: 450px;
-        border-radius: 24px; /* Smoother corner radius */
+        border-radius: 24px;
         display: block;
         margin-left: auto;
-        box-shadow: var(--shadow-lg); /* Deep, soft shadow */
+        box-shadow: var(--shadow-lg);
         transition: transform 0.5s ease;
     }
 
-    /* PROJECTS: Card Layout */
+    /* PROJECTS */
     #projects h2 {
         font-size: 2.5rem;
         margin-bottom: 60px;
@@ -192,11 +188,11 @@
         display: grid;
         grid-template-columns: 1.5fr 1fr;
         gap: 60px;
-        margin-bottom: 40px; /* Spacing between cards */
+        margin-bottom: 40px;
         align-items: center;
         cursor: pointer;
         border: none;
-        box-shadow: var(--shadow-md); /* Floating card effect */
+        box-shadow: var(--shadow-md);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -207,14 +203,12 @@
 
     .project-row:nth-child(even) { direction: rtl; }
     .project-row:nth-child(even) .project-text { direction: ltr; }
-    /* Fix alignment for RTL rows */
     .project-row:nth-child(even) .project-tags { justify-content: flex-start; direction: ltr; }
-
 
     .project-img-wrapper {
         position: relative;
         overflow: hidden;
-        border-radius: 16px; /* Inner radius */
+        border-radius: 16px;
         box-shadow: var(--shadow-sm);
     }
 
@@ -225,7 +219,6 @@
     }
     .project-row:hover .main-thumb { transform: scale(1.05); }
 
-    /* Logo Style */
     .thumb-logo {
         position: absolute;
         top: 15px;
@@ -236,11 +229,10 @@
         z-index: 2;
         background: #fff;
         padding: 4px;
-        border-radius: 12px; /* Smoother rounding */
+        border-radius: 12px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
-    /* PROJECT TAG PILLS (Used in both Projects List and Modals) */
     .project-tags, .modal-meta {
         display: flex;
         gap: 8px;
@@ -248,7 +240,6 @@
         margin-bottom: 16px;
     }
     
-    /* Specific adjustment for Modal Meta spacing */
     .modal-meta {
         margin-bottom: 40px; 
         border-bottom: 1px solid var(--divider); 
@@ -259,9 +250,9 @@
         font-size: 0.75rem;
         font-weight: 600;
         color: var(--text-secondary);
-        background: #f5f5f7; /* Very light gray to match body */
+        background: #f5f5f7;
         padding: 6px 12px;
-        border-radius: 50px; /* Full pill shape */
+        border-radius: 50px;
         border: 1px solid rgba(0,0,0,0.05);
     }
 
@@ -289,7 +280,7 @@
         border-radius: 8px;
     }
 
-    /* EXPERIENCE: Clean Timeline */
+    /* EXPERIENCE */
     #experience h2 { font-size: 2.5rem; margin-bottom: 60px; border: none; }
 
     .job-item {
@@ -297,14 +288,13 @@
         grid-template-columns: 80px 1fr auto;
         gap: 40px;
         padding: 40px 0;
-        padding-left: 40px; /* Space for timeline */
+        padding-left: 40px;
         align-items: center;
         position: relative;
         transition: opacity 0.3s;
     }
     .job-item:hover { opacity: 0.8; }
 
-    /* Timeline Line */
     .job-item::before {
         content: '';
         position: absolute;
@@ -354,15 +344,15 @@
     }
     .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
 
-    /* MODAL: Apple Sheet Style */
+    /* MODAL */
     .modal {
         display: none; 
         position: fixed; 
         z-index: 10001; 
         left: 0; top: 0; 
         width: 100%; height: 100%; 
-        background-color: rgba(50, 50, 50, 0.4); /* Dimmed background */
-        backdrop-filter: blur(20px); /* Heavy blur */
+        background-color: rgba(50, 50, 50, 0.4);
+        backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         overflow-y: auto;
         animation: fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -395,7 +385,6 @@
     }
     .close-btn:hover { transform: scale(1.1); }
 
-    /* Navigation Arrows: Floating circles */
     .nav-btn {
         position: fixed;
         top: 50%;
@@ -436,7 +425,6 @@
         .hero-text p { margin: 0 auto 40px; }
         .hero-stack { justify-content: center; }
         
-        /* Mobile Education Tag */
         .education-tag {
             width: 100%;
             justify-content: center;
@@ -447,7 +435,7 @@
 
         .project-row { grid-template-columns: 1fr; gap: 30px; padding: 30px; }
         .project-row:nth-child(even) { direction: ltr; }
-        .thumb-logo { left: auto; right: 15px; } /* Force logo right on mobile */
+        .thumb-logo { left: auto; right: 15px; } 
         
         .modal-content { margin: 60px 20px; padding: 30px; }
         .modal-text { grid-template-columns: 1fr; gap: 30px; }
@@ -458,7 +446,7 @@
         .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 20px; }
         
         .job-item { grid-template-columns: 64px 1fr; padding-left: 30px; }
-        .job-year { display: none; } /* Hide year on tiny screens if crowded, or move to new line */
+        .job-year { display: none; }
     }
   </style>
 </head>
@@ -479,7 +467,7 @@
     <div class="hero-text">
         <h1>Minjae<br>Kim</h1>
         <p>
-            Mechanical Engineer bridging the gap between <strong>Hardware Design</strong> and <strong>Test Automation</strong>.
+            Mechanical Engineer & <strong>Undergraduate Researcher</strong> bridging the gap between Hardware Design and Test Automation.
             <br>
             Proven track record at <strong>Tesla</strong> & <strong>ZF Group</strong>.
         </p>
@@ -621,6 +609,14 @@
 
 <section id="experience">
     <h2>Experience</h2>
+    <div class="job-item">
+        <img src="perlogo.png" class="company-logo" alt="Purdue">
+        <div class="job-details">
+            <h3>Undergraduate Researcher</h3>
+            <p>Purdue Smart Manufacturing Lab</p>
+        </div>
+        <div class="job-year">Present</div>
+    </div>
     <div class="job-item">
         <img src="teslalogo.png" class="company-logo" alt="Tesla">
         <div class="job-details">
@@ -899,7 +895,6 @@
 </div>
 
 <script>
-    // Project IDs in order for navigation
     const projects = ['modal-piezo', 'modal-torque', 'modal-zf', 'modal-per', 'modal-stirling', 'modal-pagani', 'modal-campus'];
     let currentModalId = null;
 
@@ -909,7 +904,7 @@
             return;
         }
         document.getElementById(modalId).style.display = "block";
-        document.body.style.overflow = "hidden"; // Prevent scrolling background
+        document.body.style.overflow = "hidden"; 
         currentModalId = modalId;
     }
 
@@ -923,22 +918,17 @@
 
     function changeProject(direction) {
         if (!currentModalId) return;
-
-        // Find current index
         let currentIndex = projects.indexOf(currentModalId);
         if (currentIndex === -1) return;
         
-        // Calculate new index with wrapping
         let newIndex = currentIndex + direction;
-        if (newIndex >= projects.length) newIndex = 0; // Wrap to start
-        if (newIndex < 0) newIndex = projects.length - 1; // Wrap to end
+        if (newIndex >= projects.length) newIndex = 0; 
+        if (newIndex < 0) newIndex = projects.length - 1; 
 
-        // Switch Modals
         closeModal(currentModalId);
         openModal(projects[newIndex]);
     }
 
-    // Event Listeners for Keyboard Navigation (Esc + Arrows)
     document.addEventListener('keydown', function(event) {
         if (event.key === "Escape" && currentModalId) {
             closeModal(currentModalId);
@@ -951,7 +941,6 @@
         }
     });
 
-    // Close modal if clicking outside the content box
     window.onclick = function(event) {
         if (event.target.classList.contains('modal')) {
             closeModal(event.target.id);
