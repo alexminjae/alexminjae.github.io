@@ -154,7 +154,6 @@
         box-shadow: var(--shadow-sm);
         border: 1px solid rgba(0,0,0,0.02);
         min-width: 160px;
-        /* Removed hover transform/shadow effects */
     }
 
     .stat-label {
@@ -169,8 +168,9 @@
 
     .stat-value {
         font-size: 1.05rem;
-        font-weight: 600;
-        color: var(--text-primary);
+        font-weight: 700;
+        /* UPDATED: Forced Black Color */
+        color: #000000; 
         display: flex;
         align-items: center;
         gap: 8px;
@@ -178,7 +178,9 @@
     
     .stat-sub {
         font-size: 0.85rem;
-        color: var(--text-secondary);
+        /* UPDATED: Forced Black Color */
+        color: #000000;
+        font-weight: 500;
         margin-top: 4px;
         display: block;
     }
@@ -197,12 +199,10 @@
         border-radius: 50px;
         font-size: 0.9rem;
         font-weight: 500;
-        transition: all 0.2s;
+        /* UPDATED: Removed hover transition and pointer */
+        cursor: default;
     }
-    .stack-chip:hover {
-        background: var(--text-primary);
-        color: #fff;
-    }
+    /* UPDATED: Removed .stack-chip:hover style */
 
     /* CTA Button */
     .hero-cta {
@@ -245,7 +245,7 @@
     /* PROJECTS */
     #projects h2 {
         font-size: 2.5rem;
-        margin-bottom: 10px; /* Reduced to fit subtitle */
+        margin-bottom: 10px; 
         text-align: left;
         border: none;
     }
@@ -532,6 +532,14 @@
         user-select: none;
     }
     .nav-btn:hover { transform: translateY(-50%) scale(1.1); background: #fff; }
+    
+    /* UPDATED: Disabled state for arrows */
+    .nav-btn.disabled {
+        opacity: 0.3;
+        cursor: default;
+        pointer-events: none;
+    }
+
     .prev-btn { left: 40px; }
     .next-btn { right: 40px; }
 
@@ -616,13 +624,6 @@
                     </div>
                     <span class="stat-sub">B.S. Mechanical Engineering</span>
                 </div>
-
-                <div class="stat-box">
-                    <span class="stat-label">Previously At</span>
-                    <div class="stat-value">
-                        Tesla & ZF Group
-                    </div>
-                </div>
             </div>
 
             <div>
@@ -657,7 +658,7 @@
         <button class="filter-btn" onclick="filterProjects('software')">Software</button>
     </div>
 
-    <div class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
+    <div id="row-modal-piezo" class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
         <div class="project-img-wrapper">
             <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
             <img src="cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
@@ -674,7 +675,7 @@
         </div>
     </div>
 
-    <div class="project-row" data-category="software" onclick="openModal('modal-torque')">
+    <div id="row-modal-torque" class="project-row" data-category="software" onclick="openModal('modal-torque')">
         <div class="project-img-wrapper">
             <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
             <img src="ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
@@ -691,7 +692,7 @@
         </div>
     </div>
 
-    <div class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
+    <div id="row-modal-zf" class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
         <div class="project-img-wrapper">
             <img src="zflogo.png" class="thumb-logo" alt="ZF Logo">
             <img src="reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
@@ -707,7 +708,7 @@
         </div>
     </div>
 
-    <div class="project-row" data-category="hardware" onclick="openModal('modal-per')">
+    <div id="row-modal-per" class="project-row" data-category="hardware" onclick="openModal('modal-per')">
         <div class="project-img-wrapper">
             <img src="perlogo.png" class="thumb-logo" alt="PER Logo">
             <img src="per_thumbnail.png" class="main-thumb" alt="Racing Wing">
@@ -724,7 +725,7 @@
         </div>
     </div>
 
-    <div class="project-row" data-category="hardware" onclick="openModal('modal-stirling')">
+    <div id="row-modal-stirling" class="project-row" data-category="hardware" onclick="openModal('modal-stirling')">
         <div class="project-img-wrapper">
             <img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
         </div>
@@ -738,7 +739,7 @@
         </div>
     </div>
 
-    <div class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
+    <div id="row-modal-pagani" class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
         <div class="project-img-wrapper">
             <img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
         </div>
@@ -752,7 +753,7 @@
         </div>
     </div>
     
-    <div class="project-row" data-category="software" onclick="openModal('modal-campus')">
+    <div id="row-modal-campus" class="project-row" data-category="software" onclick="openModal('modal-campus')">
         <div class="project-img-wrapper">
             <img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
         </div>
@@ -775,8 +776,8 @@
     <div class="job-item">
         <img src="purduemelogo.jpg" class="company-logo" alt="Purdue ME">
         <div class="job-details">
-            <h3>Undergraduate Researcher</h3>
-            <p>Advanced Multiscale Manufacturing Lab</p>
+            <h3>Advanced Multiscale Manufacturing Lab</h3>
+            <p>Undergraduate Researcher</p>
         </div>
         <div class="job-year">Present</div>
     </div>
@@ -1060,12 +1061,18 @@
 </div>
 
 <script>
-    // FILTERING LOGIC
+    // State to track current filter
+    let currentFilter = 'all';
+    let currentModalId = null;
+
+    // 1. FILTERING LOGIC
     function filterProjects(category) {
+        currentFilter = category; // Update state
+        
         const rows = document.querySelectorAll('.project-row');
         const buttons = document.querySelectorAll('.filter-btn');
 
-        // Update Buttons
+        // Update Buttons Visuals
         buttons.forEach(btn => {
             if (btn.innerText.toLowerCase() === category) {
                 btn.classList.add('active');
@@ -1074,29 +1081,26 @@
             }
         });
 
-        // Filter Rows
+        // Show/Hide Rows
         rows.forEach(row => {
             const projectCat = row.getAttribute('data-category');
             if (category === 'all' || projectCat === category) {
-                row.style.display = 'grid'; // Restore grid layout
+                row.style.display = 'grid'; 
             } else {
                 row.style.display = 'none';
             }
         });
     }
 
-    // MODAL LOGIC
-    const projects = ['modal-piezo', 'modal-torque', 'modal-zf', 'modal-per', 'modal-stirling', 'modal-pagani', 'modal-campus'];
-    let currentModalId = null;
-
+    // 2. MODAL OPEN/CLOSE
     function openModal(modalId) {
-        if (!document.getElementById(modalId)) {
-            console.error("Modal not found: " + modalId);
-            return;
-        }
+        if (!document.getElementById(modalId)) return;
+        
         document.getElementById(modalId).style.display = "block";
         document.body.style.overflow = "hidden"; 
         currentModalId = modalId;
+        
+        updateNavButtons(); // Check if we need to disable arrows immediately
     }
 
     function closeModal(modalId) {
@@ -1107,19 +1111,75 @@
         currentModalId = null;
     }
 
+    // 3. NAVIGATION LOGIC (The core fix)
     function changeProject(direction) {
         if (!currentModalId) return;
-        let currentIndex = projects.indexOf(currentModalId);
-        if (currentIndex === -1) return;
-        
-        let newIndex = currentIndex + direction;
-        if (newIndex >= projects.length) newIndex = 0; 
-        if (newIndex < 0) newIndex = projects.length - 1; 
 
+        // Get the list of IDs that are currently visible based on the filter
+        const visibleProjectIds = getVisibleProjectIds();
+        
+        // Find where we are currently
+        const currentIndex = visibleProjectIds.indexOf(currentModalId);
+        if (currentIndex === -1) return; // Should not happen
+
+        // Calculate new index
+        const newIndex = currentIndex + direction;
+
+        // STOP if out of bounds (No looping)
+        if (newIndex < 0 || newIndex >= visibleProjectIds.length) {
+            return; 
+        }
+
+        // Switch Modal
         closeModal(currentModalId);
-        openModal(projects[newIndex]);
+        openModal(visibleProjectIds[newIndex]);
     }
 
+    // Helper: Gets list of modal IDs that correspond to the currently filtered rows
+    function getVisibleProjectIds() {
+        // Select only the rows that are currently displayed (match filter)
+        const allRows = Array.from(document.querySelectorAll('.project-row'));
+        const visibleRows = allRows.filter(row => {
+            return currentFilter === 'all' || row.getAttribute('data-category') === currentFilter;
+        });
+
+        // Extract the modal ID from the onclick attribute string
+        // Format is: onclick="openModal('modal-name')"
+        return visibleRows.map(row => {
+            const onclickStr = row.getAttribute('onclick'); 
+            // extract text between single quotes
+            return onclickStr.match(/'([^']+)'/)[1]; 
+        });
+    }
+
+    // Helper: Updates button visual state (Dim if at end/start)
+    function updateNavButtons() {
+        if (!currentModalId) return;
+        
+        const visibleProjectIds = getVisibleProjectIds();
+        const currentIndex = visibleProjectIds.indexOf(currentModalId);
+        
+        // Select buttons inside the CURRENT modal
+        const currentModalEl = document.getElementById(currentModalId);
+        const prevBtn = currentModalEl.querySelector('.prev-btn');
+        const nextBtn = currentModalEl.querySelector('.next-btn');
+
+        // Disable Prev if at start
+        if (currentIndex <= 0) {
+            prevBtn.classList.add('disabled');
+        } else {
+            prevBtn.classList.remove('disabled');
+        }
+
+        // Disable Next if at end
+        if (currentIndex >= visibleProjectIds.length - 1) {
+            nextBtn.classList.add('disabled');
+        } else {
+            nextBtn.classList.remove('disabled');
+        }
+    }
+
+    // 4. KEYBOARD SHORTCUTS
     document.addEventListener('keydown', function(event) {
         if (event.key === "Escape" && currentModalId) {
             closeModal(currentModalId);
@@ -1132,6 +1192,7 @@
         }
     });
 
+    // Close when clicking outside
     window.onclick = function(event) {
         if (event.target.classList.contains('modal')) {
             closeModal(event.target.id);
