@@ -147,12 +147,11 @@
     /* --- INFO GRID (Clean Layout) --- */
     .info-grid {
         display: grid;
-        /* UPDATED: auto for Education, 1fr for Skills to give bubbles space */
         grid-template-columns: auto 1fr; 
         gap: 60px;
         margin-top: 10px;
         padding-top: 30px;
-        border-top: 1px solid rgba(0,0,0,0.1); /* Subtle Divider */
+        border-top: 1px solid rgba(0,0,0,0.1); 
         align-items: start;
     }
 
@@ -173,14 +172,6 @@
         line-height: 1.4;
     }
     
-    .info-sub {
-        font-weight: 400;
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-        display: block;
-        margin-top: 4px;
-    }
-
     /* CTA Button */
     .hero-cta {
         margin-top: 20px;
@@ -584,18 +575,18 @@
             
             <div class="hero-header">
                 <h1>Minjae Kim</h1>
-                <p>Mechanical Engineer bridging <br><span style="margin-left: 20px;"><strong>Hardware&nbsp;Design</strong> and <strong>Test&nbsp;Automation</strong>.</span></p>
+                <p>Mechanical Engineer bridging <br><strong>Hardware Design</strong> and <strong>Test Automation</strong>.</p>
             </div>
 
             <div class="info-grid">
                 <div class="info-item">
                     <h4>Education</h4>
                     <p>Purdue University</p>
-                    <span class="info-sub">B.S. Mechanical Engineering</span>
+                    <p><strong>B.S. Mechanical Engineering</strong></p>
                 </div>
                 <div class="info-item">
                     <h4>Core Skills</h4>
-                    <p>CATIA V6, Siemens NX, Python, ANSYS</p>
+                    <p>CATIA V6, Siemens NX, Python, ANSYS, MATLAB, GD&T</p>
                 </div>
             </div>
 
