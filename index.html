@@ -65,6 +65,10 @@
         letter-spacing: 0.05em;
         color: var(--text-primary);
         display: inline-block;
+        cursor: pointer; /* Makes it look clickable */
+    }
+    .brand-logo:hover {
+        color: var(--accent); /* Hover effect */
     }
 
     /* NAV */
@@ -140,14 +144,16 @@
         max-width: 90%;
     }
 
-    /* --- NEW INFO GRID (Clean Layout) --- */
+    /* --- INFO GRID (Clean Layout) --- */
     .info-grid {
         display: grid;
-        grid-template-columns: auto auto; /* Side by side */
-        gap: 40px;
+        /* UPDATED: auto for Education, 1fr for Skills to give bubbles space */
+        grid-template-columns: auto 1fr; 
+        gap: 60px;
         margin-top: 10px;
         padding-top: 30px;
         border-top: 1px solid rgba(0,0,0,0.1); /* Subtle Divider */
+        align-items: start;
     }
 
     .info-item h4 {
@@ -155,7 +161,7 @@
         text-transform: uppercase;
         letter-spacing: 0.05em;
         color: var(--text-secondary);
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         font-weight: 600;
     }
 
@@ -173,6 +179,24 @@
         font-size: 0.95rem;
         display: block;
         margin-top: 4px;
+    }
+
+    /* --- RESTORED BUBBLES (Stack Chips) --- */
+    .stack-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .stack-chip {
+        background: rgba(0,0,0,0.05);
+        color: var(--text-primary);
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: default;
+        border: 1px solid rgba(0,0,0,0.02);
     }
 
 
@@ -505,7 +529,6 @@
     }
     .nav-btn:hover { transform: translateY(-50%) scale(1.1); background: #fff; }
     
-    /* UPDATED: Disabled state for arrows */
     .nav-btn.disabled {
         opacity: 0.3;
         cursor: default;
@@ -564,7 +587,7 @@
 <body>
 
 <nav>
-  <strong class="brand-logo">Minjae Kim</strong>
+  <a href="#about" class="brand-logo">Minjae Kim</a>
   <div>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
@@ -591,8 +614,14 @@
                 </div>
                 <div class="info-item">
                     <h4>Core Skills</h4>
-                    <p style="font-weight: 500;">CATIA V6, Siemens NX, Python,</p>
-                    <span class="info-sub">ANSYS, MATLAB, GD&T</span>
+                    <div class="stack-row">
+                        <span class="stack-chip">CATIA V6</span>
+                        <span class="stack-chip">Siemens NX</span>
+                        <span class="stack-chip">Python</span>
+                        <span class="stack-chip">ANSYS</span>
+                        <span class="stack-chip">MATLAB</span>
+                        <span class="stack-chip">GD&T</span>
+                    </div>
                 </div>
             </div>
 
