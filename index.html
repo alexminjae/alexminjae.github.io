@@ -127,12 +127,22 @@
         gap: 30px; 
     }
 
-    /* DELETE THIS OLD BLOCK */
+    /* --- UPDATED HERO HEADER STYLE --- */
+    /* This now matches the .brand-logo style (Uppercase, spacing, weight) */
     .hero-header h1 {
-        font-size: clamp(3.8rem, 7vw, 5.2rem);
-        font-weight: 700;
-        line-height: 1.05;
-        letter-spacing: -0.03em;
+        /* Adjusted size slightly so uppercase letters don't wrap awkwardly */
+        font-size: clamp(3rem, 6vw, 4.5rem); 
+        
+        /* Matched to brand-logo weight (600) instead of bold (700) */
+        font-weight: 600; 
+        
+        /* Uppercase to match header/footer */
+        text-transform: uppercase; 
+        
+        /* Wider spacing to match header/footer */
+        letter-spacing: 0.05em; 
+        
+        line-height: 1.1;
         color: var(--text-primary);
         margin-bottom: 20px;
     }
@@ -576,6 +586,7 @@
             
             <div class="hero-header">
                 <h1>Minjae Kim</h1>
+                <p>Mechanical Engineer bridging <br><strong>Hardware Design</strong> and <strong>Test Automation</strong>.</p>
             </div>
 
             <div class="info-grid">
