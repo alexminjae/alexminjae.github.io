@@ -5,7 +5,7 @@
   <title>Minjae Kim | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231d1d1f%22/><text x=%2250%22 y=%2270%22 font-family=%22-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif%22 font-size=%2270%22 font-weight=%22bold%22 text-anchor=%22middle%22 fill=%22white%22>M</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231d1d1f'/%3E%3Ctext x='50' y='70' font-family='-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif' font-size='70' font-weight='bold' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
     
   <style>
     :root {
@@ -129,21 +129,12 @@
         gap: 30px; 
     }
 
-    /* --- UPDATED HERO HEADER STYLE --- */
-    /* This now matches the .brand-logo style (Uppercase, spacing, weight) */
+    /* --- HERO HEADER STYLE --- */
     .hero-header h1 {
-        /* Adjusted size slightly so uppercase letters don't wrap awkwardly */
         font-size: clamp(3rem, 6vw, 4.5rem); 
-        
-        /* Matched to brand-logo weight (600) instead of bold (700) */
         font-weight: 600; 
-        
-        /* Uppercase to match header/footer */
         text-transform: uppercase; 
-        
-        /* Wider spacing to match header/footer */
         letter-spacing: 0.05em; 
-        
         line-height: 1.1;
         color: var(--text-primary);
         margin-bottom: 20px;
@@ -797,7 +788,6 @@
     <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
     <div class="modal-content">
-        
         <div class="modal-header">
             <h2>Piezo Sensor Protection System</h2>
             <div class="modal-meta">
@@ -806,14 +796,12 @@
                 <span class="tag-pill">Design Automation</span>
             </div>
         </div>
-
         <div class="modal-text">
             <div class="modal-section">
                 <h4>01. The Design Challenge</h4>
                 <p><strong>The Conflict:</strong> Endurance testing for the Next-gen Vehicle Program required sensors to be shielded from mud and high-pressure water (IP67). However, technicians needed to install and remove these caps instantly <strong>by hand (tool-less)</strong> across 20+ different joint variants due to tight testing schedules.</p>
                 <p>Existing taping solutions were unreliable, leading to potential sensor corrosion and data loss.</p>
             </div>
-
             <div class="modal-section">
                 <h4>02. Material Selection & Prototyping</h4>
                 <p>I conducted rigorous validation cycles with 3D-printed prototypes to find the perfect balance between rigidity for impact protection and elasticity for the snap-fit mechanism.</p>
@@ -823,20 +811,17 @@
                     <li><strong>ASA (Selected):</strong> Selected as the final material for mass production. It achieved the perfect trifecta of impact resistance, UV stability, and consistent snap-fit elasticity.</li>
                 </ul>
             </div>
-
             <div class="modal-section">
                 <h4>03. Engineering the Perfect Fit</h4>
                 <p>Achieving a water-tight seal without tools required precise calculation, not just trial and error. I applied <strong>Lamé’s equations for Interference Fit</strong> to calculate the precise contact pressure ($P$) required to withstand water ingress versus the friction force ($F$) allowable for hand insertion.</p>
                 <p><strong>Result:</strong> Established a safety factor of 2.0 against leakage while optimizing the tolerance stack-up to be hand-pressible (< 50N insertion force).</p>
             </div>
-
             <div class="modal-section">
                 <h4>04. Scalability via Automation</h4>
                 <p>To support future vehicle programs, I didn't just model parts; I built a scalable tool. I developed a <strong>CATIA Powercopy (VBA)</strong> script that creates a parametric cap model instantly based on bolt hex parameters.</p>
                 <p><strong>Impact:</strong> Reduced design time from <strong>hours to seconds</strong> for future iterations, allowing engineers to generate manufacturing-ready CAD with zero manual modeling.</p>
             </div>
         </div>
-
         <div class="modal-gallery">
             <img src="cap_1.png" alt="Prototype Iterations and Design Logic">
             <img src="cap_2.png" alt="Final ASA Cap Installed">
