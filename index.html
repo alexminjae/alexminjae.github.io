@@ -5,30 +5,29 @@
   <title>Minjae Kim | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%23ffffff%22/><path d=%22M20 44V20H26L32 31L38 20H44V44H38V28L32 39L26 28V44H20Z%22 fill=%22%23000000%22/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%231d1d1f%22/><path d=%22M20 44V20H26L32 31L38 20H44V44H38V28L32 39L26 28V44H20Z%22 fill=%22%23ffffff%22/></svg>">
     
   <style>
     :root {
-        /* ENGINEER DARK THEME (Tesla/SpaceX Vibe) */
-        --bg-body: #050505;       /* 완전 깊은 블랙 */
-        --bg-card: #111111;       /* 카드 배경 */
-        --bg-hover: #1a1a1a;      /* 호버 시 배경 */
+        /* LIGHT THEME (Clean Engineering) */
+        --bg-body: #fbfbfd;       
+        --bg-card: #ffffff;       
+        --text-primary: #1d1d1f;  
+        --text-secondary: #86868b;
         
-        --text-primary: #ffffff;  /* 메인 텍스트 */
-        --text-secondary: #a1a1aa; /* 서브 텍스트 (가독성 좋은 회색) */
-        
-        --accent: #ffffff;        /* 포인트 컬러: 미니멀한 화이트 */
-        --accent-glow: rgba(255, 255, 255, 0.15);
-        --divider: #333333;       /* 구분선 */
+        /* Purdue Gold / Engineering Blue Accent Options */
+        --accent: #0071e3;        
+        --accent-hover: #0077ed;
+        --divider: #d2d2d7;
         
         --radius-card: 24px;
         --radius-btn: 980px;      
         
-        /* 다크모드에서는 그림자보다 경계선(Border)이 더 중요함 */
-        --border-light: 1px solid #222;
-        --border-hover: 1px solid #444;
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+        --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+        --shadow-lg: 0 30px 60px rgba(0,0,0,0.12);
         
-        --shadow-sm: 0 4px 20px rgba(0,0,0,0.5);
+        --border-light: 1px solid rgba(0,0,0,0.05); /* Light border */
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -63,26 +62,33 @@
 
     a { color: inherit; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); }
     
-    /* BRAND LOGO (Monospace for Tech Vibe) */
+    /* BRAND LOGO STYLE */
     .brand-logo {
-        font-family: 'Courier New', Courier, monospace; /* 코딩 폰트 */
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 1.1rem;
-        letter-spacing: 0.05em;
+        font-weight: 700; /* Matching Hero/Footer weight */
+        font-size: 1.1rem; /* Slightly larger for navbar */
+        letter-spacing: -0.02em;
         color: var(--text-primary);
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         cursor: pointer;
     }
-    .brand-logo span { color: #888; } /* 점(.) 포인트 */
+    
+    /* The Terminal Logo Prefix */
+    .logo-prefix {
+        font-family: 'Courier New', Courier, monospace;
+        color: var(--accent);
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
 
     /* NAV */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      height: 70px; /* 살짝 키움 */
-      background: rgba(5, 5, 5, 0.8); /* 다크 글래스 */
+      height: 60px;
+      background: rgba(251, 251, 253, 0.8);
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       padding: 0 5%;
@@ -90,18 +96,18 @@
       justify-content: space-between;
       align-items: center;
       z-index: 5000;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     nav div { display: flex; gap: 30px; }
 
     nav a {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--text-secondary);
       transition: color 0.2s;
     }
-    nav a:hover { color: var(--text-primary); }
+    nav a:hover { color: var(--accent); }
 
     /* SECTIONS */
     section {
@@ -132,25 +138,10 @@
         gap: 30px; 
     }
 
-    /* [NEW] Nickname Badge: Alex와 Minjae의 연결고리 */
-    .nickname-badge {
-        display: inline-block;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #888;
-        border: 1px solid #333;
-        padding: 6px 12px;
-        border-radius: 4px;
-        width: fit-content;
-        margin-bottom: 16px;
-        background: rgba(255,255,255,0.03);
-    }
-
+    /* Consistent Font Style for Minjae Kim */
     .hero-header h1 {
         font-size: clamp(3rem, 6vw, 4.5rem); 
-        font-weight: 800; 
+        font-weight: 700; 
         line-height: 1.1;
         color: var(--text-primary);
         margin-bottom: 20px;
@@ -172,7 +163,7 @@
         gap: 60px;
         margin-top: 10px;
         padding-top: 30px;
-        border-top: 1px solid var(--divider); 
+        border-top: 1px solid rgba(0,0,0,0.1); 
         align-items: start;
     }
 
@@ -188,7 +179,7 @@
     .info-item p {
         font-size: 1rem;
         color: var(--text-primary);
-        font-weight: 500;
+        font-weight: 600;
         margin: 0;
     }
     
@@ -196,19 +187,19 @@
     .hero-cta { margin-top: 20px; }
     
     .btn-primary {
-        background: var(--text-primary); /* White on Black */
-        color: #000;
-        padding: 16px 32px;
+        background: var(--accent);
+        color: white;
+        padding: 14px 28px;
         border-radius: 50px;
         font-weight: 600;
         font-size: 1rem;
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         transition: transform 0.2s, background 0.2s;
     }
     .btn-primary:hover {
-        background: #e5e5e5;
+        background: var(--accent-hover);
         transform: translateY(-2px);
     }
 
@@ -217,10 +208,9 @@
         position: relative;
         border-radius: 32px;
         overflow: hidden;
-        box-shadow: var(--shadow-sm);
-        background: #111;
+        box-shadow: var(--shadow-lg);
+        background: #fff;
         line-height: 0;
-        border: var(--border-light); /* 다크모드 디테일 */
     }
 
     .hero-image-wrapper img {
@@ -228,7 +218,6 @@
         height: auto;
         display: block;
         transform: scale(1.01);
-        opacity: 0.95; /* 너무 쨍하지 않게 */
     }
 
     /* PROJECTS */
@@ -248,32 +237,24 @@
     /* FILTER BUTTONS */
     .filter-container {
         display: flex;
-        gap: 12px;
+        gap: 15px;
         margin-bottom: 50px;
     }
 
     .filter-btn {
-        background: var(--bg-card);
-        border: 1px solid #333;
+        background: rgba(0,0,0,0.05);
+        border: none;
         padding: 10px 24px;
-        border-radius: 50px;
-        font-size: 0.9rem;
+        border-radius: 20px;
+        font-size: 0.95rem;
         font-weight: 600;
         color: var(--text-secondary);
         cursor: pointer;
         transition: all 0.2s ease;
     }
 
-    .filter-btn:hover { 
-        background: #222; 
-        color: var(--text-primary); 
-        border-color: #555;
-    }
-    .filter-btn.active { 
-        background: #fff; 
-        color: #000; 
-        border-color: #fff; 
-    }
+    .filter-btn:hover { background: rgba(0,0,0,0.1); color: var(--text-primary); }
+    .filter-btn.active { background: #000; color: #fff; }
 
     /* PROJECT ROW */
     .project-row {
@@ -283,16 +264,17 @@
         display: grid;
         grid-template-columns: 1.5fr 1fr;
         gap: 60px;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         align-items: center;
         cursor: pointer;
-        border: var(--border-light);
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        border: none;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .project-row:hover {
-        transform: translateY(-4px);
-        border-color: #555; /* 호버 시 테두리가 밝아짐 */
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
     }
 
     .project-row:nth-child(even) { direction: rtl; }
@@ -303,7 +285,7 @@
         position: relative;
         overflow: hidden;
         border-radius: 16px;
-        border: 1px solid #222;
+        box-shadow: var(--shadow-sm);
     }
 
     .main-thumb {
@@ -317,21 +299,21 @@
         position: absolute;
         top: 15px;
         right: 15px;
-        width: 48px;
-        height: 48px;
+        width: 50px;
+        height: 50px;
         object-fit: contain;
         z-index: 2;
         background: #fff;
-        padding: 6px;
+        padding: 4px;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .project-tags, .modal-meta {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
     }
     
     .modal-meta {
@@ -343,28 +325,29 @@
     .tag-pill {
         font-size: 0.75rem;
         font-weight: 600;
-        color: #ccc;
-        background: rgba(255,255,255,0.05); /* 투명한 느낌 */
-        padding: 6px 14px;
+        color: var(--text-secondary);
+        background: #f5f5f7;
+        padding: 6px 12px;
         border-radius: 50px;
-        border: 1px solid #333;
+        border: 1px solid rgba(0,0,0,0.05);
     }
 
     .project-text h3 {
         font-size: 2.2rem;
         margin-bottom: 16px;
         line-height: 1.1;
+        letter-spacing: -0.02em;
     }
     
     .impact-stat {
         margin-top: 24px;
         font-weight: 600;
         font-size: 0.9rem;
-        color: #000;
+        color: var(--text-primary);
         display: inline-block;
-        background: #fff;
+        background: #f5f5f7;
         padding: 8px 16px;
-        border-radius: 6px;
+        border-radius: 8px;
     }
 
     /* EXPERIENCE */
@@ -380,7 +363,7 @@
         position: relative;
         transition: opacity 0.3s;
     }
-    .job-item:hover { opacity: 0.7; }
+    .job-item:hover { opacity: 0.8; }
 
     .job-item::before {
         content: '';
@@ -388,7 +371,7 @@
         left: 10px;
         top: 0;
         bottom: 0;
-        width: 1px;
+        width: 2px;
         background: var(--divider);
         z-index: 0;
     }
@@ -401,20 +384,21 @@
         object-fit: contain;
         background: #fff;
         border-radius: 16px;
+        box-shadow: var(--shadow-sm);
         padding: 4px;
     }
     
-    .job-details h3 { font-size: 1.4rem; margin-bottom: 6px; font-weight: 600; color: #fff; }
+    .job-details h3 { font-size: 1.4rem; margin-bottom: 4px; font-weight: 600; }
     .job-details p { color: var(--text-secondary); font-size: 1rem; }
-    .job-year { font-weight: 600; color: #666; font-feature-settings: "tnum"; }
+    .job-year { font-weight: 600; color: var(--text-secondary); font-feature-settings: "tnum"; }
 
     /* CONTACT */
     #contact { 
         text-align: center; 
         padding: 120px 5%; 
-        background: #000; 
+        background: #fff; 
         margin-top: 100px; 
-        border-top: 1px solid #222;
+        border-radius: 0; 
     }
     #contact h2 { font-size: 3rem; margin-bottom: 40px; }
     
@@ -427,45 +411,60 @@
     
     .contact-btn {
         padding: 16px 32px;
-        background: #111;
+        background: var(--text-primary);
         color: #fff;
-        border: 1px solid #333;
         border-radius: var(--radius-btn);
         font-size: 0.9rem;
         font-weight: 600;
-        transition: transform 0.2s, background 0.2s, color 0.2s;
+        transition: transform 0.2s, background 0.2s;
     }
     .contact-btn:hover { 
-        background: #fff; 
-        color: #000; 
+        background: var(--accent); 
         transform: scale(1.05); 
+        color: #fff; 
     }
 
     /* FOOTER */
     footer {
-        background-color: #000; 
-        color: #444;  
-        padding: 30px 0;
+        background-color: #ffffff; 
+        color: #333333;  
+        padding: 20px 0;
         text-align: center;
         margin-top: auto; 
-        border-top: 1px solid #111; 
+        border-top: 1px solid rgba(0,0,0,0.08); 
+    }
+
+    .footer-content {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px; 
+        align-items: center;
     }
 
     .footer-text {
         font-size: 0.85rem; 
+        color: #555555; 
         font-weight: 500;
+        letter-spacing: 0.02em;
     }
 
-    /* MODAL (Dark Mode) */
+    .footer-text strong {
+        color: #000000; 
+        font-weight: 600;
+    }
+
+    /* MODAL */
     .modal {
         display: none; 
         position: fixed; 
         z-index: 10001; 
         left: 0; top: 0; 
         width: 100%; height: 100%; 
-        background-color: rgba(0, 0, 0, 0.85); /* 배경 더 어둡게 */
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(50, 50, 50, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         overflow-y: auto;
         animation: fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
@@ -476,12 +475,10 @@
         max-width: 900px;
         margin: 80px auto; 
         padding: 60px;
-        background: #111; /* 다크 모달 */
-        border: 1px solid #333;
+        background: #fff;
         border-radius: 24px;
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--shadow-lg);
         position: relative;
-        color: #fff;
     }
 
     .close-btn {
@@ -489,16 +486,15 @@
         top: 30px; right: 40px;
         font-size: 24px;
         width: 44px; height: 44px;
-        background: rgba(30,30,30, 0.8);
-        color: #fff;
+        background: rgba(255,255,255,0.9);
         border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         cursor: pointer;
         z-index: 10002;
         transition: transform 0.2s;
-        border: 1px solid #444;
+        box-shadow: var(--shadow-md);
     }
-    .close-btn:hover { transform: scale(1.1); background: #fff; color:#000; }
+    .close-btn:hover { transform: scale(1.1); }
 
     .nav-btn {
         position: fixed;
@@ -508,23 +504,22 @@
         cursor: pointer;
         z-index: 10002;
         width: 50px; height: 50px;
-        background: rgba(30,30,30,0.8);
-        color: #fff;
-        border: 1px solid #444;
+        background: rgba(255,255,255,0.8);
         backdrop-filter: blur(10px);
         border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
+        box-shadow: var(--shadow-md);
         transition: all 0.2s;
         user-select: none;
     }
-    .nav-btn:hover { transform: translateY(-50%) scale(1.1); background: #fff; color: #000; }
+    .nav-btn:hover { transform: translateY(-50%) scale(1.1); background: #fff; }
     
     .nav-btn.disabled { opacity: 0.3; cursor: default; pointer-events: none; }
 
     .prev-btn { left: 40px; }
     .next-btn { right: 40px; }
 
-    .modal-header h2 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
+    .modal-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
     
     .modal-text {
         display: grid;
@@ -532,11 +527,11 @@
         gap: 60px;
         margin-bottom: 60px;
     }
-    .modal-section h4 { margin-bottom: 12px; font-size: 1.1rem; color: #fff; }
-    .modal-section p { margin-bottom: 20px; color: #aaa; }
-    .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: #aaa; }
+    .modal-section h4 { margin-bottom: 12px; font-size: 1.1rem; color: var(--text-primary); }
+    .modal-section p { margin-bottom: 20px; color: var(--text-secondary); }
+    .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--text-secondary); }
     .modal-gallery { display: flex; flex-direction: column; gap: 30px; }
-    .modal-gallery img { width: 100%; border-radius: 12px; border: 1px solid #333; }
+    .modal-gallery img { width: 100%; border-radius: 12px; box-shadow: var(--shadow-sm); }
 
     /* MOBILE */
     @media (max-width: 768px) {
@@ -573,7 +568,7 @@
 <body>
 
 <nav>
-  <a href="#about" class="brand-logo">Minjae Kim<span>.</span></a>
+  <a href="#about" class="brand-logo"><span class="logo-prefix">>_</span> Minjae Kim</a>
   <div>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
@@ -588,7 +583,6 @@
         <div class="hero-content">
             
             <div class="hero-header">
-                <div class="nickname-badge">Hello, I go by Alex</div>
                 <h1>Minjae Kim</h1>
             </div>
 
