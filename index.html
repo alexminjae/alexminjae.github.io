@@ -798,32 +798,36 @@
     <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
     <div class="modal-content">
         <div class="modal-header">
-            <h2>Piezo Protection Cap</h2>
-            <div class="modal-meta">
+            <h2>Parametric Piezo Protection & Automation</h2> <div class="modal-meta">
                 <span class="tag-pill">Tesla</span>
-                <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">ANSYS FEA</span>
+                <span class="tag-pill">CATIA V6 & VBA</span>
+                <span class="tag-pill">Material Science</span>
             </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
-                <h4>Challenge</h4>
-                <p>Piezo sensors used for vehicle durability testing were exposed to impact and moisture.</p>
-                <h4>Solution</h4>
-                <p>Designed bolt caps using CATIA V6. Created a "Powercopy" script to automatically generate caps based on bolt dimensions. Tested using Nylon, ASA, and TPU materials.</p>
+                <h4>Context & Constraints</h4>
+                <p>Vehicle durability testing exposed critical piezo sensors to harsh contaminants (mud, moisture) and vibration. Existing solutions failed to protect the $500+ sensors. The challenge was to design a cap that achieved <strong>IP67 waterproofing</strong> while remaining <strong>hand-installable</strong> for technicians across <strong>20+ different bolt variants</strong>.</p>
+                
+                <h4>Engineering Logic</h4>
+                <ul>
+                    <li><strong>Physics-Based Design:</strong> Derived a custom calculator using interference fit formulas to balance sealing pressure ($P$) vs. hand-insertion force ($F$). Defined optimal tolerance to ensure sealing without requiring tools.</li>
+                    <li><strong>Material Selection:</strong> Prototyped and tested ASA, TPU, and Nylon against 3 criteria: Impact resistance, Water submersion, and Elasticity. Selected <strong>ASA</strong> as the only material to pass all validation stages.</li>
+                    <li><strong>Automation (Powercopy):</strong> Developed a CATIA VBA script that instantly generates cap geometry based on bolt hex size. Turned a repetitive modeling task into a reusable parametric template.</li>
+                </ul>
             </div>
             <div class="modal-section">
-                <h4>Results</h4>
+                <h4>Quantitative Impact</h4>
                 <ul>
-                    <li>Mass produced 7+ variants for durability testing.</li>
-                    <li>Achieved 100% water-proof seal.</li>
-                    <li>Designed for easy hand-installation.</li>
+                    <li><strong>100% Data Integrity:</strong> Zero sensor failures due to moisture intrusion during endurance tests.</li>
+                    <li><strong>95% Time Reduction:</strong> Automated the design process, allowing engineers to generate new cap models in seconds rather than hours.</li>
+                    <li><strong>Mass Production:</strong> Successfully deployed injection-molded ASA caps for the fleet.</li>
                 </ul>
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="cap_1.png">
-            <img src="cap_2.png">
+            <img src="cap_1.png" alt="Piezo Cap Design">
+            <img src="cap_2.png" alt="Cap Installed on Bolt">
         </div>
     </div>
 </div>
