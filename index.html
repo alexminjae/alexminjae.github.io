@@ -9,15 +9,6 @@
   <link rel="shortcut icon" type="image/png" href="favicon.png?v=2">
     
   <style>
-    /* ... (Your existing CSS below) ... */
-    :root {
-        /* APPLE COLOR PALETTE */
-        --bg-body: #fbfbfd;        
-        --bg-card: #ffffff;
-      
-  <link rel="icon" type="image/png" href="favicon.png">
-    
-  <style>
     :root {
         /* APPLE COLOR PALETTE */
         --bg-body: #fbfbfd;        
@@ -412,8 +403,15 @@
     .job-details p { color: var(--text-secondary); font-size: 1rem; }
     .job-year { font-weight: 600; color: var(--text-secondary); font-feature-settings: "tnum"; }
 
-    /* CONTACT */
-    #contact { text-align: center; padding: 120px 5%; background: #fff; margin-top: 100px; border-radius: 0; }
+    /* CONTACT - FIXED VISIBILITY */
+    #contact { 
+        text-align: center; 
+        padding: 120px 5%; 
+        /* UPDATED: Changed background to light gray so buttons stand out clearly */
+        background: #f5f5f7; 
+        margin-top: 100px; 
+        border-radius: 0; 
+    }
     #contact h2 { font-size: 3rem; margin-bottom: 40px; }
     
     .contact-links {
@@ -425,12 +423,14 @@
     
     .contact-btn {
         padding: 16px 32px;
-        background: var(--text-primary);
-        color: #fff;
+        background: var(--text-primary); /* Dark Button */
+        color: #fff; /* White Text */
         border-radius: var(--radius-btn);
         font-size: 0.9rem;
         font-weight: 600;
         transition: transform 0.2s, background 0.2s;
+        /* UPDATED: Ensures buttons display correctly */
+        display: inline-block; 
     }
     .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
 
