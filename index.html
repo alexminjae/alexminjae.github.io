@@ -631,9 +631,9 @@
         </div>
         <div class="project-text">
             <div class="project-tags">
-                <span class="tag-pill">Tesla</span>
                 <span class="tag-pill">CATIA V6</span>
                 <span class="tag-pill">ANSYS FEA</span>
+                <span class="tag-pill">GD&T</span>
             </div>
             <h3>Piezo Protection Cap</h3>
             <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Achieved 100% water-proof rate.</p>
@@ -648,8 +648,8 @@
         </div>
         <div class="project-text">
             <div class="project-tags">
-                <span class="tag-pill">Tesla</span>
                 <span class="tag-pill">Python</span>
+                <span class="tag-pill">Pandas</span>
                 <span class="tag-pill">Automation</span>
             </div>
             <h3>Torque Data Processor</h3>
@@ -665,12 +665,13 @@
         </div>
         <div class="project-text">
             <div class="project-tags">
-                <span class="tag-pill">ZF Group</span>
                 <span class="tag-pill">PTC Creo</span>
                 <span class="tag-pill">GD&T</span>
+                <span class="tag-pill">3D Printing</span>
             </div>
             <h3>ReAX Transport Fixtures</h3>
             <p>Modeled damage-prevention connectors for international transportation to Germany and China.</p>
+            <span class="impact-stat">Impact: Protected Global Shipments</span>
         </div>
     </div>
 
@@ -681,9 +682,9 @@
         </div>
         <div class="project-text">
             <div class="project-tags">
-                <span class="tag-pill">Purdue Racing</span>
                 <span class="tag-pill">SolidWorks</span>
-                <span class="tag-pill">CFD</span>
+                <span class="tag-pill">ANSYS CFD</span>
+                <span class="tag-pill">Composites</span>
             </div>
             <h3>Formula SAE Aerodynamics</h3>
             <p>Modeled front/rear wings and optimized downforce using ANSYS CFD.</p>
@@ -699,9 +700,11 @@
             <div class="project-tags">
                 <span class="tag-pill">Siemens NX</span>
                 <span class="tag-pill">Machining</span>
+                <span class="tag-pill">GD&T</span>
             </div>
             <h3>Pipsqueak Stirling Engine</h3>
             <p>Fully functional engine assembly on a custom pirate ship model. 260 hours of modeling.</p>
+            <span class="impact-stat">Effort: 260 Hours of Modeling</span>
         </div>
     </div>
 
@@ -713,9 +716,11 @@
             <div class="project-tags">
                 <span class="tag-pill">Siemens NX</span>
                 <span class="tag-pill">Surfacing</span>
+                <span class="tag-pill">Reverse Engineering</span>
             </div>
             <h3>Pagani Huayra Components</h3>
             <p>Modeled complex wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
+            <span class="impact-stat">Skill: Class-A Surfacing</span>
         </div>
     </div>
     
@@ -727,11 +732,11 @@
             <div class="project-tags">
                 <span class="tag-pill">MATLAB</span>
                 <span class="tag-pill">C</span>
-                <span class="tag-pill">Systems</span>
+                <span class="tag-pill">Systems Engineering</span>
             </div>
             <h3>Campus Mobility Roundabout</h3>
             <p>Automated roundabout system with ultrasonic pedestrian detection.</p>
-            <span class="impact-stat">Result: 90% Peer Satisfactory Rate</span>
+            <span class="impact-stat">Result: 90% Satisfaction Rate</span>
         </div>
     </div>
 
@@ -816,14 +821,12 @@
                     <li><strong>Scale:</strong> Must fit 10+ different fastener variants across 20+ joints.</li>
                 </ul>
             </div>
-
             <div class="modal-section">
                 <h4>02. Action</h4>
                 <p><strong>Design & Calculation:</strong> I created a hand-pressibility calculator using <strong>Lamé’s equations</strong> (<i>P</i>) and friction formulas (<i>F = &mu;PA</i>) to determine the exact interference fit required.</p>
                 <p><strong>Validation:</strong> Tested prototypes in CATIA and physically with 3 materials (ASA, TPU, Nylon). Selected <strong>ASA</strong> as the only material that passed impact, water submersion, and hand-pressibility tests.</p>
                 <p><strong>Automation:</strong> Developed a "Powercopy" VBA automation tool for CATIA. This allowed engineers to simply select a hex head type and dimensions to instantly generate a manufacturing-ready cap model.</p>
             </div>
-
             <div class="modal-section">
                 <h4>03. Impact</h4>
                 <ul>
@@ -832,7 +835,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="modal-gallery">
             <img src="cap_1.png" alt="Prototype Iterations and Design Logic">
             <img src="cap_2.png" alt="Final ASA Cap Installed">
@@ -854,20 +856,17 @@
                 <span class="tag-pill">GUI</span>
             </div>
         </div>
-
         <div class="modal-text">
             <div class="modal-section">
                 <h4>01. Challenge</h4>
                 <p>Torque-to-failure (TTF) testing for a specific next-gen vehicle required multiple tests to be done in-line. The original method relied on manual point picking to find peak prevailing, snug, and yield points from the data traces. This was slow and inefficient for high-volume testing.</p>
             </div>
-
             <div class="modal-section">
                 <h4>02. Action</h4>
                 <p><strong>Algorithm Development:</strong> I built a Python-based tool that processes angle-to-torque graph traces. It automatically determines the peak prevailing, snug, and yield points based on user-defined parameters using a specific reference point scanning logic.</p>
                 <p><strong>Reporting:</strong> Automated the workflow so that after point picking, a PDF report is immediately exported, allowing engineers to review data summaries at a glance.</p>
                 <p><strong>Deployment:</strong> Designed the tool to be compatible with micro-control tools used in Gigafactories at Reno, Berlin, and Shanghai.</p>
             </div>
-
             <div class="modal-section">
                 <h4>03. Impact</h4>
                 <ul>
@@ -876,9 +875,9 @@
                 </ul>
             </div>
         </div>
-
         <div class="modal-gallery">
             <img src="ttf_1.png" alt="Script Interface">
+            <img src="ttf_2.png" alt="Generated PDF Report">
         </div>
     </div>
 </div>
@@ -898,14 +897,21 @@
         </div>
         <div class="modal-text">
             <div class="modal-section">
-                <h4>Objective</h4>
-                <p>Prevent connector joints on ReAX systems from damage during international shipping.</p>
-                <h4>Engineering</h4>
-                <p>Modeled 3 different connector types in PTC Creo. Applied GD&T to all parts and 3D printed for immediate usage.</p>
+                <h4>01. Challenge</h4>
+                <p><strong>Risk:</strong> Critical connector joints on ReAX steering systems were sustaining damage during international shipments to Germany and China.</p>
+                <p><strong>Requirement:</strong> Needed a custom fixture that could protect the exposed connectors from impact and vibration while fitting within standard shipping containers.</p>
             </div>
             <div class="modal-section">
-                <h4>Outcome</h4>
-                <p>Final models were used for successful shipments to Germany and China facilities.</p>
+                <h4>02. Action</h4>
+                <p><strong>Design:</strong> I designed three unique protective fixtures in <strong>PTC Creo</strong> tailored to the ReAX geometry. I utilized <strong>GD&T</strong> to ensure the internal clearances were tight enough to prevent movement but loose enough for easy manual installation.</p>
+                <p><strong>Manufacturing:</strong> 3D printed prototypes using FDM to verify fit-up on the physical units before approving the final shipment configuration.</p>
+            </div>
+            <div class="modal-section">
+                <h4>03. Impact</h4>
+                <ul>
+                    <li>Ensured 100% successful delivery of prototype units to international facilities.</li>
+                    <li>Prevented project delays caused by shipping damage.</li>
+                </ul>
             </div>
         </div>
         <div class="modal-gallery">
@@ -931,16 +937,19 @@
         </div>
         <div class="modal-text">
             <div class="modal-section">
-                <h4>Design</h4>
-                <p>Modeled front and rear wings using SolidWorks. Constructed airfoils using carbon fiber, aluminum end caps, and foam inserts.</p>
+                <h4>01. Challenge</h4>
+                <p>The racing team needed to increase cornering speeds without compromising straight-line acceleration. The existing aero package generated insufficient downforce relative to the drag penalty.</p>
             </div>
             <div class="modal-section">
-                <h4>Validation</h4>
-                <p>Performed ANSYS CFD simulations and verified in the Purdue wind tunnel.</p>
-                <h4>Results</h4>
+                <h4>02. Action</h4>
+                <p><strong>Simulation:</strong> I modeled multi-element front and rear wings in <strong>SolidWorks</strong> and performed iterative CFD simulations in <strong>ANSYS Fluent</strong> to optimize the angle of attack and flap geometry.</p>
+                <p><strong>Fabrication:</strong> Engineered the physical wing structure using a carbon fiber skin over foam cores with machined aluminum mounting points for rigidity.</p>
+            </div>
+            <div class="modal-section">
+                <h4>03. Impact</h4>
                 <ul>
-                    <li>Optimized downforce and drag by 30%.</li>
-                    <li>Developed a standardized team-wide CFD process.</li>
+                    <li>Optimized the lift-to-drag ratio, achieving a <strong>30% drag reduction</strong> while maintaining target downforce.</li>
+                    <li>Established a standardized CFD workflow for future aerodynamic sub-teams.</li>
                 </ul>
             </div>
         </div>
@@ -964,16 +973,24 @@
             <div class="modal-meta">
                 <span class="tag-pill">Personal Project</span>
                 <span class="tag-pill">Siemens NX</span>
+                <span class="tag-pill">Machining</span>
             </div>
         </div>
         <div class="modal-text">
             <div class="modal-section">
-                <p>Designed and modeled a fully functional stirling engine assembled on a custom pirate ship model.</p>
+                <h4>01. Challenge</h4>
+                <p>To design and manufacture a fully functional thermal-to-mechanical energy conversion system (Stirling Engine) from scratch. The main difficulty was achieving the extremely tight air-tight tolerances required for the piston cylinder without industrial-grade precision equipment.</p>
+            </div>
+            <div class="modal-section">
+                <h4>02. Action</h4>
+                <p><strong>Modeling:</strong> I modeled 18 distinct components in <strong>Siemens NX</strong>, applying strict GD&T controls to critical mating surfaces.</p>
+                <p><strong>Materials & Assembly:</strong> I utilized a combination of brass, nylon, and polished metal to manage friction and thermal expansion. I spent over 260 hours machining and assembling the components into a custom "Pirate Ship" form factor.</p>
+            </div>
+            <div class="modal-section">
+                <h4>03. Impact</h4>
                 <ul>
-                    <li>Modeled 18 individually designed parts in Siemens NX.</li>
-                    <li>Applied GD&T for all assembly components.</li>
-                    <li>Utilized materials including brass, nylon, and polished metal.</li>
-                    <li>Total effort: 260 hours of modeling.</li>
+                    <li>Achieved a fully functional engine that runs continuously on a simple heat differential.</li>
+                    <li>Demonstrated mastery of complex assembly modeling and manual machining tolerances.</li>
                 </ul>
             </div>
         </div>
@@ -1002,10 +1019,19 @@
         </div>
         <div class="modal-text">
             <div class="modal-section">
-                <p>Reverse-engineered wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
+                <h4>01. Challenge</h4>
+                <p>To reverse-engineer and replicate the complex, Class-A organic surfaces of the Pagani Huayra Roadster's wheel spokes and exhaust manifold using only reference images.</p>
+            </div>
+            <div class="modal-section">
+                <h4>02. Action</h4>
+                <p><strong>Advanced Surfacing:</strong> I utilized <strong>Siemens NX</strong> advanced surfacing tools to recreate the curvature-continuous geometry. I analyzed the topology to ensure the surfaces were manufacturable.</p>
+                <p><strong>Material Selection:</strong> Designed the components assuming Iron 40 and lightweight alloy properties to simulate realistic weight distribution.</p>
+            </div>
+            <div class="modal-section">
+                <h4>03. Impact</h4>
                 <ul>
-                    <li>Modeled in Siemens NX with full GD&T application.</li>
-                    <li>Designed for manufacturing with Iron 40 and light weight alloys.</li>
+                    <li>Produced a high-fidelity CAD model suitable for rendering and manufacturing analysis.</li>
+                    <li>Refined skills in complex surface modeling and reverse engineering workflows.</li>
                 </ul>
             </div>
         </div>
@@ -1032,11 +1058,19 @@
         </div>
         <div class="modal-text">
             <div class="modal-section">
-                <p>Identified safety risks at busy campus intersections. Designed an automatic roundabout system with ultrasonic pedestrian detection.</p>
+                <h4>01. Challenge</h4>
+                <p>High-traffic intersections on campus were causing congestion and safety risks for pedestrians. The existing traffic light system was inefficient during off-peak hours.</p>
+            </div>
+            <div class="modal-section">
+                <h4>02. Action</h4>
+                <p><strong>System Design:</strong> I designed an automated roundabout system integrated with ultrasonic sensors to detect pedestrians and vehicle density in real-time.</p>
+                <p><strong>Implementation:</strong> I simulated the traffic flow logic in <strong>MATLAB</strong> to optimize throughput and programmed the signal control hardware using <strong>C</strong>.</p>
+            </div>
+            <div class="modal-section">
+                <h4>03. Impact</h4>
                 <ul>
-                    <li>Simulated traffic flow using MATLAB.</li>
-                    <li>Programmed signal display logic in C.</li>
-                    <li>Achieved 90% peer satisfactory rate.</li>
+                    <li>Achieved a 90% peer satisfactory rate during the design review.</li>
+                    <li>Validated a logic system that prioritizes pedestrian safety while reducing vehicle wait times.</li>
                 </ul>
             </div>
         </div>
