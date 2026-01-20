@@ -68,10 +68,10 @@
         letter-spacing: 0.05em;
         color: var(--text-primary);
         display: inline-block;
-        cursor: pointer; /* Makes it look clickable */
+        cursor: pointer;
     }
     .brand-logo:hover {
-        color: var(--accent); /* Hover effect */
+        color: var(--accent);
     }
 
     /* NAV */
@@ -123,28 +123,17 @@
         align-items: center;
     }
 
-    /* Left Side Content */
     .hero-content {
         display: flex;
         flex-direction: column;
         gap: 30px; 
     }
 
-    /* --- UPDATED HERO HEADER STYLE --- */
-    /* This now matches the .brand-logo style (Uppercase, spacing, weight) */
     .hero-header h1 {
-        /* Adjusted size slightly so uppercase letters don't wrap awkwardly */
         font-size: clamp(3rem, 6vw, 4.5rem); 
-        
-        /* Matched to brand-logo weight (600) instead of bold (700) */
         font-weight: 600; 
-        
-        /* Uppercase to match header/footer */
         text-transform: uppercase; 
-        
-        /* Wider spacing to match header/footer */
         letter-spacing: 0.05em; 
-        
         line-height: 1.1;
         color: var(--text-primary);
         margin-bottom: 20px;
@@ -158,7 +147,6 @@
         max-width: 90%;
     }
 
-    /* --- INFO GRID (Clean Layout) --- */
     .info-grid {
         display: grid;
         grid-template-columns: auto 1fr; 
@@ -186,10 +174,8 @@
         line-height: 1.4;
     }
     
-    /* CTA Button */
-    .hero-cta {
-        margin-top: 20px;
-    }
+    .hero-cta { margin-top: 20px; }
+    
     .btn-primary {
         background: var(--accent);
         color: white;
@@ -207,7 +193,6 @@
         transform: scale(1.02);
     }
 
-    /* Right Side Image */
     .hero-image-wrapper {
         position: relative;
         border-radius: 32px;
@@ -238,7 +223,6 @@
         font-size: 1rem;
     }
 
-    /* FILTER BUTTONS */
     .filter-container {
         display: flex;
         gap: 15px;
@@ -260,7 +244,6 @@
     .filter-btn:hover { background: rgba(0,0,0,0.1); color: var(--text-primary); }
     .filter-btn.active { background: #000; color: #fff; }
 
-    /* PROJECT ROW */
     .project-row {
         background: var(--bg-card);
         border-radius: var(--radius-card);
@@ -403,11 +386,11 @@
     .job-details p { color: var(--text-secondary); font-size: 1rem; }
     .job-year { font-weight: 600; color: var(--text-secondary); font-feature-settings: "tnum"; }
 
-    /* CONTACT - REVERTED TO WHITE */
+    /* CONTACT */
     #contact { 
         text-align: center; 
         padding: 120px 5%; 
-        background: #fff; /* Reverted to white */
+        background: #fff; 
         margin-top: 100px; 
         border-radius: 0; 
     }
@@ -422,13 +405,13 @@
     
     .contact-btn {
         padding: 16px 32px;
-        background: var(--text-primary); /* Dark button background */
-        color: #fff; /* White text */
+        background: var(--text-primary); 
+        color: #fff; 
         border-radius: var(--radius-btn);
         font-size: 0.9rem;
         font-weight: 600;
         transition: transform 0.2s, background 0.2s;
-        display: inline-block; /* Ensure they show up */
+        display: inline-block; 
     }
     .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
 
@@ -539,7 +522,13 @@
         gap: 60px;
         margin-bottom: 60px;
     }
-    .modal-section h4 { margin-bottom: 12px; font-size: 1.1rem; color: var(--text-primary); }
+    .modal-section h4 { 
+        margin-bottom: 12px; 
+        font-size: 1.1rem; 
+        color: var(--text-primary); 
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
     .modal-section p { margin-bottom: 20px; color: var(--text-secondary); }
     .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--text-secondary); }
     .modal-gallery { display: flex; flex-direction: column; gap: 30px; }
@@ -646,7 +635,7 @@
             </div>
             <h3>Piezo Protection Cap</h3>
             <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Achieved 100% water-proof rate.</p>
-            <span class="impact-stat">Result: Mass produced 7+ variants</span>
+            <span class="impact-stat">Result: Mass produced 10+ variants</span>
         </div>
     </div>
 
@@ -663,7 +652,7 @@
             </div>
             <h3>Torque Data Processor</h3>
             <p>Built an automation tool for torque-to-failure data acquisition. Deployed to Gigafactories worldwide.</p>
-            <span class="impact-stat">Impact: Saved 10+ hours per joint</span>
+            <span class="impact-stat">Impact: Saved 30 mins per joint</span>
         </div>
     </div>
 
@@ -818,30 +807,20 @@
         <div class="modal-text">
             <div class="modal-section">
                 <h4>01. The Design Challenge</h4>
-                <p><strong>The Conflict:</strong> Endurance testing for the Next-gen Vehicle Program required sensors to be shielded from mud and high-pressure water (IP67). However, technicians needed to install and remove these caps instantly <strong>by hand (tool-less)</strong> across 20+ different joint variants due to tight testing schedules.</p>
-                <p>Existing taping solutions were unreliable, leading to potential sensor corrosion and data loss.</p>
+                <p><strong>Context:</strong> The Next-gen Vehicle Program required rigorous endurance testing. Fasteners with built-in piezo sensors needed robust protection from mud, high-pressure water (IP67), and impact.</p>
+                <p><strong>The Conflict:</strong> Technicians required caps to be installed and removed <strong>instantly by hand (tool-less)</strong> across 20+ different joint variants. Existing taping solutions were unreliable and time-consuming.</p>
             </div>
 
             <div class="modal-section">
-                <h4>02. Material Selection & Prototyping</h4>
-                <p>I conducted rigorous validation cycles with 3D-printed prototypes to find the perfect balance between rigidity for impact protection and elasticity for the snap-fit mechanism.</p>
-                <ul>
-                    <li><strong>TPU:</strong> Rejected. Too flexible to maintain secure engagement under high-frequency vibration.</li>
-                    <li><strong>Nylon:</strong> Rejected. Hygroscopic nature (water absorption) compromised long-term dimensional stability.</li>
-                    <li><strong>ASA (Selected):</strong> Selected as the final material for mass production. It achieved the perfect trifecta of impact resistance, UV stability, and consistent snap-fit elasticity.</li>
-                </ul>
+                <h4>02. Solution & Engineering</h4>
+                <p><strong>Interference Fit Calculation:</strong> I utilized <strong>Lamé’s equations</strong> to calculate the exact contact pressure ($P$) needed for water sealing versus the friction force ($F$) allowable for hand insertion (< 50N). This data drove the dimensional tolerancing.</p>
+                <p><strong>Material Selection:</strong> Validated 3D-printed prototypes in TPU, Nylon, and ASA. Selected <strong>ASA</strong> for its superior balance of UV stability, impact resistance, and snap-fit elasticity.</p>
             </div>
 
             <div class="modal-section">
-                <h4>03. Engineering the Perfect Fit</h4>
-                <p>Achieving a water-tight seal without tools required precise calculation, not just trial and error. I applied <strong>Lamé’s equations for Interference Fit</strong> to calculate the precise contact pressure ($P$) required to withstand water ingress versus the friction force ($F$) allowable for hand insertion.</p>
-                <p><strong>Result:</strong> Established a safety factor of 2.0 against leakage while optimizing the tolerance stack-up to be hand-pressible (< 50N insertion force).</p>
-            </div>
-
-            <div class="modal-section">
-                <h4>04. Scalability via Automation</h4>
-                <p>To support future vehicle programs, I didn't just model parts; I built a scalable tool. I developed a <strong>CATIA Powercopy (VBA)</strong> script that creates a parametric cap model instantly based on bolt hex parameters.</p>
-                <p><strong>Impact:</strong> Reduced design time from <strong>hours to seconds</strong> for future iterations, allowing engineers to generate manufacturing-ready CAD with zero manual modeling.</p>
+                <h4>03. Impact & Scalability</h4>
+                <p><strong>Automation:</strong> Developed a <strong>CATIA Powercopy (VBA)</strong> script that instantly generates parametric cap models based on bolt hex inputs. This allowed me to generate 10+ variants in minutes rather than hours.</p>
+                <p><strong>Result:</strong> Mass-produced caps were deployed for vehicle testing, achieving 100% water sealing success and significantly reducing technician setup time.</p>
             </div>
         </div>
 
@@ -868,22 +847,24 @@
         </div>
         <div class="modal-text">
             <div class="modal-section">
-                <h4>Challenge</h4>
-                <p>Manual processing of torque-to-failure data was time-consuming and prone to error.</p>
-                <h4>Solution</h4>
-                <p>Built a Python automation tool (Pandas, Numpy, Matplotlib) with a GUI for engineers to actively use during testing.</p>
+                <h4>01. Challenge</h4>
+                <p><strong>Context:</strong> The next-gen vehicle program required high-volume Torque-to-Failure (TTF) testing to validate fastener joints.</p>
+                <p><strong>Problem:</strong> The original process relied on manual point-picking to identify peak prevailing torque, snug point, and yield point on data traces. This was error-prone and created a bottleneck for the engineering team.</p>
             </div>
             <div class="modal-section">
-                <h4>Impact</h4>
-                <ul>
-                    <li>Deployed to Gigafactories in Berlin, Shanghai, Reno, and Fremont.</li>
-                    <li>Saved 10+ hours of analysis time per joint.</li>
-                </ul>
+                <h4>02. Solution</h4>
+                <p><strong>Algorithm Development:</strong> I built a Python tool (using Pandas and NumPy) that ingests raw angle-to-torque CSV data. It automatically detects critical mechanical properties (Yield, Snug, Peak) based on user-defined parameters.</p>
+                <p><strong>User Experience:</strong> Designed a GUI to allow engineers to batch-process files and instantly export comprehensive PDF reports with data visualization.</p>
+            </div>
+            <div class="modal-section">
+                <h4>03. Impact</h4>
+                <p><strong>Efficiency:</strong> Reduced data analysis time by <strong>>30 minutes per joint testing</strong>.</p>
+                <p><strong>Global Scale:</strong> The tool was containerized and distributed to Gigafactories in <strong>Reno, Berlin, and Shanghai</strong>, standardizing the TTF analysis workflow across international teams.</p>
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="ttf_1.png">
-            <img src="ttf_2.png">
+            <img src="ttf_1.png" alt="Script Interface">
+            <img src="ttf_2.png" alt="Generated PDF Report">
         </div>
     </div>
 </div>
