@@ -30,7 +30,7 @@
     html { scroll-behavior: smooth; }
 
     /* --- UNIFIED FONT STACK FOR EVERYTHING --- */
-    body, h1, h2, h3, h4, p, a, button, input, select, textarea {
+    body, h1, h2, h3, h4, p, a, button, input, select, textarea, figcaption {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased; 
       -moz-osx-font-smoothing: grayscale;
@@ -137,14 +137,15 @@
         letter-spacing: 0.05em; 
         line-height: 1.1;
         color: var(--text-primary);
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
-    .hero-header p {
-        font-size: 1.4rem;
-        font-weight: 500;
-        line-height: 1.4;
+    /* Mission Statement Style */
+    .mission-statement {
+        font-size: 1.2rem;
         color: var(--text-secondary);
+        font-weight: 400;
+        margin-bottom: 10px;
         max-width: 90%;
     }
 
@@ -175,7 +176,13 @@
         line-height: 1.4;
     }
     
-    .hero-cta { margin-top: 20px; }
+    .hero-cta { 
+        margin-top: 20px; 
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
     
     .btn-primary {
         background: var(--accent);
@@ -191,6 +198,23 @@
     }
     .btn-primary:hover {
         background: var(--accent-hover);
+        transform: scale(1.02);
+    }
+
+    .btn-secondary {
+        background: rgba(0,0,0,0.05);
+        color: var(--text-primary);
+        padding: 14px 28px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover {
+        background: rgba(0,0,0,0.1);
         transform: scale(1.02);
     }
 
@@ -532,8 +556,18 @@
     }
     .modal-section p { margin-bottom: 20px; color: var(--text-secondary); }
     .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--text-secondary); }
+    
     .modal-gallery { display: flex; flex-direction: column; gap: 30px; }
     .modal-gallery img { width: 100%; border-radius: 12px; box-shadow: var(--shadow-sm); }
+    
+    /* Captions for images */
+    figcaption {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        text-align: center;
+        margin-top: 8px;
+        font-style: italic;
+    }
 
     /* MOBILE */
     @media (max-width: 768px) {
@@ -586,6 +620,7 @@
             
             <div class="hero-header">
                 <h1>Minjae Kim</h1>
+                <p class="mission-statement">Mechanical Engineer obsessed with automating the mundane and designing for extreme constraints.</p>
             </div>
 
             <div class="info-grid">
@@ -602,6 +637,7 @@
 
             <div class="hero-cta">
                 <a href="#projects" class="btn-primary">View Projects &#8595;</a>
+                <a href="Minjae_Kim_Resume.pdf" target="_blank" class="btn-secondary">Download Resume &#8599;</a>
             </div>
 
         </div>
@@ -835,8 +871,14 @@
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="cap_1.png" alt="Prototype Iterations and Design Logic">
-            <img src="cap_2.png" alt="Final ASA Cap Installed">
+            <div>
+                <img src="cap_1.png" alt="Prototype Iterations and Design Logic">
+                <figcaption>Figure 1: Iterative FEA analysis vs. Physical Prototypes for Fit Check</figcaption>
+            </div>
+            <div>
+                <img src="cap_2.png" alt="Final ASA Cap Installed">
+                <figcaption>Figure 2: Final Mass-Produced Cap Installed on Test Vehicle</figcaption>
+            </div>
         </div>
     </div>
 </div>
@@ -874,7 +916,10 @@
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="ttf_1.png" alt="Script Interface">
+            <div>
+                <img src="ttf_1.png" alt="Script Interface">
+                <figcaption>Figure 1: Custom Python GUI for automated parameter selection and analysis</figcaption>
+            </div>
         </div>
     </div>
 </div>
@@ -912,9 +957,18 @@
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="reax_1.png">
-            <img src="reax_3.png">
-            <img src="reax_2.png">
+            <div>
+                <img src="reax_1.png" alt="Connector Fixture">
+                <figcaption>Figure 1: CAD Model of Connector Protector</figcaption>
+            </div>
+            <div>
+                <img src="reax_3.png" alt="Physical Part">
+                <figcaption>Figure 2: 3D Printed Prototype Fit Check</figcaption>
+            </div>
+            <div>
+                <img src="reax_2.png" alt="Assembly View">
+                <figcaption>Figure 3: Final Assembly Configuration</figcaption>
+            </div>
         </div>
     </div>
 </div>
@@ -951,11 +1005,18 @@
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="per_1.png">
-            <img src="per_2.png">
-            <img src="per_3.png">
-            <img src="per_4.png">
-            <img src="per_5.png">
+            <div>
+                <img src="per_1.png" alt="Rear Wing Assembly">
+                <figcaption>Figure 1: Rear Wing Assembly CAD</figcaption>
+            </div>
+            <div>
+                <img src="per_2.png" alt="CFD Streamlines">
+                <figcaption>Figure 2: Velocity Streamline Analysis</figcaption>
+            </div>
+            <div>
+                <img src="per_5.png" alt="Track Testing">
+                <figcaption>Figure 3: Final Integration on Race Vehicle</figcaption>
+            </div>
         </div>
     </div>
 </div>
@@ -992,12 +1053,14 @@
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="ship_1.png">
-            <img src="ship_2.png">
-            <img src="ship_3.png">
-            <img src="ship_4.png">
-            <img src="ship_5.png">
-            <img src="ship_6.png">
+            <div>
+                <img src="ship_1.png" alt="Engine Assembly">
+                <figcaption>Figure 1: Full CAD Assembly in Siemens NX</figcaption>
+            </div>
+            <div>
+                <img src="ship_6.png" alt="Machined Parts">
+                <figcaption>Figure 2: Machined Components Ready for Assembly</figcaption>
+            </div>
         </div>
     </div>
 </div>
@@ -1034,9 +1097,14 @@
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="pagani_1.png">
-            <img src="pagani_2.jpg">
-            <img src="pagani_3.png">
+            <div>
+                <img src="pagani_1.png" alt="Wheel Spoke Surfacing">
+                <figcaption>Figure 1: Curvature Continuity Analysis on Wheel Spoke</figcaption>
+            </div>
+            <div>
+                <img src="pagani_2.jpg" alt="Exhaust Manifold">
+                <figcaption>Figure 2: Exhaust Manifold Surface Reconstruction</figcaption>
+            </div>
         </div>
     </div>
 </div>
@@ -1073,7 +1141,10 @@
             </div>
         </div>
         <div class="modal-gallery">
-            <img src="roundabout_1.png">
+            <div>
+                <img src="roundabout_1.png" alt="System Logic Diagram">
+                <figcaption>Figure 1: Logic Flowchart for Ultrasonic Sensor Integration</figcaption>
+            </div>
         </div>
     </div>
 </div>
