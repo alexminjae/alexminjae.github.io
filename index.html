@@ -830,98 +830,43 @@
     </div>
 </footer>
 
-<div id="modal-piezo" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-piezo')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        
-        <div class="modal-header">
-            <h2>Piezo Protection Cap</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">ANSYS FEA</span>
-                <span class="tag-pill">Design Automation</span>
+<div class="modal-text">
+            <div class="modal-section">
+                <h4>01. Challenge</h4>
+                <p><strong>Context:</strong> The Next-Gen Vehicle program required durability testing where fasteners with built-in piezo sensors had to be shielded from mud and high-pressure water.</p>
+                <p><strong>The Contradiction:</strong> The caps needed to be <strong>IP-rated waterproof</strong> for sensor protection, yet <strong>hand-pressible</strong> for technicians to install/remove without tools in seconds.</p>
+            </div>
+            <div class="modal-section">
+                <h4>02. Engineering First Principles</h4>
+                <p><strong>Physics-Based Design:</strong> Derived a custom interference fit calculator using <strong>Lamé’s equations</strong> ($P$) and friction coefficients ($F = \mu PA$) to mathematically optimize the seal-to-insertion-force ratio.</p>
+                <p><strong>Validation:</strong> Prototyped across ASA, TPU, and Nylon. Selected <strong>ASA</strong> after it passed impact, water submersion, and hand-pressibility tests.</p>
+            </div>
+            <div class="modal-section">
+                <h4>03. Scalability & Impact</h4>
+                <p><strong>Automation:</strong> Built a CATIA VBA "Powercopy" tool. Engineers can now input a bolt's hex dimensions and instantly generate a manufacturing-ready cap model.</p>
+                <ul>
+                    <li><strong>Result:</strong> Achieved 100% seal rate on 20+ joint variants during endurance testing.</li>
+                    <li><strong>Legacy:</strong> The automation tool is now standard workflow for future vehicle programs.</li>
+                </ul>
             </div>
         </div>
 
-        <div class="modal-text">
+<div class="modal-text">
             <div class="modal-section">
                 <h4>01. Challenge</h4>
-                <p>The Next-Gen Vehicle program required durability testing where fasteners with built-in piezo sensors had to be shielded from mud and high-pressure water. The design faced a critical contradiction:</p>
-                <ul>
-                    <li><strong>Sealing:</strong> Must be water-tight to protect the sensor.</li>
-                    <li><strong>Usability:</strong> Must be <strong>hand-pressible</strong> for technicians to install/remove quickly without tools.</li>
-                    <li><strong>Scale:</strong> Must fit 10+ different fastener variants across 20+ joints.</li>
-                </ul>
+                <p>In-line fastener validation for the next-gen platform faced bottlenecks due to manual data analysis. Engineers were manually picking "yield," "snug," and "peak" points on torque-angle traces, which was slow and prone to human error.</p>
             </div>
             <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Design & Calculation:</strong> I created a hand-pressibility calculator using <strong>Lamé’s equations</strong> (<i>P</i>) and friction formulas (<i>F = &mu;PA</i>) to determine the exact interference fit required.</p>
-                <p><strong>Validation:</strong> Tested prototypes in CATIA and physically with 3 materials (ASA, TPU, Nylon). Selected <strong>ASA</strong> as the only material that passed impact, water submersion, and hand-pressibility tests.</p>
-                <p><strong>Automation:</strong> Developed a "Powercopy" VBA automation tool for CATIA. This allowed engineers to simply select a hex head type and dimensions to instantly generate a manufacturing-ready cap model.</p>
+                <h4>02. Solution</h4>
+                <p><strong>Signal Processing:</strong> Engineered a <strong>Python-based analysis tool</strong> that autonomously scans raw micro-controller data to identify critical mechanical properties (Yield Point, Peak Prevailing Torque) using a custom reference point logic.</p>
+                <p><strong>Global Deployment:</strong> Designed the tool to interface with standard factory hardware, allowing deployment to <strong>Gigafactories in Reno, Berlin, and Shanghai</strong>.</p>
             </div>
             <div class="modal-section">
                 <h4>03. Impact</h4>
-                <ul>
-                    <li>Proceeded to mass production of ASA caps, successfully protecting sensors during endurance testing.</li>
-                    <li>Enabled instant creation of caps for any future bolt variant using the automation tool.</li>
-                </ul>
+                <p><strong>Efficiency:</strong> Reduced analysis cycle time by <strong>30+ minutes per joint</strong>.</p>
+                <p><strong>Deliverable:</strong> Automated PDF reporting allows line engineers to visualize pass/fail criteria instantly on the production floor.</p>
             </div>
         </div>
-        <div class="modal-gallery">
-            <div>
-                <img src="cap_1.png" alt="Prototype Iterations and Design Logic">
-                <figcaption>Figure 1: Iterative FEA analysis vs. Physical Prototypes for Fit Check</figcaption>
-            </div>
-            <div>
-                <img src="cap_2.png" alt="Final ASA Cap Installed">
-                <figcaption>Figure 2: Final Mass-Produced Cap Installed on Test Vehicle</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modal-torque" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-torque')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Torque Data Processor</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">Python</span>
-                <span class="tag-pill">Pandas</span>
-                <span class="tag-pill">GUI</span>
-            </div>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p>Torque-to-failure (TTF) testing for a specific next-gen vehicle required multiple tests to be done in-line. The original method relied on manual point picking to find peak prevailing, snug, and yield points from the data traces. This was slow and inefficient for high-volume testing.</p>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Algorithm Development:</strong> I built a Python-based tool that processes angle-to-torque graph traces. It automatically determines the peak prevailing, snug, and yield points based on user-defined parameters using a specific reference point scanning logic.</p>
-                <p><strong>Reporting:</strong> Automated the workflow so that after point picking, a PDF report is immediately exported, allowing engineers to review data summaries at a glance.</p>
-                <p><strong>Deployment:</strong> Designed the tool to be compatible with micro-control tools used in Gigafactories at Reno, Berlin, and Shanghai.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Distributed the tool to multiple Gigafactories worldwide.</li>
-                    <li>Shortened test time by more than <strong>30 minutes per joint testing</strong>.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <div>
-                <img src="ttf_1.png" alt="Script Interface">
-                <figcaption>Figure 1: Custom Python GUI for automated parameter selection and analysis</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div id="modal-zf" class="modal">
     <div class="close-btn" onclick="closeModal('modal-zf')">&times;</div>
