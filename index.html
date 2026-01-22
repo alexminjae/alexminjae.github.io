@@ -140,15 +140,6 @@
         margin-bottom: 10px;
     }
 
-    /* Mission Statement Style */
-    .mission-statement {
-        font-size: 1.2rem;
-        color: var(--text-secondary);
-        font-weight: 400;
-        margin-bottom: 10px;
-        max-width: 90%;
-    }
-
     .info-grid {
         display: grid;
         grid-template-columns: auto 1fr; 
@@ -630,7 +621,7 @@
                 </div>
                 <div class="info-item">
                     <h4>Core Skills</h4>
-                    <p>CATIA V6, Siemens NX, Python, ANSYS</p>
+                    <p>CATIA V6, Siemens NX, Python, GD&T</p>
                 </div>
             </div>
 
@@ -666,7 +657,7 @@
         <div class="project-text">
             <div class="project-tags">
                 <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">ANSYS FEA</span>
+                <span class="tag-pill">Analytical Mechanics</span>
                 <span class="tag-pill">Design Automation</span>
             </div>
             <h3>Piezo Protection Cap</h3>
@@ -840,7 +831,7 @@
             <h2>Piezo Protection Cap</h2>
             <div class="modal-meta">
                 <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">ANSYS FEA</span>
+                <span class="tag-pill">Analytical Mechanics</span>
                 <span class="tag-pill">Design Automation</span>
             </div>
         </div>
@@ -857,9 +848,9 @@
             </div>
             <div class="modal-section">
                 <h4>02. Action</h4>
-                <p><strong>Design & Calculation:</strong> I created a hand-pressibility calculator using <strong>Lamé’s equations</strong> (<i>P</i>) and friction formulas (<i>F = &mu;PA</i>) to determine the exact interference fit required.</p>
-                <p><strong>Validation:</strong> Tested prototypes in CATIA and physically with 3 materials (ASA, TPU, Nylon). Selected <strong>ASA</strong> as the only material that passed impact, water submersion, and hand-pressibility tests.</p>
-                <p><strong>Automation:</strong> Developed a "Powercopy" VBA automation tool for CATIA. This allowed engineers to simply select a hex head type and dimensions to instantly generate a manufacturing-ready cap model.</p>
+                <p><strong>Design & Calculation:</strong> I created a hand-pressibility calculator using <strong>Lamé’s equations</strong> (<i>P</i>) and friction formulas (<i>F = &mu;PA</i>) to determine the exact interference fit required. This analytical approach eliminated the need for complex FEA simulations.</p>
+                <p><strong>Validation:</strong> Tested prototypes physically with 3 materials (ASA, TPU, Nylon). Selected <strong>ASA</strong> as the only material that passed impact, water submersion, and hand-pressibility tests.</p>
+                <p><strong>Automation:</strong> Developed a "Powercopy" VBA automation tool for CATIA. This allowed engineers to simply select a <strong>hex head type</strong>, input dimensions, and automatically apply the <strong>Tesla logo</strong> to generate a manufacturing-ready cap model instantly.</p>
             </div>
             <div class="modal-section">
                 <h4>03. Impact</h4>
@@ -871,12 +862,16 @@
         </div>
         <div class="modal-gallery">
             <div>
-                <img src="cap_1.png" alt="Prototype Iterations and Design Logic">
-                <figcaption>Figure 1: Upright isometric image of cap prototype (TPU)</figcaption>
+                <img src="interference_diagram.png" alt="Math Model" style="border: 2px dashed #ddd; min-height: 200px;">
+                <figcaption>Figure 1: Interference fit calculation model using Lamé’s equations (Reference)</figcaption>
             </div>
             <div>
-                <img src="cap_2.png" alt="Final ASA Cap Installed">
-                <figcaption>Figure 2: Upturned isometric image of cap prototype (TPU)</figcaption>
+                <img src="cap_1.png" alt="Prototype Iterations">
+                <figcaption>Figure 2: Upright isometric image of cap prototype (TPU)</figcaption>
+            </div>
+            <div>
+                <img src="cap_2.png" alt="Final ASA Cap">
+                <figcaption>Figure 3: Final ASA Cap installed on fastener</figcaption>
             </div>
         </div>
     </div>
@@ -904,20 +899,24 @@
                 <h4>02. Action</h4>
                 <p><strong>Algorithm Development:</strong> I built a Python-based tool that processes angle-to-torque graph traces. It automatically determines the peak prevailing, snug, and yield points based on user-defined parameters using a specific reference point scanning logic.</p>
                 <p><strong>Reporting:</strong> Automated the workflow so that after point picking, a PDF report is immediately exported, allowing engineers to review data summaries at a glance.</p>
-                <p><strong>Deployment:</strong> Designed the tool to be compatible with micro-control tools used in Gigafactories at Reno, Berlin, and Shanghai.</p>
+                <p><strong>Deployment:</strong> Designed the tool to be compatible with micro-control tools used in Gigafactories at <strong>Reno, Berlin, and Shanghai</strong>.</p>
             </div>
             <div class="modal-section">
                 <h4>03. Impact</h4>
                 <ul>
-                    <li>Distributed the tool to multiple Gigafactories worldwide.</li>
+                    <li>Distributed the tool to global Gigafactories in Reno, Berlin, and Shanghai.</li>
                     <li>Shortened test time by more than <strong>30 minutes per joint testing</strong>.</li>
                 </ul>
             </div>
         </div>
         <div class="modal-gallery">
             <div>
+                <img src="ttf_curve.png" alt="Angle Torque Curve" style="border: 2px dashed #ddd; min-height: 200px;">
+                <figcaption>Figure 1: Sample Angle-Torque trace showing Snug, Peak, and Yield point detection</figcaption>
+            </div>
+            <div>
                 <img src="ttf_1.png" alt="Script Interface">
-                <figcaption>Figure 1: Example image of fastener failing in torque-to-failure test</figcaption>
+                <figcaption>Figure 2: Example of fastener failing in torque-to-failure test</figcaption>
             </div>
         </div>
     </div>
