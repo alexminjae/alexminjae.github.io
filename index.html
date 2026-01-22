@@ -657,12 +657,12 @@
         <div class="project-text">
             <div class="project-tags">
                 <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">Analytical Mechanics</span>
+                <span class="tag-pill">Mechanics of Materials</span>
                 <span class="tag-pill">Design Automation</span>
             </div>
             <h3>Piezo Protection Cap</h3>
-            <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Achieved 100% water-proof rate.</p>
-            <span class="impact-stat">Result: 100% Seal Rate on 10+ Variants</span>
+            <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Validated for high-impact durability.</p>
+            <span class="impact-stat">Result: 100% Seal Rate on 20+ Joints</span>
         </div>
     </div>
 
@@ -678,8 +678,8 @@
                 <span class="tag-pill">GUI</span>
             </div>
             <h3>Torque Data Processor</h3>
-            <p>Built an automation tool for torque-to-failure data acquisition. Deployed to Gigafactories worldwide.</p>
-            <span class="impact-stat">Impact: Saved 30+ Mins Per Joint</span>
+            <p>Built an automation tool for torque-to-failure data acquisition. Deployed to Reno, Berlin, and Shanghai.</p>
+            <span class="impact-stat">Impact: Saved 30+ Mins Per Joint Globally</span>
         </div>
     </div>
 
@@ -831,7 +831,7 @@
             <h2>Piezo Protection Cap</h2>
             <div class="modal-meta">
                 <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">Analytical Mechanics</span>
+                <span class="tag-pill">Mechanics of Materials</span>
                 <span class="tag-pill">Design Automation</span>
             </div>
         </div>
@@ -839,39 +839,30 @@
         <div class="modal-text">
             <div class="modal-section">
                 <h4>01. Challenge</h4>
-                <p>The Next-Gen Vehicle program required durability testing where fasteners with built-in piezo sensors had to be shielded from mud and high-pressure water. The design faced a critical contradiction:</p>
+                <p>The Next-Gen Vehicle program required durability testing for fasteners with built-in piezo sensors. The caps needed to seal out mud/water but faced a unique usability contradiction:</p>
                 <ul>
-                    <li><strong>Sealing:</strong> Must be water-tight to protect the sensor.</li>
-                    <li><strong>Usability:</strong> Must be <strong>hand-pressible</strong> for technicians to install/remove quickly without tools.</li>
-                    <li><strong>Scale:</strong> Must fit 10+ different fastener variants across 20+ joints.</li>
+                    <li><strong>Sealing vs. Usability:</strong> Must be <strong>hand-pressible</strong> for quick manual installation by technicians, yet tight enough to be water-proof.</li>
+                    <li><strong>Impact Resistance:</strong> Technicians often strike caps with a <strong>mallet</strong> to ensure a secure fit. The design had to withstand this blunt impact without cracking.</li>
                 </ul>
             </div>
             <div class="modal-section">
                 <h4>02. Action</h4>
-                <p><strong>Design & Calculation:</strong> I created a hand-pressibility calculator using <strong>Lamé’s equations</strong> (<i>P</i>) and friction formulas (<i>F = &mu;PA</i>) to determine the exact interference fit required. This analytical approach eliminated the need for complex FEA simulations.</p>
-                <p><strong>Validation:</strong> Tested prototypes physically with 3 materials (ASA, TPU, Nylon). Selected <strong>ASA</strong> as the only material that passed impact, water submersion, and hand-pressibility tests.</p>
-                <p><strong>Automation:</strong> Developed a "Powercopy" VBA automation tool for CATIA. This allowed engineers to simply select a <strong>hex head type</strong>, input dimensions, and automatically apply the <strong>Tesla logo</strong> to generate a manufacturing-ready cap model instantly.</p>
+                <p><strong>Mechanics of Materials:</strong> I avoided generic guesswork by calculating the exact interference fit using <strong>Lamé’s equations</strong>. I determined the optimal tolerance stack-up that allowed for hand-insertion while maintaining seal integrity.</p>
+                <p><strong>Physical Validation:</strong> I 3D printed prototypes in ASA, TPU, and Nylon. I simulated the technician's workflow by performing <strong>mallet impact tests</strong> and water submersion tests.</p>
+                <p><strong>Automation:</strong> I built a CATIA "Powercopy" tool. Engineers could select a hex head type and instantly generate a manufacturing-ready cap with the <strong>Tesla logo</strong> and correct dimensions, saving hours of manual modeling.</p>
             </div>
             <div class="modal-section">
                 <h4>03. Impact</h4>
                 <ul>
-                    <li>Proceeded to mass production of ASA caps, successfully protecting sensors during endurance testing.</li>
-                    <li>Enabled instant creation of caps for any future bolt variant using the automation tool.</li>
+                    <li>Achieved a <strong>100% seal rate</strong> across all 20+ joint variants during endurance testing.</li>
+                    <li>Selected <strong>ASA material</strong> as the superior choice, surviving both the water pressure and the technician's mallet strikes.</li>
                 </ul>
             </div>
         </div>
         <div class="modal-gallery">
             <div>
-                <img src="interference_diagram.png" alt="Math Model" style="border: 2px dashed #ddd; min-height: 200px;">
-                <figcaption>Figure 1: Interference fit calculation model using Lamé’s equations (Reference)</figcaption>
-            </div>
-            <div>
                 <img src="cap_1.png" alt="Prototype Iterations">
-                <figcaption>Figure 2: Upright isometric image of cap prototype (TPU)</figcaption>
-            </div>
-            <div>
-                <img src="cap_2.png" alt="Final ASA Cap">
-                <figcaption>Figure 3: Final ASA Cap installed on fastener</figcaption>
+                <figcaption>Figure 1: TPU rapid prototype used for physical validation of interference fit and impact resistance. (CAD and final production parts remain Tesla IP).</figcaption>
             </div>
         </div>
     </div>
@@ -893,30 +884,25 @@
         <div class="modal-text">
             <div class="modal-section">
                 <h4>01. Challenge</h4>
-                <p>Torque-to-failure (TTF) testing for a specific next-gen vehicle required multiple tests to be done in-line. The original method relied on manual point picking to find peak prevailing, snug, and yield points from the data traces. This was slow and inefficient for high-volume testing.</p>
+                <p>Torque-to-failure (TTF) testing for the next-gen vehicle required high-volume validation. The existing manual method of picking points on data traces was slow and prone to human error, creating a bottleneck.</p>
             </div>
             <div class="modal-section">
                 <h4>02. Action</h4>
-                <p><strong>Algorithm Development:</strong> I built a Python-based tool that processes angle-to-torque graph traces. It automatically determines the peak prevailing, snug, and yield points based on user-defined parameters using a specific reference point scanning logic.</p>
-                <p><strong>Reporting:</strong> Automated the workflow so that after point picking, a PDF report is immediately exported, allowing engineers to review data summaries at a glance.</p>
-                <p><strong>Deployment:</strong> Designed the tool to be compatible with micro-control tools used in Gigafactories at <strong>Reno, Berlin, and Shanghai</strong>.</p>
+                <p><strong>Algorithm Development:</strong> I developed a Python script that analyzes the angle-to-torque curve. It automatically identifies critical "Snug," "Peak," and "Yield" points using a custom scanning logic.</p>
+                <p><strong>Scalability:</strong> I designed the tool to integrate with the micro-control systems used at <strong>Reno, Berlin, and Shanghai</strong> Gigafactories, ensuring a unified standard across global teams.</p>
             </div>
             <div class="modal-section">
                 <h4>03. Impact</h4>
                 <ul>
-                    <li>Distributed the tool to global Gigafactories in Reno, Berlin, and Shanghai.</li>
-                    <li>Shortened test time by more than <strong>30 minutes per joint testing</strong>.</li>
+                    <li>Reduced analysis time by <strong>30+ minutes per joint</strong>.</li>
+                    <li>Successfully deployed the tool to global teams in Reno, Berlin, and Shanghai, standardizing the TTF reporting process.</li>
                 </ul>
             </div>
         </div>
         <div class="modal-gallery">
             <div>
-                <img src="ttf_curve.png" alt="Angle Torque Curve" style="border: 2px dashed #ddd; min-height: 200px;">
-                <figcaption>Figure 1: Sample Angle-Torque trace showing Snug, Peak, and Yield point detection</figcaption>
-            </div>
-            <div>
-                <img src="ttf_1.png" alt="Script Interface">
-                <figcaption>Figure 2: Example of fastener failing in torque-to-failure test</figcaption>
+                <img src="safe_ttf_curve.png" alt="Simulated Torque Curve">
+                <figcaption>Figure 1: Representative output showing the algorithm's detection of Snug, Yield, and Peak points (Simulated Data).</figcaption>
             </div>
         </div>
     </div>
