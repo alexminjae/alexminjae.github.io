@@ -27,9 +27,8 @@
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
 
-    /* --- UNIFIED FONT STACK FOR EVERYTHING --- */
+    /* --- UNIFIED FONT STACK --- */
     body, h1, h2, h3, h4, p, a, button, input, select, textarea, figcaption {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased; 
@@ -43,7 +42,7 @@
       overflow-x: hidden;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: 100vh; /* Ensures footer stays at bottom */
     }
 
     h1, h2, h3, h4 {
@@ -59,29 +58,15 @@
         letter-spacing: -0.01em; 
     }
 
-    a { color: inherit; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); }
+    a { color: inherit; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); cursor: pointer; }
     
-    /* SHARED BRANDING STYLE */
-    .brand-logo {
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: 0.8rem;
-        letter-spacing: 0.05em;
-        color: var(--text-primary);
-        display: inline-block;
-        cursor: pointer;
-    }
-    .brand-logo:hover {
-        color: var(--accent);
-    }
-
     /* NAV */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
       height: 60px;
-      background: rgba(251, 251, 253, 0.8);
+      background: rgba(251, 251, 253, 0.85);
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       padding: 0 5%;
@@ -92,29 +77,68 @@
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
+    .brand-logo {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        color: var(--text-primary);
+    }
+
     nav div { display: flex; gap: 30px; }
 
     nav a {
       font-size: 13px;
       font-weight: 500;
       color: var(--text-secondary);
+      position: relative;
     }
-    nav a:hover { color: var(--accent); }
-
-    /* SECTIONS */
-    section {
-      padding: 140px 5%;
-      max-width: 1100px;
-      margin: auto;
+    
+    nav a:hover { color: var(--text-primary); }
+    
+    /* Active Tab Style */
+    nav a.active-tab {
+        color: var(--accent);
     }
 
-    /* --- HERO SECTION --- */
-    .hero {
-        min-height: 90vh;
+    /* MAIN CONTENT CONTAINER */
+    main {
+        flex: 1; /* Pushes footer down */
+        padding-top: 60px; /* Offset for fixed nav */
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding-top: 80px; 
+    }
+
+    /* SECTIONS (HIDDEN BY DEFAULT) */
+    .view-section {
+        display: none;
+        padding: 80px 5%;
+        max-width: 1100px;
+        margin: 0 auto;
+        width: 100%;
+        animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .view-section.active-view {
+        display: block;
+    }
+
+    @keyframes fadeInPage {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- HERO SECTION (ABOUT) --- */
+    /* Adjusted to center vertically within the available space */
+    #about.view-section {
+        display: none; /* Default hidden */
+        min-height: calc(100vh - 140px); /* Full height minus header/footer approx */
+        align-items: center; /* Vertical Center */
+        padding-top: 40px;
+    }
+    
+    #about.view-section.active-view {
+        display: flex; 
     }
 
     .hero-grid {
@@ -122,6 +146,7 @@
         grid-template-columns: 1.2fr 1fr;
         gap: 80px;
         align-items: center;
+        width: 100%;
     }
 
     .hero-content {
@@ -186,6 +211,8 @@
         align-items: center;
         gap: 8px;
         transition: background 0.2s, transform 0.2s;
+        border: none;
+        cursor: pointer;
     }
     .btn-primary:hover {
         background: var(--accent-hover);
@@ -226,11 +253,10 @@
     }
 
     /* PROJECTS */
-    #projects h2 {
+    h2.page-title {
         font-size: 2.5rem;
         margin-bottom: 10px; 
         text-align: left;
-        border: none;
     }
     
     .section-subtitle {
@@ -273,7 +299,6 @@
         border: none;
         box-shadow: var(--shadow-md);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: fadeIn 0.5s ease;
     }
 
     .project-row:hover {
@@ -361,8 +386,6 @@
     }
 
     /* EXPERIENCE */
-    #experience h2 { font-size: 2.5rem; margin-bottom: 60px; border: none; }
-
     .job-item {
         display: grid;
         grid-template-columns: 80px 1fr auto;
@@ -396,6 +419,8 @@
         border-radius: 16px;
         box-shadow: var(--shadow-sm);
         padding: 4px;
+        z-index: 1;
+        position: relative;
     }
     
     .job-details h3 { font-size: 1.4rem; margin-bottom: 4px; font-weight: 600; }
@@ -405,10 +430,7 @@
     /* CONTACT */
     #contact { 
         text-align: center; 
-        padding: 120px 5%; 
-        background: #fff; 
-        margin-top: 100px; 
-        border-radius: 0; 
+        padding-top: 100px;
     }
     #contact h2 { font-size: 3rem; margin-bottom: 40px; }
     
@@ -435,10 +457,10 @@
     footer {
         background-color: #ffffff; 
         color: #333333;  
-        padding: 20px 0;
+        padding: 30px 0;
         text-align: center;
-        margin-top: auto; 
         border-top: 1px solid rgba(0,0,0,0.08); 
+        margin-top: auto; /* Push to bottom */
     }
 
     .footer-content {
@@ -455,11 +477,6 @@
         color: #555555; 
         font-weight: 500;
         letter-spacing: 0.02em;
-    }
-
-    .footer-text strong {
-        color: #000000; 
-        font-weight: 600;
     }
 
     /* MODAL */
@@ -551,7 +568,6 @@
     .modal-gallery { display: flex; flex-direction: column; gap: 30px; }
     .modal-gallery img { width: 100%; border-radius: 12px; box-shadow: var(--shadow-sm); }
     
-    /* Captions for images */
     figcaption {
         font-size: 0.85rem;
         color: var(--text-secondary);
@@ -562,7 +578,12 @@
 
     /* MOBILE */
     @media (max-width: 768px) {
-        .hero { padding-top: 100px; }
+        #about.view-section {
+            padding-top: 100px;
+            display: none; /* keep hidden logic */
+        }
+        #about.view-section.active-view { display: block; } /* Block for stacking */
+
         .hero-grid {
             grid-template-columns: 1fr;
             gap: 40px;
@@ -595,222 +616,226 @@
 <body>
 
 <nav>
-  <a href="#about" class="brand-logo">Minjae Kim</a>
+  <a onclick="switchTab('about')" class="brand-logo">Minjae Kim</a>
   <div>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
+    <a onclick="switchTab('about')" id="nav-about" class="active-tab">About</a>
+    <a onclick="switchTab('projects')" id="nav-projects">Projects</a>
+    <a onclick="switchTab('experience')" id="nav-experience">Experience</a>
+    <a onclick="switchTab('contact')" id="nav-contact">Contact</a>
   </div>
 </nav>
 
-<section id="about" class="hero">
-    <div class="hero-grid">
-        
-        <div class="hero-content">
+<main>
+
+    <section id="about" class="view-section active-view">
+        <div class="hero-grid">
             
-            <div class="hero-header">
-                <h1>Minjae Kim</h1>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-item">
-                    <h4>Education</h4>
-                    <p>Purdue University</p>
-                    <p>B.S. Mechanical Engineering</p>
+            <div class="hero-content">
+                
+                <div class="hero-header">
+                    <h1>Minjae Kim</h1>
                 </div>
-                <div class="info-item">
-                    <h4>Core Skills</h4>
-                    <p>CATIA V6, Siemens NX, Python, GD&T</p>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <h4>Education</h4>
+                        <p>Purdue University</p>
+                        <p>B.S. Mechanical Engineering</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Core Skills</h4>
+                        <p>CATIA V6, Siemens NX, Python, GD&T</p>
+                    </div>
                 </div>
+
+                <div class="hero-cta">
+                    <button onclick="switchTab('projects')" class="btn-primary">View Projects &#8595;</button>
+                    <a href="Minjae_Kim_Resume.pdf" target="_blank" class="btn-secondary">Download Resume &#8599;</a>
+                </div>
+
             </div>
 
-            <div class="hero-cta">
-                <a href="#projects" class="btn-primary">View Projects &#8595;</a>
-                <a href="Minjae_Kim_Resume.pdf" target="_blank" class="btn-secondary">Download Resume &#8599;</a>
+            <div class="hero-image-wrapper">
+                <img src="minjaekim_profile.jpg" alt="Minjae Kim">
             </div>
 
         </div>
+    </section>
 
-        <div class="hero-image-wrapper">
-            <img src="minjaekim_profile.jpg" alt="Minjae Kim">
+    <section id="projects" class="view-section">
+        <h2 class="page-title">Projects</h2>
+        <p class="section-subtitle">Click on any project to view details.</p>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+            <button class="filter-btn" onclick="filterProjects('hardware')">Hardware</button>
+            <button class="filter-btn" onclick="filterProjects('software')">Software</button>
         </div>
 
-    </div>
-</section>
-
-<section id="projects">
-    <h2>Projects</h2>
-    <p class="section-subtitle">Click on any project to view details.</p>
-    
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterProjects('all')">All</button>
-        <button class="filter-btn" onclick="filterProjects('hardware')">Hardware</button>
-        <button class="filter-btn" onclick="filterProjects('software')">Software</button>
-    </div>
-
-    <div id="row-modal-piezo" class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
-        <div class="project-img-wrapper">
-            <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
-            <img src="cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
-        </div>
-        <div class="project-text">
-            <div class="project-tags">
-                <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">First Principles Analysis</span>
-                <span class="tag-pill">Design Automation</span>
+        <div id="row-modal-piezo" class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
+            <div class="project-img-wrapper">
+                <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
+                <img src="cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
             </div>
-            <h3>Piezo Protection Cap</h3>
-            <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Validated for high-impact durability.</p>
-            <span class="impact-stat">Result: 100% Seal Rate on 20+ Joints</span>
-        </div>
-    </div>
-
-    <div id="row-modal-torque" class="project-row" data-category="software" onclick="openModal('modal-torque')">
-        <div class="project-img-wrapper">
-            <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
-            <img src="ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
-        </div>
-        <div class="project-text">
-            <div class="project-tags">
-                <span class="tag-pill">Python</span>
-                <span class="tag-pill">Pandas</span>
-                <span class="tag-pill">GUI</span>
+            <div class="project-text">
+                <div class="project-tags">
+                    <span class="tag-pill">CATIA V6</span>
+                    <span class="tag-pill">First Principles Analysis</span>
+                    <span class="tag-pill">Design Automation</span>
+                </div>
+                <h3>Piezo Protection Cap</h3>
+                <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Validated for high-impact durability.</p>
+                <span class="impact-stat">Result: 100% Seal Rate on 20+ Joints</span>
             </div>
-            <h3>Torque Data Processor</h3>
-            <p>Built an automation tool for torque-to-failure data acquisition. Deployed to Reno, Berlin, and Shanghai.</p>
-            <span class="impact-stat">Impact: Saved 30+ Mins Per Joint Globally</span>
         </div>
-    </div>
 
-    <div id="row-modal-zf" class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
-        <div class="project-img-wrapper">
-            <img src="zflogo.png" class="thumb-logo" alt="ZF Logo">
-            <img src="reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
-        </div>
-        <div class="project-text">
-            <div class="project-tags">
-                <span class="tag-pill">PTC Creo</span>
-                <span class="tag-pill">GD&T</span>
-                <span class="tag-pill">3D Printing</span>
+        <div id="row-modal-torque" class="project-row" data-category="software" onclick="openModal('modal-torque')">
+            <div class="project-img-wrapper">
+                <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
+                <img src="ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
             </div>
-            <h3>ReAX Transport Fixtures</h3>
-            <p>Modeled damage-prevention connectors for international transportation to Germany and China.</p>
-            <span class="impact-stat">Impact: Eliminated Shipping Damage</span>
-        </div>
-    </div>
-
-    <div id="row-modal-per" class="project-row" data-category="hardware" onclick="openModal('modal-per')">
-        <div class="project-img-wrapper">
-            <img src="perlogo.png" class="thumb-logo" alt="PER Logo">
-            <img src="per_thumbnail.png" class="main-thumb" alt="Racing Wing">
-        </div>
-        <div class="project-text">
-            <div class="project-tags">
-                <span class="tag-pill">SolidWorks</span>
-                <span class="tag-pill">ANSYS CFD</span>
-                <span class="tag-pill">Composites</span>
+            <div class="project-text">
+                <div class="project-tags">
+                    <span class="tag-pill">Python</span>
+                    <span class="tag-pill">Pandas</span>
+                    <span class="tag-pill">GUI</span>
+                </div>
+                <h3>Torque Data Processor</h3>
+                <p>Built an automation tool for torque-to-failure data acquisition. Deployed to Reno, Berlin, and Shanghai.</p>
+                <span class="impact-stat">Impact: Saved 30+ Mins Per Joint Globally</span>
             </div>
-            <h3>Formula SAE Aerodynamics</h3>
-            <p>Modeled front/rear wings and optimized downforce using ANSYS CFD.</p>
-            <span class="impact-stat">Result: 30% Drag Reduction</span>
         </div>
-    </div>
 
-    <div id="row-modal-stirling" class="project-row" data-category="hardware" onclick="openModal('modal-stirling')">
-        <div class="project-img-wrapper">
-            <img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
-        </div>
-        <div class="project-text">
-            <div class="project-tags">
-                <span class="tag-pill">Siemens NX</span>
-                <span class="tag-pill">Machining</span>
-                <span class="tag-pill">GD&T</span>
+        <div id="row-modal-zf" class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
+            <div class="project-img-wrapper">
+                <img src="zflogo.png" class="thumb-logo" alt="ZF Logo">
+                <img src="reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
             </div>
-            <h3>Pipsqueak Stirling Engine</h3>
-            <p>Fully functional engine assembly on a custom pirate ship model. 260 hours of modeling.</p>
-            <span class="impact-stat">Outcome: Functional Thermal Assembly</span>
-        </div>
-    </div>
-
-    <div id="row-modal-pagani" class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
-        <div class="project-img-wrapper">
-            <img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
-        </div>
-        <div class="project-text">
-            <div class="project-tags">
-                <span class="tag-pill">Siemens NX</span>
-                <span class="tag-pill">Class-A Surfacing</span>
-                <span class="tag-pill">Reverse Engineering</span>
+            <div class="project-text">
+                <div class="project-tags">
+                    <span class="tag-pill">PTC Creo</span>
+                    <span class="tag-pill">GD&T</span>
+                    <span class="tag-pill">3D Printing</span>
+                </div>
+                <h3>ReAX Transport Fixtures</h3>
+                <p>Modeled damage-prevention connectors for international transportation to Germany and China.</p>
+                <span class="impact-stat">Impact: Eliminated Shipping Damage</span>
             </div>
-            <h3>Pagani Huayra Components</h3>
-            <p>Modeled complex wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
-            <span class="impact-stat">Outcome: Class-A Surface Fidelity</span>
         </div>
-    </div>
-    
-    <div id="row-modal-campus" class="project-row" data-category="software" onclick="openModal('modal-campus')">
-        <div class="project-img-wrapper">
-            <img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
-        </div>
-        <div class="project-text">
-            <div class="project-tags">
-                <span class="tag-pill">MATLAB</span>
-                <span class="tag-pill">C</span>
-                <span class="tag-pill">Systems Engineering</span>
+
+        <div id="row-modal-per" class="project-row" data-category="hardware" onclick="openModal('modal-per')">
+            <div class="project-img-wrapper">
+                <img src="perlogo.png" class="thumb-logo" alt="PER Logo">
+                <img src="per_thumbnail.png" class="main-thumb" alt="Racing Wing">
             </div>
-            <h3>Campus Mobility Roundabout</h3>
-            <p>Automated roundabout system with ultrasonic pedestrian detection.</p>
-            <span class="impact-stat">Result: 90% User Satisfaction Rate</span>
+            <div class="project-text">
+                <div class="project-tags">
+                    <span class="tag-pill">SolidWorks</span>
+                    <span class="tag-pill">ANSYS CFD</span>
+                    <span class="tag-pill">Composites</span>
+                </div>
+                <h3>Formula SAE Aerodynamics</h3>
+                <p>Modeled front/rear wings and optimized downforce using ANSYS CFD.</p>
+                <span class="impact-stat">Result: 30% Drag Reduction</span>
+            </div>
         </div>
-    </div>
 
-</section>
+        <div id="row-modal-stirling" class="project-row" data-category="hardware" onclick="openModal('modal-stirling')">
+            <div class="project-img-wrapper">
+                <img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
+            </div>
+            <div class="project-text">
+                <div class="project-tags">
+                    <span class="tag-pill">Siemens NX</span>
+                    <span class="tag-pill">Machining</span>
+                    <span class="tag-pill">GD&T</span>
+                </div>
+                <h3>Pipsqueak Stirling Engine</h3>
+                <p>Fully functional engine assembly on a custom pirate ship model. 260 hours of modeling.</p>
+                <span class="impact-stat">Outcome: Functional Thermal Assembly</span>
+            </div>
+        </div>
 
-<section id="experience">
-    <h2>Experience</h2>
-    <div class="job-item">
-        <img src="purduemelogo.jpg" class="company-logo" alt="Purdue ME">
-        <div class="job-details">
-            <h3>Advanced Multiscale Manufacturing Lab</h3>
-            <p>Undergraduate Researcher</p>
+        <div id="row-modal-pagani" class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
+            <div class="project-img-wrapper">
+                <img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
+            </div>
+            <div class="project-text">
+                <div class="project-tags">
+                    <span class="tag-pill">Siemens NX</span>
+                    <span class="tag-pill">Class-A Surfacing</span>
+                    <span class="tag-pill">Reverse Engineering</span>
+                </div>
+                <h3>Pagani Huayra Components</h3>
+                <p>Modeled complex wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
+                <span class="impact-stat">Outcome: Class-A Surface Fidelity</span>
+            </div>
         </div>
-        <div class="job-year">Present</div>
-    </div>
-    <div class="job-item">
-        <img src="teslalogo.png" class="company-logo" alt="Tesla">
-        <div class="job-details">
-            <h3>Tesla</h3>
-            <p>Materials Engineering Intern</p>
+        
+        <div id="row-modal-campus" class="project-row" data-category="software" onclick="openModal('modal-campus')">
+            <div class="project-img-wrapper">
+                <img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
+            </div>
+            <div class="project-text">
+                <div class="project-tags">
+                    <span class="tag-pill">MATLAB</span>
+                    <span class="tag-pill">C</span>
+                    <span class="tag-pill">Systems Engineering</span>
+                </div>
+                <h3>Campus Mobility Roundabout</h3>
+                <p>Automated roundabout system with ultrasonic pedestrian detection.</p>
+                <span class="impact-stat">Result: 90% User Satisfaction Rate</span>
+            </div>
         </div>
-        <div class="job-year">2025</div>
-    </div>
-    <div class="job-item">
-        <img src="zflogo.png" class="company-logo" alt="ZF">
-        <div class="job-details">
-            <h3>ZF Group</h3>
-            <p>Mechanical Engineering Intern</p>
-        </div>
-        <div class="job-year">2025</div>
-    </div>
-    <div class="job-item">
-        <img src="perlogo.png" class="company-logo" alt="PER">
-        <div class="job-details">
-            <h3>Purdue Electric Racing</h3>
-            <p>Aerodynamics Engineer</p>
-        </div>
-        <div class="job-year">2024</div>
-    </div>
-</section>
+    </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-links">
-        <a href="mailto:alexminjaekim@gmail.com" class="contact-btn">alexminjaekim@gmail.com</a>
-        <a href="https://linkedin.com/in/alexminjae" target="_blank" class="contact-btn">LinkedIn Profile</a>
-        <a href="https://github.com/alexminjae" target="_blank" class="contact-btn">GitHub</a>
-    </div>
-</section>
+    <section id="experience" class="view-section">
+        <h2 class="page-title">Experience</h2>
+        
+        <div class="job-item">
+            <img src="purduemelogo.jpg" class="company-logo" alt="Purdue ME">
+            <div class="job-details">
+                <h3>Advanced Multiscale Manufacturing Lab</h3>
+                <p>Undergraduate Researcher</p>
+            </div>
+            <div class="job-year">Present</div>
+        </div>
+        <div class="job-item">
+            <img src="teslalogo.png" class="company-logo" alt="Tesla">
+            <div class="job-details">
+                <h3>Tesla</h3>
+                <p>Materials Engineering Intern</p>
+            </div>
+            <div class="job-year">2025</div>
+        </div>
+        <div class="job-item">
+            <img src="zflogo.png" class="company-logo" alt="ZF">
+            <div class="job-details">
+                <h3>ZF Group</h3>
+                <p>Mechanical Engineering Intern</p>
+            </div>
+            <div class="job-year">2025</div>
+        </div>
+        <div class="job-item">
+            <img src="perlogo.png" class="company-logo" alt="PER">
+            <div class="job-details">
+                <h3>Purdue Electric Racing</h3>
+                <p>Aerodynamics Engineer</p>
+            </div>
+            <div class="job-year">2024</div>
+        </div>
+    </section>
+
+    <section id="contact" class="view-section">
+        <h2 class="page-title">Contact</h2>
+        <div class="contact-links">
+            <a href="mailto:alexminjaekim@gmail.com" class="contact-btn">alexminjaekim@gmail.com</a>
+            <a href="https://linkedin.com/in/alexminjae" target="_blank" class="contact-btn">LinkedIn Profile</a>
+            <a href="https://github.com/alexminjae" target="_blank" class="contact-btn">GitHub</a>
+        </div>
+    </section>
+
+</main>
 
 <footer>
     <div class="footer-content">
@@ -1141,18 +1166,39 @@
 </div>
 
 <script>
-    // State to track current filter
+    // --- 1. TAB NAVIGATION LOGIC ---
+    function switchTab(tabId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.view-section');
+        sections.forEach(sec => sec.classList.remove('active-view'));
+
+        // Show target section
+        const target = document.getElementById(tabId);
+        if(target) target.classList.add('active-view');
+
+        // Update Nav Link Styles
+        const links = document.querySelectorAll('nav a');
+        links.forEach(link => link.classList.remove('active-tab'));
+        
+        // Highlight active link
+        const activeLink = document.getElementById('nav-' + tabId);
+        if(activeLink) activeLink.classList.add('active-tab');
+
+        // Reset scroll position to top
+        window.scrollTo(0, 0);
+    }
+
+    // --- 2. PROJECT FILTERING ---
     let currentFilter = 'all';
     let currentModalId = null;
 
-    // 1. FILTERING LOGIC
     function filterProjects(category) {
-        currentFilter = category; // Update state
+        currentFilter = category;
         
         const rows = document.querySelectorAll('.project-row');
         const buttons = document.querySelectorAll('.filter-btn');
 
-        // Update Buttons Visuals
+        // Update Buttons
         buttons.forEach(btn => {
             if (btn.innerText.toLowerCase() === category) {
                 btn.classList.add('active');
@@ -1161,7 +1207,7 @@
             }
         });
 
-        // Show/Hide Rows
+        // Update Rows
         rows.forEach(row => {
             const projectCat = row.getAttribute('data-category');
             if (category === 'all' || projectCat === category) {
@@ -1172,7 +1218,7 @@
         });
     }
 
-    // 2. MODAL OPEN/CLOSE
+    // --- 3. MODAL LOGIC ---
     function openModal(modalId) {
         if (!document.getElementById(modalId)) return;
         
@@ -1180,7 +1226,7 @@
         document.body.style.overflow = "hidden"; 
         currentModalId = modalId;
         
-        updateNavButtons(); // Check if we need to disable arrows immediately
+        updateNavButtons(); 
     }
 
     function closeModal(modalId) {
@@ -1191,31 +1237,24 @@
         currentModalId = null;
     }
 
-    // 3. NAVIGATION LOGIC
+    // --- 4. MODAL NAVIGATION ---
     function changeProject(direction) {
         if (!currentModalId) return;
 
-        // Get the list of IDs that are currently visible based on the filter
         const visibleProjectIds = getVisibleProjectIds();
-        
-        // Find where we are currently
         const currentIndex = visibleProjectIds.indexOf(currentModalId);
         if (currentIndex === -1) return; 
 
-        // Calculate new index
         const newIndex = currentIndex + direction;
 
-        // STOP if out of bounds (No looping)
         if (newIndex < 0 || newIndex >= visibleProjectIds.length) {
             return; 
         }
 
-        // Switch Modal
         closeModal(currentModalId);
         openModal(visibleProjectIds[newIndex]);
     }
 
-    // Helper: Gets list of modal IDs that correspond to the currently filtered rows
     function getVisibleProjectIds() {
         const allRows = Array.from(document.querySelectorAll('.project-row'));
         const visibleRows = allRows.filter(row => {
@@ -1228,7 +1267,6 @@
         });
     }
 
-    // Helper: Updates button visual state (Dim if at end/start)
     function updateNavButtons() {
         if (!currentModalId) return;
         
@@ -1252,7 +1290,7 @@
         }
     }
 
-    // 4. KEYBOARD SHORTCUTS
+    // --- 5. KEYBOARD INPUT ---
     document.addEventListener('keydown', function(event) {
         if (event.key === "Escape" && currentModalId) {
             closeModal(currentModalId);
@@ -1265,7 +1303,6 @@
         }
     });
 
-    // Close when clicking outside
     window.onclick = function(event) {
         if (event.target.classList.contains('modal')) {
             closeModal(event.target.id);
