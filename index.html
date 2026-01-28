@@ -427,31 +427,107 @@
     .job-details p { color: var(--text-secondary); font-size: 1rem; }
     .job-year { font-weight: 600; color: var(--text-secondary); font-feature-settings: "tnum"; }
 
-    /* CONTACT */
-    #contact { 
-        text-align: center; 
-        padding-top: 100px;
-    }
-    #contact h2 { font-size: 3rem; margin-bottom: 40px; }
-    
-    .contact-links {
-        display: flex;
+    /* --- IMPROVED CONTACT SECTION (BENTO GRID) --- */
+    #contact {
+        text-align: left; /* Align left for better reading */
+        padding-top: 60px;
+        min-height: calc(100vh - 140px); /* Center vertically like About */
+        display: none; /* Default hidden from tab logic */
+        flex-direction: column;
         justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
     }
     
-    .contact-btn {
-        padding: 16px 32px;
-        background: var(--text-primary); 
-        color: #fff; 
-        border-radius: var(--radius-btn);
-        font-size: 0.9rem;
-        font-weight: 600;
-        transition: transform 0.2s, background 0.2s;
-        display: inline-block; 
+    /* When active, use flex to center vertically */
+    #contact.active-view { display: flex; }
+
+    .contact-header {
+        max-width: 600px;
+        margin-bottom: 50px;
     }
-    .contact-btn:hover { background: var(--accent); transform: scale(1.05); color: #fff; }
+
+    .contact-header h2 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+
+    .contact-header p {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        max-width: 480px;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        width: 100%;
+    }
+
+    .contact-card {
+        background: #fff;
+        border-radius: 24px;
+        padding: 32px;
+        text-decoration: none;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        border: 1px solid rgba(0,0,0,0.02);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 240px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(0,0,0,0.05);
+    }
+
+    /* Specific Card Colors (Optional subtle tints on hover) */
+    .card-email:hover { background: #f5f9ff; }
+    .card-linkedin:hover { background: #f2f6fc; }
+    .card-github:hover { background: #fcfcfc; }
+
+    .icon-box {
+        width: 56px;
+        height: 56px;
+        background: var(--bg-body);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: var(--text-primary);
+    }
+
+    .card-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+    }
+
+    .arrow-icon {
+        position: absolute;
+        bottom: 32px;
+        right: 32px;
+        opacity: 0.2;
+        transition: opacity 0.3s, transform 0.3s;
+        font-size: 1.5rem;
+    }
+
+    .contact-card:hover .arrow-icon {
+        opacity: 1;
+        transform: translate(5px, -5px);
+        color: var(--accent);
+    }
 
     /* FOOTER */
     footer {
@@ -609,6 +685,11 @@
         
         .job-item { grid-template-columns: 64px 1fr; padding-left: 30px; }
         .job-year { display: none; }
+
+        /* Contact Grid Mobile */
+        .contact-header h2 { font-size: 2.5rem; }
+        .contact-grid { grid-template-columns: 1fr; }
+        .contact-card { height: auto; min-height: 200px; }
     }
   </style>
 </head>
@@ -827,12 +908,49 @@
     </section>
 
     <section id="contact" class="view-section">
-        <h2 class="page-title">Contact</h2>
-        <div class="contact-links">
-            <a href="mailto:alexminjaekim@gmail.com" class="contact-btn">alexminjaekim@gmail.com</a>
-            <a href="https://linkedin.com/in/alexminjae" target="_blank" class="contact-btn">LinkedIn Profile</a>
-            <a href="https://github.com/alexminjae" target="_blank" class="contact-btn">GitHub</a>
+        
+        <div class="contact-header">
+            <h2>Let's build something together.</h2>
+            <p>I'm currently based in Seoul, diving deep into design automation and rigorous testing. Always open to discussing engineering challenges or new opportunities.</p>
         </div>
+
+        <div class="contact-grid">
+            
+            <a href="mailto:alexminjaekim@gmail.com" class="contact-card card-email">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="card-content">
+                    <h3>Email Me</h3>
+                    <p>alexminjaekim@gmail.com</p>
+                </div>
+                <div class="arrow-icon">&#8599;</div>
+            </a>
+
+            <a href="https://linkedin.com/in/alexminjae" target="_blank" class="contact-card card-linkedin">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </div>
+                <div class="card-content">
+                    <h3>LinkedIn</h3>
+                    <p>Connect professionally & view resume details.</p>
+                </div>
+                <div class="arrow-icon">&#8599;</div>
+            </a>
+
+            <a href="https://github.com/alexminjae" target="_blank" class="contact-card card-github">
+                <div class="icon-box">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="card-content">
+                    <h3>GitHub</h3>
+                    <p>Check out my automation scripts and coding projects.</p>
+                </div>
+                <div class="arrow-icon">&#8599;</div>
+            </a>
+
+        </div>
+
     </section>
 
 </main>
