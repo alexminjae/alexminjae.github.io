@@ -474,7 +474,7 @@
         border: 1px solid rgba(0,0,0,0.02);
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        /* justify-content: space-between;  <-- REMOVED TO FIX ALIGNMENT */
         height: 240px;
         position: relative;
         overflow: hidden;
@@ -499,7 +499,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 20px;
+        margin-bottom: 60px; /* INCREASED from 20px to push text down uniformly */
         font-size: 24px;
         color: var(--text-primary);
     }
