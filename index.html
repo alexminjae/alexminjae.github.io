@@ -1019,6 +1019,37 @@
 		}
 
 		/* MOBILE */
+
+		/* Hamburger Menu */
+		.hamburger {
+			display: none;
+			flex-direction: column;
+			gap: 5px;
+			cursor: pointer;
+			padding: 5px;
+			z-index: 5001;
+		}
+
+		.hamburger span {
+			width: 24px;
+			height: 2px;
+			background: var(--text-primary);
+			transition: all 0.3s;
+			border-radius: 2px;
+		}
+
+		.hamburger.active span:nth-child(1) {
+			transform: rotate(45deg) translate(5px, 5px);
+		}
+
+		.hamburger.active span:nth-child(2) {
+			opacity: 0;
+		}
+
+		.hamburger.active span:nth-child(3) {
+			transform: rotate(-45deg) translate(5px, -5px);
+		}
+
 		@media (max-width: 768px) {
 			#about.view-section {
 				padding-top: 100px;
@@ -1181,35 +1212,7 @@
 			display: none;
 		}
 
-		/* Hamburger Menu */
-		.hamburger {
-			display: none;
-			flex-direction: column;
-			gap: 5px;
-			cursor: pointer;
-			padding: 5px;
-			z-index: 5001;
-		}
 
-		.hamburger span {
-			width: 24px;
-			height: 2px;
-			background: var(--text-primary);
-			transition: all 0.3s;
-			border-radius: 2px;
-		}
-
-		.hamburger.active span:nth-child(1) {
-			transform: rotate(45deg) translate(5px, 5px);
-		}
-
-		.hamburger.active span:nth-child(2) {
-			opacity: 0;
-		}
-
-		.hamburger.active span:nth-child(3) {
-			transform: rotate(-45deg) translate(5px, -5px);
-		}
 
 		/* Scroll Animations */
 		.fade-in {
@@ -1351,7 +1354,8 @@
 				</div>
 
 				<div class="hero-image-wrapper">
-					<img src="images/minjaekim_profile.jpg" alt="Minjae Kim - Mechanical Engineering student and CAD designer">
+					<img src="images/minjaekim_profile.jpg"
+						alt="Minjae Kim - Mechanical Engineering student and CAD designer">
 				</div>
 
 			</div>
