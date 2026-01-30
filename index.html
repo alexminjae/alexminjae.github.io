@@ -817,16 +817,7 @@
 			visibility: visible;
 		}
 
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
-		}
-
+		/* Slide animations for modal navigation */
 		.modal-content {
 			max-width: 900px;
 			margin: 80px auto;
@@ -835,6 +826,60 @@
 			border-radius: 24px;
 			box-shadow: var(--shadow-lg);
 			position: relative;
+			transform: translateX(0);
+			transition: transform 0.3s ease;
+		}
+
+		.modal.slide-left .modal-content {
+			animation: slideFromRight 0.3s ease;
+		}
+
+		.modal.slide-right .modal-content {
+			animation: slideFromLeft 0.3s ease;
+		}
+
+		@keyframes slideFromRight {
+			from {
+				transform: translateX(50px);
+				opacity: 0.5;
+			}
+
+			to {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		@keyframes slideFromLeft {
+			from {
+				transform: translateX(-50px);
+				opacity: 0.5;
+			}
+
+			to {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		}
+
+		/* Project counter indicator */
+		.modal-counter {
+			position: fixed;
+			bottom: 30px;
+			left: 50%;
+			transform: translateX(-50%);
+			background: rgba(0, 0, 0, 0.7);
+			color: white;
+			padding: 8px 20px;
+			border-radius: 20px;
+			font-size: 0.9rem;
+			font-weight: 500;
+			z-index: 10003;
+			backdrop-filter: blur(10px);
+		}
+
+		[data-theme="dark"] .modal-counter {
+			background: rgba(255, 255, 255, 0.15);
 		}
 
 		.close-btn {
@@ -1960,15 +2005,18 @@
 			currentModalId = modalId;
 
 			updateNavButtons();
+			updateProjectCounter();
 		}
 
 		function closeModal(modalId) {
 			const modal = document.getElementById(modalId);
 			if (modal) {
 				modal.classList.remove('active');
+				modal.classList.remove('slide-left', 'slide-right');
 			}
 			document.body.style.overflow = "auto";
 			currentModalId = null;
+			hideProjectCounter();
 		}
 
 		// --- 4. MODAL NAVIGATION ---
@@ -1991,24 +2039,29 @@
 			const oldModal = document.getElementById(oldModalId);
 			const newModal = document.getElementById(newModalId);
 
-			// Instantly show new modal, instantly hide old (no transition for navigation)
-			if (newModal) {
-				newModal.style.transition = 'none';
-				newModal.classList.add('active');
-				// Force reflow then restore transition
-				newModal.offsetHeight;
-				newModal.style.transition = '';
-			}
+			// Add slide animation class based on direction
+			const slideClass = direction > 0 ? 'slide-left' : 'slide-right';
 
+			// Hide old modal instantly
 			if (oldModal) {
 				oldModal.style.transition = 'none';
-				oldModal.classList.remove('active');
+				oldModal.classList.remove('active', 'slide-left', 'slide-right');
 				oldModal.offsetHeight;
 				oldModal.style.transition = '';
 			}
 
+			// Show new modal with slide animation
+			if (newModal) {
+				newModal.style.transition = 'none';
+				newModal.classList.remove('slide-left', 'slide-right');
+				newModal.classList.add('active', slideClass);
+				newModal.offsetHeight;
+				newModal.style.transition = '';
+			}
+
 			currentModalId = newModalId;
 			updateNavButtons();
+			updateProjectCounter();
 		}
 
 		function getVisibleProjectIds() {
@@ -2043,6 +2096,36 @@
 				nextBtn.classList.add('disabled');
 			} else {
 				nextBtn.classList.remove('disabled');
+			}
+		}
+
+		// --- PROJECT COUNTER ---
+		function updateProjectCounter() {
+			if (!currentModalId) return;
+
+			const visibleProjectIds = getVisibleProjectIds();
+			const currentIndex = visibleProjectIds.indexOf(currentModalId);
+			if (currentIndex === -1) return;
+
+			// Create or get counter element
+			let counter = document.getElementById('modal-counter');
+			if (!counter) {
+				counter = document.createElement('div');
+				counter.id = 'modal-counter';
+				counter.className = 'modal-counter';
+				document.body.appendChild(counter);
+			}
+
+			counter.textContent = `${currentIndex + 1} of ${visibleProjectIds.length}`;
+			counter.style.opacity = '1';
+			counter.style.visibility = 'visible';
+		}
+
+		function hideProjectCounter() {
+			const counter = document.getElementById('modal-counter');
+			if (counter) {
+				counter.style.opacity = '0';
+				counter.style.visibility = 'hidden';
 			}
 		}
 
