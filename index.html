@@ -1194,9 +1194,12 @@
 			transition: opacity 0.6s ease, transform 0.6s ease;
 		}
 
-		.fade-in.visible {
-			opacity: 1;
-			transform: translateY(0);
+		.fade-in.visible,
+		.project-row.visible,
+		.job-item.visible,
+		.contact-card.visible {
+			opacity: 1 !important;
+			transform: translateY(0) !important;
 		}
 
 		/* Focus styles for accessibility */
@@ -2197,8 +2200,11 @@
 			}, { threshold: 0.1 });
 
 			document.querySelectorAll('.project-row, .job-item, .contact-card').forEach(el => {
-				el.classList.add('fade-in');
-				observer.observe(el);
+				// Only add fade-in if not already visible (prevents re-animation)
+				if (!el.classList.contains('visible')) {
+					el.classList.add('fade-in');
+					observer.observe(el);
+				}
 			});
 		}
 
