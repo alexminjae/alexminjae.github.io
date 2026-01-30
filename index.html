@@ -797,7 +797,6 @@
 
 		/* MODAL */
 		.modal {
-			display: none;
 			position: fixed;
 			z-index: 10001;
 			left: 0;
@@ -808,7 +807,14 @@
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
 			overflow-y: auto;
-			animation: fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.2s ease, visibility 0.2s ease;
+		}
+
+		.modal.active {
+			opacity: 1;
+			visibility: visible;
 		}
 
 		@keyframes fadeIn {
@@ -1946,9 +1952,10 @@
 
 		// --- 3. MODAL LOGIC ---
 		function openModal(modalId) {
-			if (!document.getElementById(modalId)) return;
+			const modal = document.getElementById(modalId);
+			if (!modal) return;
 
-			document.getElementById(modalId).style.display = "block";
+			modal.classList.add('active');
 			document.body.style.overflow = "hidden";
 			currentModalId = modalId;
 
@@ -1956,8 +1963,9 @@
 		}
 
 		function closeModal(modalId) {
-			if (document.getElementById(modalId)) {
-				document.getElementById(modalId).style.display = "none";
+			const modal = document.getElementById(modalId);
+			if (modal) {
+				modal.classList.remove('active');
 			}
 			document.body.style.overflow = "auto";
 			currentModalId = null;
@@ -1980,19 +1988,25 @@
 			const oldModalId = currentModalId;
 			const newModalId = visibleProjectIds[newIndex];
 
-			// Open new modal first (behind the current one)
-			const newModal = document.getElementById(newModalId);
-			if (newModal) {
-				newModal.style.display = "block";
-			}
-
-			// Then hide the old modal
 			const oldModal = document.getElementById(oldModalId);
-			if (oldModal) {
-				oldModal.style.display = "none";
+			const newModal = document.getElementById(newModalId);
+
+			// Instantly show new modal, instantly hide old (no transition for navigation)
+			if (newModal) {
+				newModal.style.transition = 'none';
+				newModal.classList.add('active');
+				// Force reflow then restore transition
+				newModal.offsetHeight;
+				newModal.style.transition = '';
 			}
 
-			// Update state
+			if (oldModal) {
+				oldModal.style.transition = 'none';
+				oldModal.classList.remove('active');
+				oldModal.offsetHeight;
+				oldModal.style.transition = '';
+			}
+
 			currentModalId = newModalId;
 			updateNavButtons();
 		}
