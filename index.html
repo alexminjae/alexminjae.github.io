@@ -1977,8 +1977,24 @@
 				return;
 			}
 
-			closeModal(currentModalId);
-			openModal(visibleProjectIds[newIndex]);
+			const oldModalId = currentModalId;
+			const newModalId = visibleProjectIds[newIndex];
+
+			// Open new modal first (behind the current one)
+			const newModal = document.getElementById(newModalId);
+			if (newModal) {
+				newModal.style.display = "block";
+			}
+
+			// Then hide the old modal
+			const oldModal = document.getElementById(oldModalId);
+			if (oldModal) {
+				oldModal.style.display = "none";
+			}
+
+			// Update state
+			currentModalId = newModalId;
+			updateNavButtons();
 		}
 
 		function getVisibleProjectIds() {
