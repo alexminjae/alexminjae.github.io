@@ -641,10 +641,34 @@
 			font-size: 1rem;
 		}
 
+		.job-bullets {
+			margin-top: 12px;
+			padding-left: 0;
+			list-style: none;
+		}
+
+		.job-bullets li {
+			position: relative;
+			padding-left: 16px;
+			margin-bottom: 6px;
+			font-size: 0.95rem;
+			color: var(--text-secondary);
+			line-height: 1.5;
+		}
+
+		.job-bullets li::before {
+			content: "•";
+			position: absolute;
+			left: 0;
+			color: var(--accent);
+			font-weight: bold;
+		}
+
 		.job-year {
 			font-weight: 600;
 			color: var(--text-secondary);
 			font-feature-settings: "tnum";
+			align-self: flex-start;
 		}
 
 		/* --- IMPROVED CONTACT SECTION (BENTO GRID) --- */
@@ -1479,6 +1503,12 @@
 				<div class="job-details">
 					<h3>Tesla</h3>
 					<p>Materials Engineering Intern</p>
+					<ul class="job-bullets">
+						<li>Designed and modeled water-sealing piezo sensor caps in CATIA, achieving 100% protection of
+							data acquisition systems during vehicle testing</li>
+						<li>Developed Python-based torque data analysis automation tool distributed across multiple
+							Tesla Gigafactories for in-line testing, saving 10+ hours per joint</li>
+					</ul>
 				</div>
 				<div class="job-year">2025</div>
 			</div>
@@ -1487,6 +1517,14 @@
 				<div class="job-details">
 					<h3>ZF Group</h3>
 					<p>Mechanical Engineering Intern</p>
+					<ul class="job-bullets">
+						<li>Automated lab test data processing with VBA and Python, reducing analysis time by 30% and
+							standardizing reports</li>
+						<li>Designed and modeled 5+ essential lab equipment components in Creo, streamlining daily
+							testing workflow</li>
+						<li>Collaborated with 10+ engineers and technicians to execute performance testing on EPS and
+							steering column systems</li>
+					</ul>
 				</div>
 				<div class="job-year">2025</div>
 			</div>
@@ -1495,6 +1533,10 @@
 				<div class="job-details">
 					<h3>Purdue Electric Racing</h3>
 					<p>Aerodynamics Engineer</p>
+					<ul class="job-bullets">
+						<li>CAD & CFD for car's aero package components and molds</li>
+						<li>Analyzed data and utilized ANSYS for designing and simulating the optimal rear wing</li>
+					</ul>
 				</div>
 				<div class="job-year">2024</div>
 			</div>
