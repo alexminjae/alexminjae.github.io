@@ -2234,6 +2234,14 @@
 		}
 		initTheme();
 
+		// Listen for real-time system preference changes
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			// Only auto-switch if user hasn't manually set a preference
+			if (!localStorage.getItem('theme')) {
+				document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+			}
+		});
+
 		// --- 7. MOBILE MENU TOGGLE ---
 		function toggleMobileMenu() {
 			const hamburger = document.querySelector('.hamburger');
