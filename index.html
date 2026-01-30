@@ -343,11 +343,25 @@
 		.info-grid {
 			display: grid;
 			grid-template-columns: auto 1fr;
-			gap: 60px;
+			gap: 40px;
 			margin-top: 10px;
 			padding-top: 30px;
-			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			border-top: 1px solid var(--divider);
 			align-items: start;
+		}
+
+		.info-item {
+			background: var(--bg-card);
+			padding: 20px 24px;
+			border-radius: 16px;
+			box-shadow: var(--shadow-sm);
+			transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s ease;
+			cursor: default;
+		}
+
+		.info-item:hover {
+			transform: translateY(-5px);
+			box-shadow: var(--shadow-md);
 		}
 
 		.info-item h4 {
@@ -1226,7 +1240,16 @@
 		.job-item.visible,
 		.contact-card.visible {
 			opacity: 1 !important;
-			transform: translateY(0) !important;
+			transform: translateY(0);
+		}
+
+		/* Ensure hover effects work after visibility animation */
+		.contact-card.visible:hover {
+			transform: translateY(-8px);
+		}
+
+		.project-row.visible:hover {
+			transform: translateY(-5px);
 		}
 
 		/* Focus styles for accessibility */
@@ -1347,7 +1370,8 @@
 
 					<div class="hero-cta">
 						<button onclick="switchTab('projects')" class="btn-primary">View Projects</button>
-						<a href="Minjae_Kim_Resume.pdf" target="_blank" class="btn-secondary">Download Resume
+						<a href="Minjae_Kim_Resume.pdf" target="_blank" rel="noopener noreferrer"
+							class="btn-secondary">Download Resume
 							&#8599;</a>
 					</div>
 
@@ -1374,13 +1398,13 @@
 			<div id="row-modal-piezo" class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
 				<div class="project-img-wrapper">
 					<img src="images/logos/teslalogo.png" class="thumb-logo" alt="Tesla Logo">
-					<img src="images/projects/cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
+					<img src="images/projects/cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo" loading="lazy">
 				</div>
 				<div class="project-text">
 					<div class="project-tags">
 						<span class="tag-pill">CATIA V6</span>
-						<span class="tag-pill">Rapid Prototyping</span>
-						<span class="tag-pill">DFM</span>
+						<span class="tag-pill">First Principles Analysis</span>
+						<span class="tag-pill">Design Automation</span>
 					</div>
 					<h3>Piezo Sensor Protection Cap</h3>
 					<p>Designed and validated a waterproof sensor protection cap for vehicle durability testing.</p>
@@ -1391,7 +1415,8 @@
 			<div id="row-modal-torque" class="project-row" data-category="software" onclick="openModal('modal-torque')">
 				<div class="project-img-wrapper">
 					<img src="images/logos/teslalogo.png" class="thumb-logo" alt="Tesla Logo">
-					<img src="images/projects/ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
+					<img src="images/projects/ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph"
+						loading="lazy">
 				</div>
 				<div class="project-text">
 					<div class="project-tags">
@@ -1409,7 +1434,7 @@
 			<div id="row-modal-zf" class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
 				<div class="project-img-wrapper">
 					<img src="images/logos/zflogo.png" class="thumb-logo" alt="ZF Logo">
-					<img src="images/projects/reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
+					<img src="images/projects/reax_thumbnail.png" class="main-thumb" alt="ZF Connector" loading="lazy">
 				</div>
 				<div class="project-text">
 					<div class="project-tags">
@@ -1426,7 +1451,7 @@
 			<div id="row-modal-per" class="project-row" data-category="hardware" onclick="openModal('modal-per')">
 				<div class="project-img-wrapper">
 					<img src="images/logos/perlogo.png" class="thumb-logo" alt="PER Logo">
-					<img src="images/projects/per_thumbnail.png" class="main-thumb" alt="Racing Wing">
+					<img src="images/projects/per_thumbnail.png" class="main-thumb" alt="Racing Wing" loading="lazy">
 				</div>
 				<div class="project-text">
 					<div class="project-tags">
@@ -1443,7 +1468,8 @@
 			<div id="row-modal-stirling" class="project-row" data-category="hardware"
 				onclick="openModal('modal-stirling')">
 				<div class="project-img-wrapper">
-					<img src="images/projects/ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
+					<img src="images/projects/ship_thumbnail.png" class="main-thumb" alt="Stirling Engine"
+						loading="lazy">
 				</div>
 				<div class="project-text">
 					<div class="project-tags">
@@ -1459,7 +1485,8 @@
 
 			<div id="row-modal-pagani" class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
 				<div class="project-img-wrapper">
-					<img src="images/projects/pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
+					<img src="images/projects/pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel"
+						loading="lazy">
 				</div>
 				<div class="project-text">
 					<div class="project-tags">
@@ -1475,7 +1502,8 @@
 
 			<div id="row-modal-campus" class="project-row" data-category="software" onclick="openModal('modal-campus')">
 				<div class="project-img-wrapper">
-					<img src="images/projects/roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
+					<img src="images/projects/roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model"
+						loading="lazy">
 				</div>
 				<div class="project-text">
 					<div class="project-tags">
@@ -1572,7 +1600,8 @@
 					<div class="arrow-icon">&#8599;</div>
 				</a>
 
-				<a href="https://linkedin.com/in/alexminjae" target="_blank" class="contact-card card-linkedin">
+				<a href="https://linkedin.com/in/alexminjae" target="_blank" rel="noopener noreferrer"
+					class="contact-card card-linkedin">
 					<div class="icon-box">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1589,7 +1618,8 @@
 					<div class="arrow-icon">&#8599;</div>
 				</a>
 
-				<a href="https://github.com/alexminjae" target="_blank" class="contact-card card-github">
+				<a href="https://github.com/alexminjae" target="_blank" rel="noopener noreferrer"
+					class="contact-card card-github">
 					<div class="icon-box">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1668,8 +1698,10 @@
 				<div class="modal-section">
 					<h4>03. Impact</h4>
 					<ul>
-						<li>Achieved 100% protection rate in water intrusion tests.</li>
-						<li>Standardized the protection method across the global testing team.</li>
+						<li>Achieved a <strong>100% seal rate</strong> across all 20+ joint variants during endurance
+							testing.</li>
+						<li>Selected <strong>ASA material</strong> as the superior choice, surviving both the water
+							pressure and the technician's mallet strikes.</li>
 					</ul>
 				</div>
 			</div>
