@@ -1,1434 +1,2014 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Minjae Kim | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231d1d1f%22/><text x=%2250%22 y=%2270%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2270%22 fill=%22white%22 text-anchor=%22middle%22>M</text></svg>">
-  
-  <style>
-    :root {
-        /* APPLE COLOR PALETTE */
-        --bg-body: #fbfbfd;        
-        --bg-card: #ffffff;        
-        --text-primary: #1d1d1f;   
-        --text-secondary: #86868b;
-        --accent: #0071e3;         
-        --accent-hover: #0077ed;
-        --divider: #d2d2d7;
-        
-        --radius-card: 24px;
-        --radius-btn: 980px;       
-        
-        --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
-        --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
-        --shadow-lg: 0 30px 60px rgba(0,0,0,0.12);
-    }
-    
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    /* --- UNIFIED FONT STACK --- */
-    body, h1, h2, h3, h4, p, a, button, input, select, textarea, figcaption {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased; 
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      background: var(--bg-body);
-      color: var(--text-primary);
-      line-height: 1.5;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* Ensures footer stays at bottom */
-    }
-
-    h1, h2, h3, h4 {
-        font-weight: 700;
-        letter-spacing: -0.02em; 
-        color: var(--text-primary);
-    }
-
-    p { 
-        color: var(--text-secondary); 
-        font-weight: 400; 
-        font-size: 1.05rem; 
-        letter-spacing: -0.01em; 
-    }
-
-    a { color: inherit; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); cursor: pointer; }
-    
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 60px;
-      background: rgba(251, 251, 253, 0.85);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      padding: 0 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 5000;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .brand-logo {
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: 0.8rem;
-        letter-spacing: 0.05em;
-        color: var(--text-primary);
-    }
-
-    nav div { display: flex; gap: 30px; }
-
-    nav a {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      position: relative;
-    }
-    
-    nav a:hover { color: var(--text-primary); }
-    
-    /* Active Tab Style */
-    nav a.active-tab {
-        color: var(--accent);
-    }
-
-    /* MAIN CONTENT CONTAINER */
-    main {
-        flex: 1; /* Pushes footer down */
-        padding-top: 60px; /* Offset for fixed nav */
-        display: flex;
-        flex-direction: column;
-    }
-
-    /* SECTIONS (HIDDEN BY DEFAULT) */
-    .view-section {
-        display: none;
-        padding: 80px 5%;
-        max-width: 1100px;
-        margin: 0 auto;
-        width: 100%;
-        animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .view-section.active-view {
-        display: block;
-    }
-
-    @keyframes fadeInPage {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* --- HERO SECTION (ABOUT) --- */
-    /* Adjusted to center vertically within the available space */
-    #about.view-section {
-        display: none; /* Default hidden */
-        min-height: calc(100vh - 140px); /* Full height minus header/footer approx */
-        align-items: center; /* Vertical Center */
-        padding-top: 40px;
-    }
-    
-    #about.view-section.active-view {
-        display: flex; 
-    }
-
-    .hero-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 80px;
-        align-items: center;
-        width: 100%;
-    }
-
-    .hero-content {
-        display: flex;
-        flex-direction: column;
-        gap: 30px; 
-    }
-
-    .hero-header h1 {
-        font-size: clamp(3rem, 6vw, 4.5rem); 
-        font-weight: 600; 
-        text-transform: uppercase; 
-        letter-spacing: 0.05em; 
-        line-height: 1.1;
-        color: var(--text-primary);
-        margin-bottom: 10px;
-    }
-
-    .info-grid {
-        display: grid;
-        grid-template-columns: auto 1fr; 
-        gap: 60px;
-        margin-top: 10px;
-        padding-top: 30px;
-        border-top: 1px solid rgba(0,0,0,0.1); 
-        align-items: start;
-    }
-
-    .info-item h4 {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--text-secondary);
-        margin-bottom: 12px;
-        font-weight: 600;
-    }
-
-    .info-item p {
-        font-size: 1rem;
-        color: var(--text-primary);
-        font-weight: 600;
-        margin: 0;
-        line-height: 1.4;
-    }
-    
-    .hero-cta { 
-        margin-top: 20px; 
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    
-    .btn-primary {
-        background: var(--accent);
-        color: white;
-        padding: 14px 28px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: background 0.2s, transform 0.2s;
-        border: none;
-        cursor: pointer;
-    }
-    .btn-primary:hover {
-        background: var(--accent-hover);
-        transform: scale(1.02);
-    }
-
-    .btn-secondary {
-        background: rgba(0,0,0,0.05);
-        color: var(--text-primary);
-        padding: 14px 28px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: background 0.2s, transform 0.2s;
-    }
-    .btn-secondary:hover {
-        background: rgba(0,0,0,0.1);
-        transform: scale(1.02);
-    }
-
-    .hero-image-wrapper {
-        position: relative;
-        border-radius: 32px;
-        overflow: hidden;
-        box-shadow: var(--shadow-lg);
-        background: #fff;
-        line-height: 0;
-    }
-
-    .hero-image-wrapper img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transform: scale(1.01);
-    }
-
-    /* PROJECTS */
-    h2.page-title {
-        font-size: 2.5rem;
-        margin-bottom: 10px; 
-        text-align: left;
-    }
-    
-    .section-subtitle {
-        margin-bottom: 40px;
-        color: var(--text-secondary);
-        font-size: 1rem;
-    }
-
-    .filter-container {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 50px;
-    }
-
-    .filter-btn {
-        background: rgba(0,0,0,0.05);
-        border: none;
-        padding: 10px 24px;
-        border-radius: 20px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .filter-btn:hover { background: rgba(0,0,0,0.1); color: var(--text-primary); }
-    .filter-btn.active { background: #000; color: #fff; }
-
-    .project-row {
-        background: var(--bg-card);
-        border-radius: var(--radius-card);
-        padding: 40px;
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
-        gap: 60px;
-        margin-bottom: 40px;
-        align-items: center;
-        cursor: pointer;
-        border: none;
-        box-shadow: var(--shadow-md);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .project-row:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .project-row:nth-child(even) { direction: rtl; }
-    .project-row:nth-child(even) .project-text { direction: ltr; }
-    .project-row:nth-child(even) .project-tags { justify-content: flex-start; direction: ltr; }
-
-    .project-img-wrapper {
-        position: relative;
-        overflow: hidden;
-        border-radius: 16px;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .main-thumb {
-        width: 100%;
-        display: block;
-        transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-    .project-row:hover .main-thumb { transform: scale(1.05); }
-
-    .thumb-logo {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 50px;
-        height: 50px;
-        object-fit: contain;
-        z-index: 2;
-        background: #fff;
-        padding: 4px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .project-tags, .modal-meta {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-bottom: 16px;
-    }
-    
-    .modal-meta {
-        margin-bottom: 40px; 
-        border-bottom: 1px solid var(--divider); 
-        padding-bottom: 24px; 
-    }
-
-    .tag-pill {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        background: #f5f5f7;
-        padding: 6px 12px;
-        border-radius: 50px;
-        border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .project-text h3 {
-        font-size: 2.2rem;
-        margin-bottom: 16px;
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-    }
-    
-    .project-text p {
-        font-size: 1rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-    }
-
-    .impact-stat {
-        margin-top: 24px;
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: var(--text-primary);
-        display: inline-block;
-        background: #f5f5f7;
-        padding: 8px 16px;
-        border-radius: 8px;
-    }
-
-    /* EXPERIENCE */
-    .job-item {
-        display: grid;
-        grid-template-columns: 80px 1fr auto;
-        gap: 40px;
-        padding: 40px 0;
-        padding-left: 40px;
-        align-items: center;
-        position: relative;
-        transition: opacity 0.3s;
-    }
-    .job-item:hover { opacity: 0.8; }
-
-    .job-item::before {
-        content: '';
-        position: absolute;
-        left: 10px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: var(--divider);
-        z-index: 0;
-    }
-    .job-item:first-of-type::before { top: 50%; }
-    .job-item:last-of-type::before { height: 50%; bottom: auto; }
-
-    .company-logo { 
-        width: 64px; 
-        height: 64px; 
-        object-fit: contain;
-        background: #fff;
-        border-radius: 16px;
-        box-shadow: var(--shadow-sm);
-        padding: 4px;
-        z-index: 1;
-        position: relative;
-    }
-    
-    .job-details h3 { font-size: 1.4rem; margin-bottom: 4px; font-weight: 600; }
-    .job-details p { color: var(--text-secondary); font-size: 1rem; }
-    .job-year { font-weight: 600; color: var(--text-secondary); font-feature-settings: "tnum"; }
-
-    /* --- IMPROVED CONTACT SECTION (BENTO GRID) --- */
-    #contact {
-        text-align: left; /* Align left for better reading */
-        padding-top: 60px;
-        min-height: calc(100vh - 140px); /* Center vertically like About */
-        display: none; /* Default hidden from tab logic */
-        flex-direction: column;
-        justify-content: center;
-    }
-    
-    /* When active, use flex to center vertically */
-    #contact.active-view { display: flex; }
-
-    .contact-header {
-        max-width: 600px;
-        margin-bottom: 50px;
-    }
-
-    .contact-header h2 {
-        font-size: 3.5rem;
-        margin-bottom: 20px;
-        line-height: 1.1;
-    }
-
-    .contact-header p {
-        font-size: 1.2rem;
-        color: var(--text-secondary);
-        max-width: 600px;
-    }
-
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px;
-        width: 100%;
-    }
-
-    .contact-card {
-        background: #fff;
-        border-radius: 24px;
-        padding: 32px;
-        text-decoration: none;
-        box-shadow: var(--shadow-md);
-        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-        border: 1px solid rgba(0,0,0,0.02);
-        display: flex;
-        flex-direction: column;
-        /* justify-content: space-between;  <-- REMOVED TO FIX ALIGNMENT */
-        height: 240px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .contact-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-lg);
-        border-color: rgba(0,0,0,0.05);
-    }
-
-    /* Specific Card Colors (Optional subtle tints on hover) */
-    .card-email:hover { background: #f5f9ff; }
-    .card-linkedin:hover { background: #f2f6fc; }
-    .card-github:hover { background: #fcfcfc; }
-
-    .icon-box {
-        width: 56px;
-        height: 56px;
-        background: var(--bg-body);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 60px; /* INCREASED from 20px to push text down uniformly */
-        font-size: 24px;
-        color: var(--text-primary);
-    }
-
-    .card-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 8px;
-    }
-
-    .card-content p {
-        font-size: 0.95rem;
-        color: var(--text-secondary);
-    }
-
-    .arrow-icon {
-        position: absolute;
-        bottom: 32px;
-        right: 32px;
-        opacity: 0.2;
-        transition: opacity 0.3s, transform 0.3s;
-        font-size: 1.5rem;
-    }
-
-    .contact-card:hover .arrow-icon {
-        opacity: 1;
-        transform: translate(5px, -5px);
-        color: var(--accent);
-    }
-
-    /* FOOTER */
-    footer {
-        background-color: #ffffff; 
-        color: #333333;  
-        padding: 30px 0;
-        text-align: center;
-        border-top: 1px solid rgba(0,0,0,0.08); 
-        margin-top: auto; /* Push to bottom */
-    }
-
-    .footer-content {
-        max-width: 900px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 8px; 
-        align-items: center;
-    }
-
-    .footer-text {
-        font-size: 0.85rem; 
-        color: #555555; 
-        font-weight: 500;
-        letter-spacing: 0.02em;
-    }
-
-    /* MODAL */
-    .modal {
-        display: none; 
-        position: fixed; 
-        z-index: 10001; 
-        left: 0; top: 0; 
-        width: 100%; height: 100%; 
-        background-color: rgba(50, 50, 50, 0.4);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        overflow-y: auto;
-        animation: fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-
-    .modal-content {
-        max-width: 900px;
-        margin: 80px auto; 
-        padding: 60px;
-        background: #fff;
-        border-radius: 24px;
-        box-shadow: var(--shadow-lg);
-        position: relative;
-    }
-
-    .close-btn {
-        position: fixed;
-        top: 30px; right: 40px;
-        font-size: 24px;
-        width: 44px; height: 44px;
-        background: rgba(255,255,255,0.9);
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        cursor: pointer;
-        z-index: 10002;
-        transition: transform 0.2s;
-        box-shadow: var(--shadow-md);
-    }
-    .close-btn:hover { transform: scale(1.1); }
-
-    .nav-btn {
-        position: fixed;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1.5rem;
-        cursor: pointer;
-        z-index: 10002;
-        width: 50px; height: 50px;
-        background: rgba(255,255,255,0.8);
-        backdrop-filter: blur(10px);
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: var(--shadow-md);
-        transition: all 0.2s;
-        user-select: none;
-    }
-    .nav-btn:hover { transform: translateY(-50%) scale(1.1); background: #fff; }
-    
-    .nav-btn.disabled {
-        opacity: 0.3;
-        cursor: default;
-        pointer-events: none;
-    }
-
-    .prev-btn { left: 40px; }
-    .next-btn { right: 40px; }
-
-    .modal-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
-    
-    .modal-text {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        margin-bottom: 60px;
-    }
-    .modal-section h4 { 
-        margin-bottom: 12px; 
-        font-size: 1.1rem; 
-        color: var(--text-primary); 
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    .modal-section p { margin-bottom: 20px; color: var(--text-secondary); }
-    .modal-section ul { padding-left: 20px; margin-bottom: 20px; color: var(--text-secondary); }
-    
-    .modal-gallery { display: flex; flex-direction: column; gap: 30px; }
-    .modal-gallery img { width: 100%; border-radius: 12px; box-shadow: var(--shadow-sm); }
-    
-    figcaption {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        text-align: center;
-        margin-top: 8px;
-        font-style: italic;
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-        #about.view-section {
-            padding-top: 100px;
-            display: none; /* keep hidden logic */
-        }
-        #about.view-section.active-view { display: block; } /* Block for stacking */
-
-        .hero-grid {
-            grid-template-columns: 1fr;
-            gap: 40px;
-            text-align: left; 
-        }
-        .hero-header h1 {
-            font-size: 3.5rem;
-        }
-        
-        .info-grid { grid-template-columns: 1fr; gap: 20px; }
-
-        .project-row { grid-template-columns: 1fr; gap: 30px; padding: 30px; }
-        .project-row:nth-child(even) { direction: ltr; }
-        .thumb-logo { left: auto; right: 15px; } 
-        
-        .modal-content { margin: 60px 20px; padding: 30px; }
-        .modal-text { grid-template-columns: 1fr; gap: 30px; }
-        
-        .nav-btn { top: auto; bottom: 20px; width: 44px; height: 44px; }
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
-        .close-btn { top: 15px; right: 15px; width: 36px; height: 36px; font-size: 20px; }
-        
-        .job-item { grid-template-columns: 64px 1fr; padding-left: 30px; }
-        .job-year { display: none; }
-
-        /* Contact Grid Mobile */
-        .contact-header h2 { font-size: 2.5rem; }
-        .contact-grid { grid-template-columns: 1fr; }
-        .contact-card { height: auto; min-height: 200px; }
-    }
-  </style>
+	<meta charset="UTF-8" />
+	<title>Minjae Kim | Mechanical Engineer & Designer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="Portfolio of Minjae Kim - Mechanical Engineering student at Purdue University with experience at Tesla and ZF Group. Specializing in CAD design, automation, and materials engineering.">
+	<meta name="keywords" content="Mechanical Engineer, CAD, CATIA, Siemens NX, Tesla, Purdue University, Portfolio">
+	<meta name="author" content="Minjae Kim">
+
+	<!-- Open Graph / Social Media -->
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Minjae Kim | Mechanical Engineer & Designer">
+	<meta property="og:description"
+		content="Mechanical Engineering portfolio featuring projects at Tesla, ZF Group, and Purdue Electric Racing.">
+	<meta property="og:image" content="minjaekim_profile.jpg">
+
+	<!-- Theme Color -->
+	<meta name="theme-color" content="#1d1d1f">
+
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231d1d1f%22/><text x=%2250%22 y=%2270%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2270%22 fill=%22white%22 text-anchor=%22middle%22>M</text></svg>">
+
+	<style>
+		:root {
+			/* APPLE COLOR PALETTE - LIGHT MODE */
+			--bg-body: #fbfbfd;
+			--bg-card: #ffffff;
+			--bg-nav: rgba(251, 251, 253, 0.85);
+			--text-primary: #1d1d1f;
+			--text-secondary: #86868b;
+			--accent: #0071e3;
+			--accent-hover: #0077ed;
+			--divider: #d2d2d7;
+
+			--radius-card: 24px;
+			--radius-btn: 980px;
+
+			--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+			--shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
+			--shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.12);
+		}
+
+		/* DARK MODE */
+		[data-theme="dark"] {
+			--bg-body: #000000;
+			--bg-card: #1c1c1e;
+			--bg-nav: rgba(0, 0, 0, 0.85);
+			--text-primary: #f5f5f7;
+			--text-secondary: #a1a1a6;
+			--accent: #2997ff;
+			--accent-hover: #0a84ff;
+			--divider: #38383a;
+
+			--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+			--shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+			--shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.5);
+		}
+
+		/* Smooth scroll */
+		html {
+			scroll-behavior: smooth;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		/* --- UNIFIED FONT STACK --- */
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		p,
+		a,
+		button,
+		input,
+		select,
+		textarea,
+		figcaption {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		body {
+			background: var(--bg-body);
+			color: var(--text-primary);
+			line-height: 1.5;
+			overflow-x: hidden;
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			/* Ensures footer stays at bottom */
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			font-weight: 700;
+			letter-spacing: -0.02em;
+			color: var(--text-primary);
+		}
+
+		p {
+			color: var(--text-secondary);
+			font-weight: 400;
+			font-size: 1.05rem;
+			letter-spacing: -0.01em;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+			transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+			cursor: pointer;
+		}
+
+		/* NAV */
+		nav {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			height: 60px;
+			background: var(--bg-nav);
+			backdrop-filter: saturate(180%) blur(20px);
+			-webkit-backdrop-filter: saturate(180%) blur(20px);
+			padding: 0 5%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			z-index: 5000;
+			border-bottom: 1px solid var(--divider);
+			transition: background 0.3s ease;
+		}
+
+		.brand-logo {
+			text-transform: uppercase;
+			font-weight: 600;
+			font-size: 0.8rem;
+			letter-spacing: 0.05em;
+			color: var(--text-primary);
+		}
+
+		.nav-links {
+			display: flex;
+			gap: 30px;
+			align-items: center;
+		}
+
+		nav a {
+			font-size: 13px;
+			font-weight: 500;
+			color: var(--text-secondary);
+			position: relative;
+		}
+
+		nav a:hover {
+			color: var(--text-primary);
+		}
+
+		/* Active Tab Style */
+		nav a.active-tab {
+			color: var(--accent);
+		}
+
+		/* MAIN CONTENT CONTAINER */
+		main {
+			flex: 1;
+			/* Pushes footer down */
+			padding-top: 60px;
+			/* Offset for fixed nav */
+			display: flex;
+			flex-direction: column;
+		}
+
+		/* SECTIONS (HIDDEN BY DEFAULT) */
+		.view-section {
+			display: none;
+			padding: 80px 5%;
+			max-width: 1100px;
+			margin: 0 auto;
+			width: 100%;
+			animation: fadeInPage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		.view-section.active-view {
+			display: block;
+		}
+
+		@keyframes fadeInPage {
+			from {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* --- HERO SECTION (ABOUT) --- */
+		/* Adjusted to center vertically within the available space */
+		#about.view-section {
+			display: none;
+			/* Default hidden */
+			min-height: calc(100vh - 140px);
+			/* Full height minus header/footer approx */
+			align-items: center;
+			/* Vertical Center */
+			padding-top: 40px;
+		}
+
+		#about.view-section.active-view {
+			display: flex;
+		}
+
+		.hero-grid {
+			display: grid;
+			grid-template-columns: 1.2fr 1fr;
+			gap: 80px;
+			align-items: center;
+			width: 100%;
+		}
+
+		.hero-content {
+			display: flex;
+			flex-direction: column;
+			gap: 30px;
+		}
+
+		.hero-header h1 {
+			font-size: clamp(3rem, 6vw, 4.5rem);
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			line-height: 1.1;
+			color: var(--text-primary);
+			margin-bottom: 10px;
+		}
+
+		.info-grid {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 60px;
+			margin-top: 10px;
+			padding-top: 30px;
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			align-items: start;
+		}
+
+		.info-item h4 {
+			font-size: 0.75rem;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: var(--text-secondary);
+			margin-bottom: 12px;
+			font-weight: 600;
+		}
+
+		.info-item p {
+			font-size: 1rem;
+			color: var(--text-primary);
+			font-weight: 600;
+			margin: 0;
+			line-height: 1.4;
+		}
+
+		.hero-cta {
+			margin-top: 20px;
+			display: flex;
+			gap: 15px;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
+		.btn-primary {
+			background: var(--accent);
+			color: white;
+			padding: 14px 28px;
+			border-radius: 50px;
+			font-weight: 600;
+			font-size: 1rem;
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			transition: background 0.2s, transform 0.2s;
+			border: none;
+			cursor: pointer;
+		}
+
+		.btn-primary:hover {
+			background: var(--accent-hover);
+			transform: scale(1.02);
+		}
+
+		.btn-secondary {
+			background: rgba(0, 0, 0, 0.05);
+			color: var(--text-primary);
+			padding: 14px 28px;
+			border-radius: 50px;
+			font-weight: 600;
+			font-size: 1rem;
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			transition: background 0.2s, transform 0.2s;
+		}
+
+		.btn-secondary:hover {
+			background: rgba(0, 0, 0, 0.1);
+			transform: scale(1.02);
+		}
+
+		.hero-image-wrapper {
+			position: relative;
+			border-radius: 32px;
+			overflow: hidden;
+			box-shadow: var(--shadow-lg);
+			background: #fff;
+			line-height: 0;
+		}
+
+		.hero-image-wrapper img {
+			width: 100%;
+			height: auto;
+			display: block;
+			transform: scale(1.01);
+		}
+
+		/* PROJECTS */
+		h2.page-title {
+			font-size: 2.5rem;
+			margin-bottom: 10px;
+			text-align: left;
+		}
+
+		.section-subtitle {
+			margin-bottom: 40px;
+			color: var(--text-secondary);
+			font-size: 1rem;
+		}
+
+		.filter-container {
+			display: flex;
+			gap: 15px;
+			margin-bottom: 50px;
+		}
+
+		.filter-btn {
+			background: rgba(0, 0, 0, 0.05);
+			border: none;
+			padding: 10px 24px;
+			border-radius: 20px;
+			font-size: 0.95rem;
+			font-weight: 600;
+			color: var(--text-secondary);
+			cursor: pointer;
+			transition: all 0.2s ease;
+		}
+
+		.filter-btn:hover {
+			background: rgba(0, 0, 0, 0.1);
+			color: var(--text-primary);
+		}
+
+		.filter-btn.active {
+			background: #000;
+			color: #fff;
+		}
+
+		.project-row {
+			background: var(--bg-card);
+			border-radius: var(--radius-card);
+			padding: 40px;
+			display: grid;
+			grid-template-columns: 1.5fr 1fr;
+			gap: 60px;
+			margin-bottom: 40px;
+			align-items: center;
+			cursor: pointer;
+			border: none;
+			box-shadow: var(--shadow-md);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		.project-row:hover {
+			transform: translateY(-5px);
+			box-shadow: var(--shadow-lg);
+		}
+
+		.project-row:nth-child(even) {
+			direction: rtl;
+		}
+
+		.project-row:nth-child(even) .project-text {
+			direction: ltr;
+		}
+
+		.project-row:nth-child(even) .project-tags {
+			justify-content: flex-start;
+			direction: ltr;
+		}
+
+		.project-img-wrapper {
+			position: relative;
+			overflow: hidden;
+			border-radius: 16px;
+			box-shadow: var(--shadow-sm);
+		}
+
+		.main-thumb {
+			width: 100%;
+			display: block;
+			transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+		}
+
+		.project-row:hover .main-thumb {
+			transform: scale(1.05);
+		}
+
+		.thumb-logo {
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			width: 50px;
+			height: 50px;
+			object-fit: contain;
+			z-index: 2;
+			background: #fff;
+			padding: 4px;
+			border-radius: 12px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		}
+
+		.project-tags,
+		.modal-meta {
+			display: flex;
+			gap: 8px;
+			flex-wrap: wrap;
+			margin-bottom: 16px;
+		}
+
+		.modal-meta {
+			margin-bottom: 40px;
+			border-bottom: 1px solid var(--divider);
+			padding-bottom: 24px;
+		}
+
+		.tag-pill {
+			font-size: 0.75rem;
+			font-weight: 600;
+			color: var(--text-secondary);
+			background: #f5f5f7;
+			padding: 6px 12px;
+			border-radius: 50px;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+		}
+
+		.project-text h3 {
+			font-size: 2.2rem;
+			margin-bottom: 16px;
+			line-height: 1.1;
+			letter-spacing: -0.02em;
+		}
+
+		.project-text p {
+			font-size: 1rem;
+			color: var(--text-secondary);
+			line-height: 1.6;
+		}
+
+		.impact-stat {
+			margin-top: 24px;
+			font-weight: 600;
+			font-size: 0.9rem;
+			color: var(--text-primary);
+			display: inline-block;
+			background: #f5f5f7;
+			padding: 8px 16px;
+			border-radius: 8px;
+		}
+
+		/* EXPERIENCE */
+		.job-item {
+			display: grid;
+			grid-template-columns: 80px 1fr auto;
+			gap: 40px;
+			padding: 40px 0;
+			padding-left: 40px;
+			align-items: center;
+			position: relative;
+			transition: opacity 0.3s;
+		}
+
+		.job-item:hover {
+			opacity: 0.8;
+		}
+
+		.job-item::before {
+			content: '';
+			position: absolute;
+			left: 10px;
+			top: 0;
+			bottom: 0;
+			width: 2px;
+			background: var(--divider);
+			z-index: 0;
+		}
+
+		.job-item:first-of-type::before {
+			top: 50%;
+		}
+
+		.job-item:last-of-type::before {
+			height: 50%;
+			bottom: auto;
+		}
+
+		.company-logo {
+			width: 64px;
+			height: 64px;
+			object-fit: contain;
+			background: #fff;
+			border-radius: 16px;
+			box-shadow: var(--shadow-sm);
+			padding: 4px;
+			z-index: 1;
+			position: relative;
+		}
+
+		.job-details h3 {
+			font-size: 1.4rem;
+			margin-bottom: 4px;
+			font-weight: 600;
+		}
+
+		.job-details p {
+			color: var(--text-secondary);
+			font-size: 1rem;
+		}
+
+		.job-year {
+			font-weight: 600;
+			color: var(--text-secondary);
+			font-feature-settings: "tnum";
+		}
+
+		/* --- IMPROVED CONTACT SECTION (BENTO GRID) --- */
+		#contact {
+			text-align: left;
+			/* Align left for better reading */
+			padding-top: 60px;
+			min-height: calc(100vh - 140px);
+			/* Center vertically like About */
+			display: none;
+			/* Default hidden from tab logic */
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		/* When active, use flex to center vertically */
+		#contact.active-view {
+			display: flex;
+		}
+
+		.contact-header {
+			max-width: 600px;
+			margin-bottom: 50px;
+		}
+
+		.contact-header h2 {
+			font-size: 3.5rem;
+			margin-bottom: 20px;
+			line-height: 1.1;
+		}
+
+		.contact-header p {
+			font-size: 1.2rem;
+			color: var(--text-secondary);
+			max-width: 600px;
+		}
+
+		.contact-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 24px;
+			width: 100%;
+		}
+
+		.contact-card {
+			background: var(--bg-card);
+			border-radius: 24px;
+			padding: 32px;
+			text-decoration: none;
+			box-shadow: var(--shadow-md);
+			transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+			border: 1px solid rgba(0, 0, 0, 0.02);
+			display: flex;
+			flex-direction: column;
+			height: 240px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.contact-card:hover {
+			transform: translateY(-8px);
+			box-shadow: var(--shadow-lg);
+			border-color: rgba(0, 0, 0, 0.05);
+		}
+
+		/* Specific Card Colors (Optional subtle tints on hover) */
+		.card-email:hover {
+			background: #f5f9ff;
+		}
+
+		.card-linkedin:hover {
+			background: #f2f6fc;
+		}
+
+		.card-github:hover {
+			background: #fcfcfc;
+		}
+
+		.icon-box {
+			width: 56px;
+			height: 56px;
+			background: var(--bg-body);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+			color: var(--text-primary);
+			flex-shrink: 0;
+		}
+
+		.card-content {
+			margin-top: auto;
+			padding-bottom: 16px;
+		}
+
+		.card-content h3 {
+			font-size: 1.5rem;
+			margin-bottom: 8px;
+		}
+
+		.card-content p {
+			font-size: 0.95rem;
+			color: var(--text-secondary);
+			line-height: 1.4;
+			min-height: 2.8em;
+		}
+
+		.arrow-icon {
+			position: absolute;
+			bottom: 32px;
+			right: 32px;
+			opacity: 0.2;
+			transition: opacity 0.3s, transform 0.3s;
+			font-size: 1.5rem;
+		}
+
+		.contact-card:hover .arrow-icon {
+			opacity: 1;
+			transform: translate(5px, -5px);
+			color: var(--accent);
+		}
+
+		/* FOOTER */
+		footer {
+			background-color: #ffffff;
+			color: #333333;
+			padding: 30px 0;
+			text-align: center;
+			border-top: 1px solid rgba(0, 0, 0, 0.08);
+			margin-top: auto;
+			/* Push to bottom */
+		}
+
+		.footer-content {
+			max-width: 900px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			align-items: center;
+		}
+
+		.footer-text {
+			font-size: 0.85rem;
+			color: #555555;
+			font-weight: 500;
+			letter-spacing: 0.02em;
+		}
+
+		/* MODAL */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 10001;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(50, 50, 50, 0.4);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+			overflow-y: auto;
+			animation: fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		.modal-content {
+			max-width: 900px;
+			margin: 80px auto;
+			padding: 60px;
+			background: #fff;
+			border-radius: 24px;
+			box-shadow: var(--shadow-lg);
+			position: relative;
+		}
+
+		.close-btn {
+			position: fixed;
+			top: 30px;
+			right: 40px;
+			font-size: 24px;
+			width: 44px;
+			height: 44px;
+			background: rgba(255, 255, 255, 0.9);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			z-index: 10002;
+			transition: transform 0.2s;
+			box-shadow: var(--shadow-md);
+		}
+
+		.close-btn:hover {
+			transform: scale(1.1);
+		}
+
+		.nav-btn {
+			position: fixed;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 1.5rem;
+			cursor: pointer;
+			z-index: 10002;
+			width: 50px;
+			height: 50px;
+			background: rgba(255, 255, 255, 0.8);
+			backdrop-filter: blur(10px);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: var(--shadow-md);
+			transition: all 0.2s;
+			user-select: none;
+		}
+
+		.nav-btn:hover {
+			transform: translateY(-50%) scale(1.1);
+			background: #fff;
+		}
+
+		.nav-btn.disabled {
+			opacity: 0.3;
+			cursor: default;
+			pointer-events: none;
+		}
+
+		.prev-btn {
+			left: 40px;
+		}
+
+		.next-btn {
+			right: 40px;
+		}
+
+		.modal-header h2 {
+			font-size: 2.5rem;
+			margin-bottom: 10px;
+		}
+
+		.modal-text {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 60px;
+			margin-bottom: 60px;
+		}
+
+		.modal-section h4 {
+			margin-bottom: 12px;
+			font-size: 1.1rem;
+			color: var(--text-primary);
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+
+		.modal-section p {
+			margin-bottom: 20px;
+			color: var(--text-secondary);
+		}
+
+		.modal-section ul {
+			padding-left: 20px;
+			margin-bottom: 20px;
+			color: var(--text-secondary);
+		}
+
+		.modal-gallery {
+			display: flex;
+			flex-direction: column;
+			gap: 30px;
+		}
+
+		.modal-gallery img {
+			width: 100%;
+			border-radius: 12px;
+			box-shadow: var(--shadow-sm);
+		}
+
+		figcaption {
+			font-size: 0.85rem;
+			color: var(--text-secondary);
+			text-align: center;
+			margin-top: 8px;
+			font-style: italic;
+		}
+
+		/* MOBILE */
+		@media (max-width: 768px) {
+			#about.view-section {
+				padding-top: 100px;
+				display: none;
+				/* keep hidden logic */
+			}
+
+			#about.view-section.active-view {
+				display: block;
+			}
+
+			/* Block for stacking */
+
+			.hero-grid {
+				grid-template-columns: 1fr;
+				gap: 40px;
+				text-align: left;
+			}
+
+			.hero-header h1 {
+				font-size: 3.5rem;
+			}
+
+			.info-grid {
+				grid-template-columns: 1fr;
+				gap: 20px;
+			}
+
+			.project-row {
+				grid-template-columns: 1fr;
+				gap: 30px;
+				padding: 30px;
+			}
+
+			.project-row:nth-child(even) {
+				direction: ltr;
+			}
+
+			.thumb-logo {
+				left: auto;
+				right: 15px;
+			}
+
+			.modal-content {
+				margin: 60px 20px;
+				padding: 30px;
+			}
+
+			.modal-text {
+				grid-template-columns: 1fr;
+				gap: 30px;
+			}
+
+			.nav-btn {
+				top: auto;
+				bottom: 20px;
+				width: 44px;
+				height: 44px;
+			}
+
+			.prev-btn {
+				left: 20px;
+			}
+
+			.next-btn {
+				right: 20px;
+			}
+
+			.close-btn {
+				top: 15px;
+				right: 15px;
+				width: 36px;
+				height: 36px;
+				font-size: 20px;
+			}
+
+			.job-item {
+				grid-template-columns: 64px 1fr;
+				padding-left: 30px;
+			}
+
+			.job-year {
+				display: none;
+			}
+
+			/* Contact Grid Mobile */
+			.contact-header h2 {
+				font-size: 2.5rem;
+			}
+
+			.contact-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.contact-card {
+				height: auto;
+				min-height: 200px;
+			}
+
+			/* Mobile nav */
+			.nav-links {
+				position: fixed;
+				top: 60px;
+				left: 0;
+				right: 0;
+				background: var(--bg-nav);
+				backdrop-filter: saturate(180%) blur(20px);
+				flex-direction: column;
+				padding: 30px;
+				gap: 20px;
+				transform: translateY(-150%);
+				transition: transform 0.3s ease;
+				border-bottom: 1px solid var(--divider);
+			}
+
+			.nav-links.active {
+				transform: translateY(0);
+			}
+
+			.hamburger {
+				display: flex;
+			}
+		}
+
+		/* Dark Mode Toggle Button */
+		.theme-toggle {
+			background: none;
+			border: none;
+			cursor: pointer;
+			padding: 8px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: background 0.2s;
+			color: var(--text-primary);
+		}
+
+		.theme-toggle:hover {
+			background: rgba(0, 0, 0, 0.05);
+		}
+
+		[data-theme="dark"] .theme-toggle:hover {
+			background: rgba(255, 255, 255, 0.1);
+		}
+
+		.theme-toggle .sun-icon {
+			display: none;
+		}
+
+		.theme-toggle .moon-icon {
+			display: block;
+		}
+
+		[data-theme="dark"] .theme-toggle .sun-icon {
+			display: block;
+		}
+
+		[data-theme="dark"] .theme-toggle .moon-icon {
+			display: none;
+		}
+
+		/* Hamburger Menu */
+		.hamburger {
+			display: none;
+			flex-direction: column;
+			gap: 5px;
+			cursor: pointer;
+			padding: 5px;
+			z-index: 5001;
+		}
+
+		.hamburger span {
+			width: 24px;
+			height: 2px;
+			background: var(--text-primary);
+			transition: all 0.3s;
+			border-radius: 2px;
+		}
+
+		.hamburger.active span:nth-child(1) {
+			transform: rotate(45deg) translate(5px, 5px);
+		}
+
+		.hamburger.active span:nth-child(2) {
+			opacity: 0;
+		}
+
+		.hamburger.active span:nth-child(3) {
+			transform: rotate(-45deg) translate(5px, -5px);
+		}
+
+		/* Scroll Animations */
+		.fade-in {
+			opacity: 0;
+			transform: translateY(30px);
+			transition: opacity 0.6s ease, transform 0.6s ease;
+		}
+
+		.fade-in.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		/* Focus styles for accessibility */
+		a:focus-visible,
+		button:focus-visible {
+			outline: 2px solid var(--accent);
+			outline-offset: 2px;
+		}
+
+		/* Skills Section */
+		.skills-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 24px;
+			margin-top: 40px;
+		}
+
+		.skill-card {
+			background: var(--bg-card);
+			border-radius: 16px;
+			padding: 24px;
+			box-shadow: var(--shadow-sm);
+		}
+
+		.skill-card h4 {
+			font-size: 0.85rem;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: var(--text-secondary);
+			margin-bottom: 16px;
+		}
+
+		.skill-items {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.skill-tag {
+			background: var(--bg-body);
+			color: var(--text-primary);
+			padding: 8px 16px;
+			border-radius: 50px;
+			font-size: 0.9rem;
+			font-weight: 500;
+			border: 1px solid var(--divider);
+			transition: all 0.2s;
+		}
+
+		.skill-tag:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+	</style>
 </head>
 
 <body>
 
-<nav>
-  <a onclick="switchTab('about')" class="brand-logo">Minjae Kim</a>
-  <div>
-    <a onclick="switchTab('about')" id="nav-about" class="active-tab">About</a>
-    <a onclick="switchTab('projects')" id="nav-projects">Projects</a>
-    <a onclick="switchTab('experience')" id="nav-experience">Experience</a>
-    <a onclick="switchTab('contact')" id="nav-contact">Contact</a>
-  </div>
-</nav>
+	<nav role="navigation" aria-label="Main navigation">
+		<a onclick="switchTab('about')" class="brand-logo" role="button" tabindex="0"
+			aria-label="Go to About section">Minjae Kim</a>
 
-<main>
+		<div class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" role="button" tabindex="0">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
 
-    <section id="about" class="view-section active-view">
-        <div class="hero-grid">
-            
-            <div class="hero-content">
-                
-                <div class="hero-header">
-                    <h1>Minjae Kim</h1>
-                </div>
+		<div class="nav-links">
+			<a onclick="switchTab('about')" id="nav-about" class="active-tab" role="button" tabindex="0">About</a>
+			<a onclick="switchTab('projects')" id="nav-projects" role="button" tabindex="0">Projects</a>
+			<a onclick="switchTab('experience')" id="nav-experience" role="button" tabindex="0">Experience</a>
+			<a onclick="switchTab('contact')" id="nav-contact" role="button" tabindex="0">Contact</a>
 
-                <div class="info-grid">
-                    <div class="info-item">
-                        <h4>Education</h4>
-                        <p>Purdue University</p>
-                        <p>B.S. Mechanical Engineering</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>Core Skills</h4>
-                        <p>CATIA V6, Siemens NX, Python, GD&T</p>
-                    </div>
-                </div>
+			<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+				<svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					stroke-width="2">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+				</svg>
+				<svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					stroke-width="2">
+					<circle cx="12" cy="12" r="5"></circle>
+					<line x1="12" y1="1" x2="12" y2="3"></line>
+					<line x1="12" y1="21" x2="12" y2="23"></line>
+					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+					<line x1="1" y1="12" x2="3" y2="12"></line>
+					<line x1="21" y1="12" x2="23" y2="12"></line>
+					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+				</svg>
+			</button>
+		</div>
+	</nav>
 
-                <div class="hero-cta">
-                    <button onclick="switchTab('projects')" class="btn-primary">View Projects</button>
-                    <a href="Minjae_Kim_Resume.pdf" target="_blank" class="btn-secondary">Download Resume &#8599;</a>
-                </div>
+	<main>
 
-            </div>
+		<section id="about" class="view-section active-view">
+			<div class="hero-grid">
 
-            <div class="hero-image-wrapper">
-                <img src="minjaekim_profile.jpg" alt="Minjae Kim">
-            </div>
+				<div class="hero-content">
 
-        </div>
-    </section>
+					<div class="hero-header">
+						<h1>Minjae Kim</h1>
+					</div>
 
-    <section id="projects" class="view-section">
-        <h2 class="page-title">Projects</h2>
-        <p class="section-subtitle">Click on any project to view details.</p>
-        
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterProjects('all')">All</button>
-            <button class="filter-btn" onclick="filterProjects('hardware')">Hardware</button>
-            <button class="filter-btn" onclick="filterProjects('software')">Software</button>
-        </div>
+					<div class="info-grid">
+						<div class="info-item">
+							<h4>Education</h4>
+							<p>Purdue University</p>
+							<p>B.S. Mechanical Engineering</p>
+						</div>
+						<div class="info-item">
+							<h4>Core Skills</h4>
+							<p>CATIA V6, Siemens NX, Python, GD&T</p>
+						</div>
+					</div>
 
-        <div id="row-modal-piezo" class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
-            <div class="project-img-wrapper">
-                <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
-                <img src="cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
-            </div>
-            <div class="project-text">
-                <div class="project-tags">
-                    <span class="tag-pill">CATIA V6</span>
-                    <span class="tag-pill">First Principles Analysis</span>
-                    <span class="tag-pill">Design Automation</span>
-                </div>
-                <h3>Piezo Protection Cap</h3>
-                <p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Validated for high-impact durability.</p>
-                <span class="impact-stat">Result: 100% Seal Rate on 20+ Joints</span>
-            </div>
-        </div>
+					<div class="hero-cta">
+						<button onclick="switchTab('projects')" class="btn-primary">View Projects</button>
+						<a href="Minjae_Kim_Resume.pdf" target="_blank" class="btn-secondary">Download Resume
+							&#8599;</a>
+					</div>
 
-        <div id="row-modal-torque" class="project-row" data-category="software" onclick="openModal('modal-torque')">
-            <div class="project-img-wrapper">
-                <img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
-                <img src="ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
-            </div>
-            <div class="project-text">
-                <div class="project-tags">
-                    <span class="tag-pill">Python</span>
-                    <span class="tag-pill">Pandas</span>
-                    <span class="tag-pill">GUI</span>
-                </div>
-                <h3>Torque Data Processor</h3>
-                <p>Built an automation tool for torque-to-failure data acquisition. Deployed to Reno, Berlin, and Shanghai.</p>
-                <span class="impact-stat">Impact: Saved 30+ Mins Per Joint Globally</span>
-            </div>
-        </div>
+				</div>
 
-        <div id="row-modal-zf" class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
-            <div class="project-img-wrapper">
-                <img src="zflogo.png" class="thumb-logo" alt="ZF Logo">
-                <img src="reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
-            </div>
-            <div class="project-text">
-                <div class="project-tags">
-                    <span class="tag-pill">PTC Creo</span>
-                    <span class="tag-pill">GD&T</span>
-                    <span class="tag-pill">3D Printing</span>
-                </div>
-                <h3>ReAX Transport Fixtures</h3>
-                <p>Modeled damage-prevention connectors for international transportation to Germany and China.</p>
-                <span class="impact-stat">Impact: Eliminated Shipping Damage</span>
-            </div>
-        </div>
+				<div class="hero-image-wrapper">
+					<img src="minjaekim_profile.jpg" alt="Minjae Kim - Mechanical Engineering student and CAD designer">
+				</div>
 
-        <div id="row-modal-per" class="project-row" data-category="hardware" onclick="openModal('modal-per')">
-            <div class="project-img-wrapper">
-                <img src="perlogo.png" class="thumb-logo" alt="PER Logo">
-                <img src="per_thumbnail.png" class="main-thumb" alt="Racing Wing">
-            </div>
-            <div class="project-text">
-                <div class="project-tags">
-                    <span class="tag-pill">SolidWorks</span>
-                    <span class="tag-pill">ANSYS CFD</span>
-                    <span class="tag-pill">Composites</span>
-                </div>
-                <h3>Formula SAE Aerodynamics</h3>
-                <p>Modeled front/rear wings and optimized downforce using ANSYS CFD.</p>
-                <span class="impact-stat">Result: 30% Drag Reduction</span>
-            </div>
-        </div>
+			</div>
+		</section>
 
-        <div id="row-modal-stirling" class="project-row" data-category="hardware" onclick="openModal('modal-stirling')">
-            <div class="project-img-wrapper">
-                <img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
-            </div>
-            <div class="project-text">
-                <div class="project-tags">
-                    <span class="tag-pill">Siemens NX</span>
-                    <span class="tag-pill">Machining</span>
-                    <span class="tag-pill">GD&T</span>
-                </div>
-                <h3>Pipsqueak Stirling Engine</h3>
-                <p>Fully functional engine assembly on a custom pirate ship model. 260 hours of modeling.</p>
-                <span class="impact-stat">Outcome: Functional Thermal Assembly</span>
-            </div>
-        </div>
+		<section id="projects" class="view-section">
+			<h2 class="page-title">Projects</h2>
+			<p class="section-subtitle">Click on any project to view details.</p>
 
-        <div id="row-modal-pagani" class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
-            <div class="project-img-wrapper">
-                <img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
-            </div>
-            <div class="project-text">
-                <div class="project-tags">
-                    <span class="tag-pill">Siemens NX</span>
-                    <span class="tag-pill">Class-A Surfacing</span>
-                    <span class="tag-pill">Reverse Engineering</span>
-                </div>
-                <h3>Pagani Huayra Components</h3>
-                <p>Modeled complex wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
-                <span class="impact-stat">Outcome: Class-A Surface Fidelity</span>
-            </div>
-        </div>
-        
-        <div id="row-modal-campus" class="project-row" data-category="software" onclick="openModal('modal-campus')">
-            <div class="project-img-wrapper">
-                <img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
-            </div>
-            <div class="project-text">
-                <div class="project-tags">
-                    <span class="tag-pill">MATLAB</span>
-                    <span class="tag-pill">C</span>
-                    <span class="tag-pill">Systems Engineering</span>
-                </div>
-                <h3>Campus Mobility Roundabout</h3>
-                <p>Automated roundabout system with ultrasonic pedestrian detection.</p>
-                <span class="impact-stat">Result: 90% User Satisfaction Rate</span>
-            </div>
-        </div>
-    </section>
+			<div class="filter-container">
+				<button class="filter-btn active" onclick="filterProjects('all')">All</button>
+				<button class="filter-btn" onclick="filterProjects('hardware')">Hardware</button>
+				<button class="filter-btn" onclick="filterProjects('software')">Software</button>
+			</div>
 
-    <section id="experience" class="view-section">
-        <h2 class="page-title">Experience</h2>
-        
-        <div class="job-item">
-            <img src="purduemelogo.jpg" class="company-logo" alt="Purdue ME">
-            <div class="job-details">
-                <h3>Advanced Multiscale Manufacturing Lab</h3>
-                <p>Undergraduate Researcher</p>
-            </div>
-            <div class="job-year">Present</div>
-        </div>
-        <div class="job-item">
-            <img src="teslalogo.png" class="company-logo" alt="Tesla">
-            <div class="job-details">
-                <h3>Tesla</h3>
-                <p>Materials Engineering Intern</p>
-            </div>
-            <div class="job-year">2025</div>
-        </div>
-        <div class="job-item">
-            <img src="zflogo.png" class="company-logo" alt="ZF">
-            <div class="job-details">
-                <h3>ZF Group</h3>
-                <p>Mechanical Engineering Intern</p>
-            </div>
-            <div class="job-year">2025</div>
-        </div>
-        <div class="job-item">
-            <img src="perlogo.png" class="company-logo" alt="PER">
-            <div class="job-details">
-                <h3>Purdue Electric Racing</h3>
-                <p>Aerodynamics Engineer</p>
-            </div>
-            <div class="job-year">2024</div>
-        </div>
-    </section>
+			<div id="row-modal-piezo" class="project-row" data-category="hardware" onclick="openModal('modal-piezo')">
+				<div class="project-img-wrapper">
+					<img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
+					<img src="cap_thumbnail.png" class="main-thumb" alt="Tesla Piezo">
+				</div>
+				<div class="project-text">
+					<div class="project-tags">
+						<span class="tag-pill">CATIA V6</span>
+						<span class="tag-pill">First Principles Analysis</span>
+						<span class="tag-pill">Design Automation</span>
+					</div>
+					<h3>Piezo Protection Cap</h3>
+					<p>Designed bolt caps to protect piezo sensors for vehicle durability testing. Validated for
+						high-impact durability.</p>
+					<span class="impact-stat">Result: 100% Seal Rate on 20+ Joints</span>
+				</div>
+			</div>
 
-    <section id="contact" class="view-section">
-        
-        <div class="contact-header">
-            <h2>Let's build together.</h2>
-            <p>Diving deep into design automation and rigorous testing. <br>
-              Always open to discussing challenges or new opportunities.
-            </p>
-        </div>
+			<div id="row-modal-torque" class="project-row" data-category="software" onclick="openModal('modal-torque')">
+				<div class="project-img-wrapper">
+					<img src="teslalogo.png" class="thumb-logo" alt="Tesla Logo">
+					<img src="ttf_thumbnail.png" class="main-thumb" alt="Tesla Torque Graph">
+				</div>
+				<div class="project-text">
+					<div class="project-tags">
+						<span class="tag-pill">Python</span>
+						<span class="tag-pill">Pandas</span>
+						<span class="tag-pill">GUI</span>
+					</div>
+					<h3>Torque Data Processor</h3>
+					<p>Built an automation tool for torque-to-failure data acquisition. Deployed to Reno, Berlin, and
+						Shanghai.</p>
+					<span class="impact-stat">Impact: Saved 30+ Mins Per Joint Globally</span>
+				</div>
+			</div>
 
-        <div class="contact-grid">
-            
-            <a href="mailto:alexminjaekim@gmail.com" class="contact-card card-email">
-                <div class="icon-box">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </div>
-                <div class="card-content">
-                    <h3>Email</h3>
-                    <p>alexminjaekim@gmail.com</p>
-                </div>
-                <div class="arrow-icon">&#8599;</div>
-            </a>
+			<div id="row-modal-zf" class="project-row" data-category="hardware" onclick="openModal('modal-zf')">
+				<div class="project-img-wrapper">
+					<img src="zflogo.png" class="thumb-logo" alt="ZF Logo">
+					<img src="reax_thumbnail.png" class="main-thumb" alt="ZF Connector">
+				</div>
+				<div class="project-text">
+					<div class="project-tags">
+						<span class="tag-pill">PTC Creo</span>
+						<span class="tag-pill">GD&T</span>
+						<span class="tag-pill">3D Printing</span>
+					</div>
+					<h3>ReAX Transport Fixtures</h3>
+					<p>Modeled damage-prevention connectors for international transportation to Germany and China.</p>
+					<span class="impact-stat">Impact: Eliminated Shipping Damage</span>
+				</div>
+			</div>
 
-            <a href="https://linkedin.com/in/alexminjae" target="_blank" class="contact-card card-linkedin">
-                <div class="icon-box">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                </div>
-                <div class="card-content">
-                    <h3>LinkedIn</h3>
-                    <p>Connect & keep up with updates.</p>
-                </div>
-                <div class="arrow-icon">&#8599;</div>
-            </a>
+			<div id="row-modal-per" class="project-row" data-category="hardware" onclick="openModal('modal-per')">
+				<div class="project-img-wrapper">
+					<img src="perlogo.png" class="thumb-logo" alt="PER Logo">
+					<img src="per_thumbnail.png" class="main-thumb" alt="Racing Wing">
+				</div>
+				<div class="project-text">
+					<div class="project-tags">
+						<span class="tag-pill">SolidWorks</span>
+						<span class="tag-pill">ANSYS CFD</span>
+						<span class="tag-pill">Composites</span>
+					</div>
+					<h3>Formula SAE Aerodynamics</h3>
+					<p>Modeled front/rear wings and optimized downforce using ANSYS CFD.</p>
+					<span class="impact-stat">Result: 30% Drag Reduction</span>
+				</div>
+			</div>
 
-            <a href="https://github.com/alexminjae" target="_blank" class="contact-card card-github">
-                <div class="icon-box">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                </div>
-                <div class="card-content">
-                    <h3>GitHub</h3>
-                    <p>Check out my coding projects.</p>
-                </div>
-                <div class="arrow-icon">&#8599;</div>
-            </a>
+			<div id="row-modal-stirling" class="project-row" data-category="hardware"
+				onclick="openModal('modal-stirling')">
+				<div class="project-img-wrapper">
+					<img src="ship_thumbnail.png" class="main-thumb" alt="Stirling Engine">
+				</div>
+				<div class="project-text">
+					<div class="project-tags">
+						<span class="tag-pill">Siemens NX</span>
+						<span class="tag-pill">Machining</span>
+						<span class="tag-pill">GD&T</span>
+					</div>
+					<h3>Pipsqueak Stirling Engine</h3>
+					<p>Fully functional engine assembly on a custom pirate ship model. 260 hours of modeling.</p>
+					<span class="impact-stat">Outcome: Functional Thermal Assembly</span>
+				</div>
+			</div>
 
-        </div>
+			<div id="row-modal-pagani" class="project-row" data-category="hardware" onclick="openModal('modal-pagani')">
+				<div class="project-img-wrapper">
+					<img src="pagani_thumbnail.png" class="main-thumb" alt="Pagani Wheel">
+				</div>
+				<div class="project-text">
+					<div class="project-tags">
+						<span class="tag-pill">Siemens NX</span>
+						<span class="tag-pill">Class-A Surfacing</span>
+						<span class="tag-pill">Reverse Engineering</span>
+					</div>
+					<h3>Pagani Huayra Components</h3>
+					<p>Modeled complex wheel spokes and exhaust manifold based on the Pagani Huayra Roadster.</p>
+					<span class="impact-stat">Outcome: Class-A Surface Fidelity</span>
+				</div>
+			</div>
 
-    </section>
+			<div id="row-modal-campus" class="project-row" data-category="software" onclick="openModal('modal-campus')">
+				<div class="project-img-wrapper">
+					<img src="roundabout_thumbnail.png" class="main-thumb" alt="Roundabout Model">
+				</div>
+				<div class="project-text">
+					<div class="project-tags">
+						<span class="tag-pill">MATLAB</span>
+						<span class="tag-pill">C</span>
+						<span class="tag-pill">Systems Engineering</span>
+					</div>
+					<h3>Campus Mobility Roundabout</h3>
+					<p>Automated roundabout system with ultrasonic pedestrian detection.</p>
+					<span class="impact-stat">Result: 90% User Satisfaction Rate</span>
+				</div>
+			</div>
+		</section>
 
-</main>
+		<section id="experience" class="view-section">
+			<h2 class="page-title">Experience</h2>
 
-<footer>
-    <div class="footer-content">
-        <div class="footer-text">
-            &copy; 2026<br>
-            <span class="brand-logo" style="margin-top:8px;">Minjae Kim</span>
-        </div>
-    </div>
-</footer>
+			<div class="job-item">
+				<img src="purduemelogo.jpg" class="company-logo" alt="Purdue ME">
+				<div class="job-details">
+					<h3>Advanced Multiscale Manufacturing Lab</h3>
+					<p>Undergraduate Researcher</p>
+				</div>
+				<div class="job-year">Present</div>
+			</div>
+			<div class="job-item">
+				<img src="teslalogo.png" class="company-logo" alt="Tesla">
+				<div class="job-details">
+					<h3>Tesla</h3>
+					<p>Materials Engineering Intern</p>
+				</div>
+				<div class="job-year">2025</div>
+			</div>
+			<div class="job-item">
+				<img src="zflogo.png" class="company-logo" alt="ZF">
+				<div class="job-details">
+					<h3>ZF Group</h3>
+					<p>Mechanical Engineering Intern</p>
+				</div>
+				<div class="job-year">2025</div>
+			</div>
+			<div class="job-item">
+				<img src="perlogo.png" class="company-logo" alt="PER">
+				<div class="job-details">
+					<h3>Purdue Electric Racing</h3>
+					<p>Aerodynamics Engineer</p>
+				</div>
+				<div class="job-year">2024</div>
+			</div>
+		</section>
 
-<div id="modal-piezo" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-piezo')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        
-        <div class="modal-header">
-            <h2>Piezo Protection Cap</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">CATIA V6</span>
-                <span class="tag-pill">First Principles Analysis</span>
-                <span class="tag-pill">Design Automation</span>
-            </div>
-        </div>
+		<section id="contact" class="view-section">
 
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p>The Next-Gen Vehicle program required durability testing where fasteners with built-in piezo sensors had to be shielded from mud and high-pressure water. The design faced a critical contradiction:</p>
-                <ul>
-                    <li><strong>Sealing:</strong> Must be water-tight to protect the sensor.</li>
-                    <li><strong>Usability:</strong> Must be <strong>hand-pressible</strong> for technicians to install/remove quickly without tools.</li>
-                    <li><strong>Impact Resistance:</strong> Technicians often strike caps with a <strong>mallet</strong> to ensure a secure fit. The design had to withstand this blunt impact without cracking.</li>
-                    <li><strong>Scale:</strong> Must fit 10+ different fastener variants across 20+ joints.</li>
-                </ul>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Design & Calculation:</strong> I created a hand-pressibility calculator using <strong>Lamé’s equations</strong> (<i>P</i>) and friction formulas (<i>F = &mu;PA</i>) to determine the exact interference fit required.</p>
-                <p><strong>Validation:</strong> Tested prototypes in CATIA and physically with 3 materials (ASA, TPU, Nylon). Selected <strong>ASA</strong> as the only material that passed impact, water submersion, and hand-pressibility tests.</p>
-                <p><strong>Automation:</strong> Developed a "Powercopy" VBA automation tool for CATIA. This allowed engineers to simply select a hex head type and dimensions to instantly generate a manufacturing-ready cap model.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Achieved a <strong>100% seal rate</strong> across all 20+ joint variants during endurance testing.</li>
-                    <li>Selected <strong>ASA material</strong> as the superior choice, surviving both the water pressure and the technician's mallet strikes.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <div>
-                <img src="cap_1.png" alt="Prototype Iterations and Design Logic">
-                <figcaption>Figure 1: Upright isometric image of cap prototype (TPU)</figcaption>
-            </div>
-            <div>
-                <img src="cap_2.png" alt="Final ASA Cap Installed">
-                <figcaption>Figure 2: Upturned isometric image of cap prototype (TPU)</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
+			<div class="contact-header">
+				<h2>Let's build together.</h2>
+				<p>Diving deep into design automation and rigorous testing. <br>
+					Always open to discussing challenges or new opportunities.
+				</p>
+			</div>
 
-<div id="modal-torque" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-torque')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Torque Data Processor</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">Python</span>
-                <span class="tag-pill">Pandas</span>
-                <span class="tag-pill">GUI</span>
-            </div>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p>Torque-to-failure (TTF) testing for a specific next-gen vehicle required multiple tests to be done in-line. The original method relied on manual point picking to find peak prevailing, snug, and yield points from the data traces. This was slow and inefficient for high-volume testing.</p>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Algorithm Development:</strong> I built a Python-based tool that processes angle-to-torque graph traces. It automatically determines the peak prevailing, snug, and yield points based on user-defined parameters using a specific reference point scanning logic.</p>
-                <p><strong>Reporting:</strong> Automated the workflow so that after point picking, a PDF report is immediately exported, allowing engineers to review data summaries at a glance.</p>
-                <p><strong>Deployment:</strong> Designed the tool to be compatible with micro-control tools used in Gigafactories at <strong>Reno, Berlin, and Shanghai</strong>.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Reduced analysis time by <strong>30+ minutes per joint</strong>.</li>
-                    <li>Successfully deployed the tool to global teams in Reno, Berlin, and Shanghai, standardizing the TTF reporting process.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <div>
-                <img src="ttf_1.png" alt="Script Interface">
-                <figcaption>Figure 1: Example image of fastener failing in torque-to-failure test</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
+			<div class="contact-grid">
 
-<div id="modal-zf" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-zf')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>ReAX Transport Fixtures</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">PTC Creo</span>
-                <span class="tag-pill">GD&T</span>
-                <span class="tag-pill">3D Printing</span>
-            </div>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p><strong>Risk:</strong> Critical connector joints on ReAX steering systems were sustaining damage during international shipments to Germany and China.</p>
-                <p><strong>Requirement:</strong> Needed a custom fixture that could protect the exposed connectors from impact and vibration while fitting within standard shipping containers.</p>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Design:</strong> I designed three unique protective fixtures in <strong>PTC Creo</strong> tailored to the ReAX geometry. I utilized <strong>GD&T</strong> to ensure the internal clearances were tight enough to prevent movement but loose enough for easy manual installation.</p>
-                <p><strong>Manufacturing:</strong> 3D printed prototypes using FDM to verify fit-up on the physical units before approving the final shipment configuration.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Ensured 100% successful delivery of prototype units to international facilities.</li>
-                    <li>Prevented project delays caused by shipping damage.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <div>
-                <img src="reax_1.png" alt="Connector Fixture">
-                <figcaption>Figure 1: CAD drawing of ReAX connector segment</figcaption>
-            </div>
-            <div>
-                <img src="reax_3.png" alt="Physical Part">
-                <figcaption>Figure 2: Sample CAD drawing of ReAX connector joint</figcaption>
-            </div>
-            <div>
-                <img src="reax_2.png" alt="Assembly View">
-                <figcaption>Figure 3: Final assembly rendering</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
+				<a href="mailto:alexminjaekim@gmail.com" class="contact-card card-email">
+					<div class="icon-box">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+							</path>
+							<polyline points="22,6 12,13 2,6"></polyline>
+						</svg>
+					</div>
+					<div class="card-content">
+						<h3>Email</h3>
+						<p>alexminjaekim@gmail.com</p>
+					</div>
+					<div class="arrow-icon">&#8599;</div>
+				</a>
 
-<div id="modal-per" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-per')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Formula SAE Aerodynamics</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">SolidWorks</span>
-                <span class="tag-pill">ANSYS CFD</span>
-                <span class="tag-pill">Composites</span>
-            </div>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p>The racing team needed to increase cornering speeds without compromising straight-line acceleration. The existing aero package generated insufficient downforce relative to the drag penalty.</p>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Simulation:</strong> I modeled multi-element front and rear wings in <strong>SolidWorks</strong> and performed iterative CFD simulations in <strong>ANSYS Fluent</strong> to optimize the angle of attack and flap geometry.</p>
-                <p><strong>Fabrication:</strong> Engineered the physical wing structure using a carbon fiber skin over foam cores with machined aluminum mounting points for rigidity.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Optimized the lift-to-drag ratio, achieving a <strong>30% drag reduction</strong> while maintaining target downforce.</li>
-                    <li>Established a standardized CFD workflow for future aerodynamic sub-teams.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-             <div>
-                <img src="per_1.png" alt="Rear Wing Assembly">
-                <figcaption>Figure 1: Rear wing CAD</figcaption>
-            </div>
-            <div>
-                <img src="per_2.png" alt="CFD Streamlines">
-                <figcaption>Figure 2: Example FEA analysis</figcaption>
-            </div>
-            <div>
-                <img src="per_5.png" alt="Track Testing">
-                <figcaption>Figure 3: Manufactured rear wing components</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
+				<a href="https://linkedin.com/in/alexminjae" target="_blank" class="contact-card card-linkedin">
+					<div class="icon-box">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+							</path>
+							<rect x="2" y="9" width="4" height="12"></rect>
+							<circle cx="4" cy="4" r="2"></circle>
+						</svg>
+					</div>
+					<div class="card-content">
+						<h3>LinkedIn</h3>
+						<p>Connect & keep up with updates.</p>
+					</div>
+					<div class="arrow-icon">&#8599;</div>
+				</a>
 
-<div id="modal-stirling" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-stirling')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Pipsqueak Stirling Engine</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">Siemens NX</span>
-                <span class="tag-pill">Machining</span>
-                <span class="tag-pill">GD&T</span>
-            </div>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p>To design and manufacture a fully functional thermal-to-mechanical energy conversion system (Stirling Engine) from scratch. The main difficulty was achieving the extremely tight air-tight tolerances required for the piston cylinder without industrial-grade precision equipment.</p>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Modeling:</strong> I modeled 18 distinct components in <strong>Siemens NX</strong>, applying strict GD&T controls to critical mating surfaces.</p>
-                <p><strong>Materials & Assembly:</strong> I utilized a combination of brass, nylon, and polished metal to manage friction and thermal expansion. I spent over 260 hours machining and assembling the components into a custom "Pirate Ship" form factor.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Achieved a fully functional engine that runs continuously on a simple heat differential.</li>
-                    <li>Demonstrated mastery of complex assembly modeling and manual machining tolerances.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-             <div>
-                <img src="ship_1.png" alt="Engine Assembly">
-                <figcaption>Figure 1: Fully exploded assembly rendering</figcaption>
-            </div>
-            <div>
-                <img src="ship_6.png" alt="Machined Parts">
-                <figcaption>Figure 2: Example drawing of mast component with GD&T established</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
+				<a href="https://github.com/alexminjae" target="_blank" class="contact-card card-github">
+					<div class="icon-box">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path
+								d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+							</path>
+						</svg>
+					</div>
+					<div class="card-content">
+						<h3>GitHub</h3>
+						<p>Check out my coding projects.</p>
+					</div>
+					<div class="arrow-icon">&#8599;</div>
+				</a>
 
-<div id="modal-pagani" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-pagani')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Pagani Huayra Components</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">Siemens NX</span>
-                <span class="tag-pill">Class-A Surfacing</span>
-                <span class="tag-pill">Reverse Engineering</span>
-            </div>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p>To reverse-engineer and replicate the complex, Class-A organic surfaces of the Pagani Huayra Roadster's wheel spokes and exhaust manifold using only reference images.</p>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>Advanced Surfacing:</strong> I utilized <strong>Siemens NX</strong> advanced surfacing tools to recreate the curvature-continuous geometry. I analyzed the topology to ensure the surfaces were manufacturable.</p>
-                <p><strong>Material Selection:</strong> Designed the components assuming Iron 40 and lightweight alloy properties to simulate realistic weight distribution.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Produced a high-fidelity CAD model suitable for rendering and manufacturing analysis.</li>
-                    <li>Refined skills in complex surface modeling and reverse engineering workflows.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <div>
-                <img src="pagani_1.png" alt="Wheel Spoke Surfacing">
-                <figcaption>Figure 1: Fully manufactured example wheel</figcaption>
-            </div>
-            <div>
-                <img src="pagani_2.jpg" alt="Exhaust Manifold">
-                <figcaption>Figure 2: Exhaust manifold surface reconstruction</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
+			</div>
 
-<div id="modal-campus" class="modal">
-    <div class="close-btn" onclick="closeModal('modal-campus')">&times;</div>
-    <div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
-    <div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>Campus Mobility Roundabout</h2>
-            <div class="modal-meta">
-                <span class="tag-pill">MATLAB</span>
-                <span class="tag-pill">C</span>
-                <span class="tag-pill">Systems Engineering</span>
-            </div>
-        </div>
-        <div class="modal-text">
-            <div class="modal-section">
-                <h4>01. Challenge</h4>
-                <p>High-traffic intersections on campus were causing congestion and safety risks for pedestrians. The existing traffic light system was inefficient during off-peak hours.</p>
-            </div>
-            <div class="modal-section">
-                <h4>02. Action</h4>
-                <p><strong>System Design:</strong> I designed an automated roundabout system integrated with ultrasonic sensors to detect pedestrians and vehicle density in real-time.</p>
-                <p><strong>Implementation:</strong> I simulated the traffic flow logic in <strong>MATLAB</strong> to optimize throughput and programmed the signal control hardware using <strong>C</strong>.</p>
-            </div>
-            <div class="modal-section">
-                <h4>03. Impact</h4>
-                <ul>
-                    <li>Achieved a 90% peer satisfactory rate during the design review.</li>
-                    <li>Validated a logic system that prioritizes pedestrian safety while reducing vehicle wait times.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="modal-gallery">
-            <div>
-                <img src="roundabout_1.png" alt="System Logic Diagram">
-                <figcaption>Figure 1: Physical model with sensors/displays of prototype deployed in roundabout</figcaption>
-            </div>
-        </div>
-    </div>
-</div>
+		</section>
 
-<script>
-    // --- 1. TAB NAVIGATION LOGIC ---
-    function switchTab(tabId) {
-        // Hide all sections
-        const sections = document.querySelectorAll('.view-section');
-        sections.forEach(sec => sec.classList.remove('active-view'));
+	</main>
 
-        // Show target section
-        const target = document.getElementById(tabId);
-        if(target) target.classList.add('active-view');
+	<footer>
+		<div class="footer-content">
+			<div class="footer-text">
+				&copy; <span id="current-year"></span><br>
+				<span class="brand-logo" style="margin-top:8px;">Minjae Kim</span>
+			</div>
+		</div>
+	</footer>
 
-        // Update Nav Link Styles
-        const links = document.querySelectorAll('nav a');
-        links.forEach(link => link.classList.remove('active-tab'));
-        
-        // Highlight active link
-        const activeLink = document.getElementById('nav-' + tabId);
-        if(activeLink) activeLink.classList.add('active-tab');
+	<div id="modal-piezo" class="modal">
+		<div class="close-btn" onclick="closeModal('modal-piezo')">&times;</div>
+		<div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+		<div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+		<div class="modal-content">
 
-        // Reset scroll position to top
-        window.scrollTo(0, 0);
-    }
+			<div class="modal-header">
+				<h2>Piezo Protection Cap</h2>
+				<div class="modal-meta">
+					<span class="tag-pill">CATIA V6</span>
+					<span class="tag-pill">First Principles Analysis</span>
+					<span class="tag-pill">Design Automation</span>
+				</div>
+			</div>
 
-    // --- 2. PROJECT FILTERING ---
-    let currentFilter = 'all';
-    let currentModalId = null;
+			<div class="modal-text">
+				<div class="modal-section">
+					<h4>01. Challenge</h4>
+					<p>The Next-Gen Vehicle program required durability testing where fasteners with built-in piezo
+						sensors had to be shielded from mud and high-pressure water. The design faced a critical
+						contradiction:</p>
+					<ul>
+						<li><strong>Sealing:</strong> Must be water-tight to protect the sensor.</li>
+						<li><strong>Usability:</strong> Must be <strong>hand-pressible</strong> for technicians to
+							install/remove quickly without tools.</li>
+						<li><strong>Impact Resistance:</strong> Technicians often strike caps with a
+							<strong>mallet</strong> to ensure a secure fit. The design had to withstand this blunt
+							impact without cracking.
+						</li>
+						<li><strong>Scale:</strong> Must fit 10+ different fastener variants across 20+ joints.</li>
+					</ul>
+				</div>
+				<div class="modal-section">
+					<h4>02. Action</h4>
+					<p><strong>Design & Calculation:</strong> I created a hand-pressibility calculator using
+						<strong>Lamé’s equations</strong> (<i>P</i>) and friction formulas (<i>F = &mu;PA</i>) to
+						determine the exact interference fit required.
+					</p>
+					<p><strong>Validation:</strong> Tested prototypes in CATIA and physically with 3 materials (ASA,
+						TPU, Nylon). Selected <strong>ASA</strong> as the only material that passed impact, water
+						submersion, and hand-pressibility tests.</p>
+					<p><strong>Automation:</strong> Developed a "Powercopy" VBA automation tool for CATIA. This allowed
+						engineers to simply select a hex head type and dimensions to instantly generate a
+						manufacturing-ready cap model.</p>
+				</div>
+				<div class="modal-section">
+					<h4>03. Impact</h4>
+					<ul>
+						<li>Achieved a <strong>100% seal rate</strong> across all 20+ joint variants during endurance
+							testing.</li>
+						<li>Selected <strong>ASA material</strong> as the superior choice, surviving both the water
+							pressure and the technician's mallet strikes.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-gallery">
+				<div>
+					<img src="cap_1.png" alt="Prototype Iterations and Design Logic">
+					<figcaption>Figure 1: Upright isometric image of cap prototype (TPU)</figcaption>
+				</div>
+				<div>
+					<img src="cap_2.png" alt="Final ASA Cap Installed">
+					<figcaption>Figure 2: Upturned isometric image of cap prototype (TPU)</figcaption>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    function filterProjects(category) {
-        currentFilter = category;
-        
-        const rows = document.querySelectorAll('.project-row');
-        const buttons = document.querySelectorAll('.filter-btn');
+	<div id="modal-torque" class="modal">
+		<div class="close-btn" onclick="closeModal('modal-torque')">&times;</div>
+		<div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+		<div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Torque Data Processor</h2>
+				<div class="modal-meta">
+					<span class="tag-pill">Python</span>
+					<span class="tag-pill">Pandas</span>
+					<span class="tag-pill">GUI</span>
+				</div>
+			</div>
+			<div class="modal-text">
+				<div class="modal-section">
+					<h4>01. Challenge</h4>
+					<p>Torque-to-failure (TTF) testing for a specific next-gen vehicle required multiple tests to be
+						done in-line. The original method relied on manual point picking to find peak prevailing, snug,
+						and yield points from the data traces. This was slow and inefficient for high-volume testing.
+					</p>
+				</div>
+				<div class="modal-section">
+					<h4>02. Action</h4>
+					<p><strong>Algorithm Development:</strong> I built a Python-based tool that processes
+						angle-to-torque graph traces. It automatically determines the peak prevailing, snug, and yield
+						points based on user-defined parameters using a specific reference point scanning logic.</p>
+					<p><strong>Reporting:</strong> Automated the workflow so that after point picking, a PDF report is
+						immediately exported, allowing engineers to review data summaries at a glance.</p>
+					<p><strong>Deployment:</strong> Designed the tool to be compatible with micro-control tools used in
+						Gigafactories at <strong>Reno, Berlin, and Shanghai</strong>.</p>
+				</div>
+				<div class="modal-section">
+					<h4>03. Impact</h4>
+					<ul>
+						<li>Reduced analysis time by <strong>30+ minutes per joint</strong>.</li>
+						<li>Successfully deployed the tool to global teams in Reno, Berlin, and Shanghai, standardizing
+							the TTF reporting process.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-gallery">
+				<div>
+					<img src="ttf_1.png" alt="Script Interface">
+					<figcaption>Figure 1: Example image of fastener failing in torque-to-failure test</figcaption>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        // Update Buttons
-        buttons.forEach(btn => {
-            if (btn.innerText.toLowerCase() === category) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
+	<div id="modal-zf" class="modal">
+		<div class="close-btn" onclick="closeModal('modal-zf')">&times;</div>
+		<div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+		<div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>ReAX Transport Fixtures</h2>
+				<div class="modal-meta">
+					<span class="tag-pill">PTC Creo</span>
+					<span class="tag-pill">GD&T</span>
+					<span class="tag-pill">3D Printing</span>
+				</div>
+			</div>
+			<div class="modal-text">
+				<div class="modal-section">
+					<h4>01. Challenge</h4>
+					<p><strong>Risk:</strong> Critical connector joints on ReAX steering systems were sustaining damage
+						during international shipments to Germany and China.</p>
+					<p><strong>Requirement:</strong> Needed a custom fixture that could protect the exposed connectors
+						from impact and vibration while fitting within standard shipping containers.</p>
+				</div>
+				<div class="modal-section">
+					<h4>02. Action</h4>
+					<p><strong>Design:</strong> I designed three unique protective fixtures in <strong>PTC Creo</strong>
+						tailored to the ReAX geometry. I utilized <strong>GD&T</strong> to ensure the internal
+						clearances were tight enough to prevent movement but loose enough for easy manual installation.
+					</p>
+					<p><strong>Manufacturing:</strong> 3D printed prototypes using FDM to verify fit-up on the physical
+						units before approving the final shipment configuration.</p>
+				</div>
+				<div class="modal-section">
+					<h4>03. Impact</h4>
+					<ul>
+						<li>Ensured 100% successful delivery of prototype units to international facilities.</li>
+						<li>Prevented project delays caused by shipping damage.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-gallery">
+				<div>
+					<img src="reax_1.png" alt="Connector Fixture">
+					<figcaption>Figure 1: CAD drawing of ReAX connector segment</figcaption>
+				</div>
+				<div>
+					<img src="reax_3.png" alt="Physical Part">
+					<figcaption>Figure 2: Sample CAD drawing of ReAX connector joint</figcaption>
+				</div>
+				<div>
+					<img src="reax_2.png" alt="Assembly View">
+					<figcaption>Figure 3: Final assembly rendering</figcaption>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        // Update Rows
-        rows.forEach(row => {
-            const projectCat = row.getAttribute('data-category');
-            if (category === 'all' || projectCat === category) {
-                row.style.display = 'grid'; 
-            } else {
-                row.style.display = 'none';
-            }
-        });
-    }
+	<div id="modal-per" class="modal">
+		<div class="close-btn" onclick="closeModal('modal-per')">&times;</div>
+		<div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+		<div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Formula SAE Aerodynamics</h2>
+				<div class="modal-meta">
+					<span class="tag-pill">SolidWorks</span>
+					<span class="tag-pill">ANSYS CFD</span>
+					<span class="tag-pill">Composites</span>
+				</div>
+			</div>
+			<div class="modal-text">
+				<div class="modal-section">
+					<h4>01. Challenge</h4>
+					<p>The racing team needed to increase cornering speeds without compromising straight-line
+						acceleration. The existing aero package generated insufficient downforce relative to the drag
+						penalty.</p>
+				</div>
+				<div class="modal-section">
+					<h4>02. Action</h4>
+					<p><strong>Simulation:</strong> I modeled multi-element front and rear wings in
+						<strong>SolidWorks</strong> and performed iterative CFD simulations in <strong>ANSYS
+							Fluent</strong> to optimize the angle of attack and flap geometry.
+					</p>
+					<p><strong>Fabrication:</strong> Engineered the physical wing structure using a carbon fiber skin
+						over foam cores with machined aluminum mounting points for rigidity.</p>
+				</div>
+				<div class="modal-section">
+					<h4>03. Impact</h4>
+					<ul>
+						<li>Optimized the lift-to-drag ratio, achieving a <strong>30% drag reduction</strong> while
+							maintaining target downforce.</li>
+						<li>Established a standardized CFD workflow for future aerodynamic sub-teams.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-gallery">
+				<div>
+					<img src="per_1.png" alt="Rear Wing Assembly">
+					<figcaption>Figure 1: Rear wing CAD</figcaption>
+				</div>
+				<div>
+					<img src="per_2.png" alt="CFD Streamlines">
+					<figcaption>Figure 2: Example FEA analysis</figcaption>
+				</div>
+				<div>
+					<img src="per_5.png" alt="Track Testing">
+					<figcaption>Figure 3: Manufactured rear wing components</figcaption>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    // --- 3. MODAL LOGIC ---
-    function openModal(modalId) {
-        if (!document.getElementById(modalId)) return;
-        
-        document.getElementById(modalId).style.display = "block";
-        document.body.style.overflow = "hidden"; 
-        currentModalId = modalId;
-        
-        updateNavButtons(); 
-    }
+	<div id="modal-stirling" class="modal">
+		<div class="close-btn" onclick="closeModal('modal-stirling')">&times;</div>
+		<div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+		<div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Pipsqueak Stirling Engine</h2>
+				<div class="modal-meta">
+					<span class="tag-pill">Siemens NX</span>
+					<span class="tag-pill">Machining</span>
+					<span class="tag-pill">GD&T</span>
+				</div>
+			</div>
+			<div class="modal-text">
+				<div class="modal-section">
+					<h4>01. Challenge</h4>
+					<p>To design and manufacture a fully functional thermal-to-mechanical energy conversion system
+						(Stirling Engine) from scratch. The main difficulty was achieving the extremely tight air-tight
+						tolerances required for the piston cylinder without industrial-grade precision equipment.</p>
+				</div>
+				<div class="modal-section">
+					<h4>02. Action</h4>
+					<p><strong>Modeling:</strong> I modeled 18 distinct components in <strong>Siemens NX</strong>,
+						applying strict GD&T controls to critical mating surfaces.</p>
+					<p><strong>Materials & Assembly:</strong> I utilized a combination of brass, nylon, and polished
+						metal to manage friction and thermal expansion. I spent over 260 hours machining and assembling
+						the components into a custom "Pirate Ship" form factor.</p>
+				</div>
+				<div class="modal-section">
+					<h4>03. Impact</h4>
+					<ul>
+						<li>Achieved a fully functional engine that runs continuously on a simple heat differential.
+						</li>
+						<li>Demonstrated mastery of complex assembly modeling and manual machining tolerances.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-gallery">
+				<div>
+					<img src="ship_1.png" alt="Engine Assembly">
+					<figcaption>Figure 1: Fully exploded assembly rendering</figcaption>
+				</div>
+				<div>
+					<img src="ship_6.png" alt="Machined Parts">
+					<figcaption>Figure 2: Example drawing of mast component with GD&T established</figcaption>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    function closeModal(modalId) {
-        if (document.getElementById(modalId)) {
-            document.getElementById(modalId).style.display = "none";
-        }
-        document.body.style.overflow = "auto";
-        currentModalId = null;
-    }
+	<div id="modal-pagani" class="modal">
+		<div class="close-btn" onclick="closeModal('modal-pagani')">&times;</div>
+		<div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+		<div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Pagani Huayra Components</h2>
+				<div class="modal-meta">
+					<span class="tag-pill">Siemens NX</span>
+					<span class="tag-pill">Class-A Surfacing</span>
+					<span class="tag-pill">Reverse Engineering</span>
+				</div>
+			</div>
+			<div class="modal-text">
+				<div class="modal-section">
+					<h4>01. Challenge</h4>
+					<p>To reverse-engineer and replicate the complex, Class-A organic surfaces of the Pagani Huayra
+						Roadster's wheel spokes and exhaust manifold using only reference images.</p>
+				</div>
+				<div class="modal-section">
+					<h4>02. Action</h4>
+					<p><strong>Advanced Surfacing:</strong> I utilized <strong>Siemens NX</strong> advanced surfacing
+						tools to recreate the curvature-continuous geometry. I analyzed the topology to ensure the
+						surfaces were manufacturable.</p>
+					<p><strong>Material Selection:</strong> Designed the components assuming Iron 40 and lightweight
+						alloy properties to simulate realistic weight distribution.</p>
+				</div>
+				<div class="modal-section">
+					<h4>03. Impact</h4>
+					<ul>
+						<li>Produced a high-fidelity CAD model suitable for rendering and manufacturing analysis.</li>
+						<li>Refined skills in complex surface modeling and reverse engineering workflows.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-gallery">
+				<div>
+					<img src="pagani_1.png" alt="Wheel Spoke Surfacing">
+					<figcaption>Figure 1: Fully manufactured example wheel</figcaption>
+				</div>
+				<div>
+					<img src="pagani_2.jpg" alt="Exhaust Manifold">
+					<figcaption>Figure 2: Exhaust manifold surface reconstruction</figcaption>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    // --- 4. MODAL NAVIGATION ---
-    function changeProject(direction) {
-        if (!currentModalId) return;
+	<div id="modal-campus" class="modal">
+		<div class="close-btn" onclick="closeModal('modal-campus')">&times;</div>
+		<div class="nav-btn prev-btn" onclick="changeProject(-1)">&#8249;</div>
+		<div class="nav-btn next-btn" onclick="changeProject(1)">&#8250;</div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Campus Mobility Roundabout</h2>
+				<div class="modal-meta">
+					<span class="tag-pill">MATLAB</span>
+					<span class="tag-pill">C</span>
+					<span class="tag-pill">Systems Engineering</span>
+				</div>
+			</div>
+			<div class="modal-text">
+				<div class="modal-section">
+					<h4>01. Challenge</h4>
+					<p>High-traffic intersections on campus were causing congestion and safety risks for pedestrians.
+						The existing traffic light system was inefficient during off-peak hours.</p>
+				</div>
+				<div class="modal-section">
+					<h4>02. Action</h4>
+					<p><strong>System Design:</strong> I designed an automated roundabout system integrated with
+						ultrasonic sensors to detect pedestrians and vehicle density in real-time.</p>
+					<p><strong>Implementation:</strong> I simulated the traffic flow logic in <strong>MATLAB</strong> to
+						optimize throughput and programmed the signal control hardware using <strong>C</strong>.</p>
+				</div>
+				<div class="modal-section">
+					<h4>03. Impact</h4>
+					<ul>
+						<li>Achieved a 90% peer satisfactory rate during the design review.</li>
+						<li>Validated a logic system that prioritizes pedestrian safety while reducing vehicle wait
+							times.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-gallery">
+				<div>
+					<img src="roundabout_1.png" alt="System Logic Diagram">
+					<figcaption>Figure 1: Physical model with sensors/displays of prototype deployed in roundabout
+					</figcaption>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        const visibleProjectIds = getVisibleProjectIds();
-        const currentIndex = visibleProjectIds.indexOf(currentModalId);
-        if (currentIndex === -1) return; 
+	<script>
+		// --- 1. TAB NAVIGATION LOGIC ---
+		function switchTab(tabId) {
+			// Hide all sections
+			const sections = document.querySelectorAll('.view-section');
+			sections.forEach(sec => sec.classList.remove('active-view'));
 
-        const newIndex = currentIndex + direction;
+			// Show target section
+			const target = document.getElementById(tabId);
+			if (target) target.classList.add('active-view');
 
-        if (newIndex < 0 || newIndex >= visibleProjectIds.length) {
-            return; 
-        }
+			// Update Nav Link Styles
+			const links = document.querySelectorAll('nav a');
+			links.forEach(link => link.classList.remove('active-tab'));
 
-        closeModal(currentModalId);
-        openModal(visibleProjectIds[newIndex]);
-    }
+			// Highlight active link
+			const activeLink = document.getElementById('nav-' + tabId);
+			if (activeLink) activeLink.classList.add('active-tab');
 
-    function getVisibleProjectIds() {
-        const allRows = Array.from(document.querySelectorAll('.project-row'));
-        const visibleRows = allRows.filter(row => {
-            return currentFilter === 'all' || row.getAttribute('data-category') === currentFilter;
-        });
+			// Reset scroll position to top
+			window.scrollTo(0, 0);
+		}
 
-        return visibleRows.map(row => {
-            const onclickStr = row.getAttribute('onclick'); 
-            return onclickStr.match(/'([^']+)'/)[1]; 
-        });
-    }
+		// --- 2. PROJECT FILTERING ---
+		let currentFilter = 'all';
+		let currentModalId = null;
 
-    function updateNavButtons() {
-        if (!currentModalId) return;
-        
-        const visibleProjectIds = getVisibleProjectIds();
-        const currentIndex = visibleProjectIds.indexOf(currentModalId);
-        
-        const currentModalEl = document.getElementById(currentModalId);
-        const prevBtn = currentModalEl.querySelector('.prev-btn');
-        const nextBtn = currentModalEl.querySelector('.next-btn');
+		function filterProjects(category) {
+			currentFilter = category;
 
-        if (currentIndex <= 0) {
-            prevBtn.classList.add('disabled');
-        } else {
-            prevBtn.classList.remove('disabled');
-        }
+			const rows = document.querySelectorAll('.project-row');
+			const buttons = document.querySelectorAll('.filter-btn');
 
-        if (currentIndex >= visibleProjectIds.length - 1) {
-            nextBtn.classList.add('disabled');
-        } else {
-            nextBtn.classList.remove('disabled');
-        }
-    }
+			// Update Buttons
+			buttons.forEach(btn => {
+				if (btn.innerText.toLowerCase() === category) {
+					btn.classList.add('active');
+				} else {
+					btn.classList.remove('active');
+				}
+			});
 
-    // --- 5. KEYBOARD INPUT ---
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape" && currentModalId) {
-            closeModal(currentModalId);
-        }
-        if (event.key === "ArrowLeft" && currentModalId) {
-            changeProject(-1);
-        }
-        if (event.key === "ArrowRight" && currentModalId) {
-            changeProject(1);
-        }
-    });
+			// Update Rows
+			rows.forEach(row => {
+				const projectCat = row.getAttribute('data-category');
+				if (category === 'all' || projectCat === category) {
+					row.style.display = 'grid';
+				} else {
+					row.style.display = 'none';
+				}
+			});
+		}
 
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            closeModal(event.target.id);
-        }
-    }
-</script>
+		// --- 3. MODAL LOGIC ---
+		function openModal(modalId) {
+			if (!document.getElementById(modalId)) return;
+
+			document.getElementById(modalId).style.display = "block";
+			document.body.style.overflow = "hidden";
+			currentModalId = modalId;
+
+			updateNavButtons();
+		}
+
+		function closeModal(modalId) {
+			if (document.getElementById(modalId)) {
+				document.getElementById(modalId).style.display = "none";
+			}
+			document.body.style.overflow = "auto";
+			currentModalId = null;
+		}
+
+		// --- 4. MODAL NAVIGATION ---
+		function changeProject(direction) {
+			if (!currentModalId) return;
+
+			const visibleProjectIds = getVisibleProjectIds();
+			const currentIndex = visibleProjectIds.indexOf(currentModalId);
+			if (currentIndex === -1) return;
+
+			const newIndex = currentIndex + direction;
+
+			if (newIndex < 0 || newIndex >= visibleProjectIds.length) {
+				return;
+			}
+
+			closeModal(currentModalId);
+			openModal(visibleProjectIds[newIndex]);
+		}
+
+		function getVisibleProjectIds() {
+			const allRows = Array.from(document.querySelectorAll('.project-row'));
+			const visibleRows = allRows.filter(row => {
+				return currentFilter === 'all' || row.getAttribute('data-category') === currentFilter;
+			});
+
+			return visibleRows.map(row => {
+				const onclickStr = row.getAttribute('onclick');
+				return onclickStr.match(/'([^']+)'/)[1];
+			});
+		}
+
+		function updateNavButtons() {
+			if (!currentModalId) return;
+
+			const visibleProjectIds = getVisibleProjectIds();
+			const currentIndex = visibleProjectIds.indexOf(currentModalId);
+
+			const currentModalEl = document.getElementById(currentModalId);
+			const prevBtn = currentModalEl.querySelector('.prev-btn');
+			const nextBtn = currentModalEl.querySelector('.next-btn');
+
+			if (currentIndex <= 0) {
+				prevBtn.classList.add('disabled');
+			} else {
+				prevBtn.classList.remove('disabled');
+			}
+
+			if (currentIndex >= visibleProjectIds.length - 1) {
+				nextBtn.classList.add('disabled');
+			} else {
+				nextBtn.classList.remove('disabled');
+			}
+		}
+
+		// --- 5. KEYBOARD INPUT ---
+		document.addEventListener('keydown', function (event) {
+			if (event.key === "Escape" && currentModalId) {
+				closeModal(currentModalId);
+			}
+			if (event.key === "ArrowLeft" && currentModalId) {
+				changeProject(-1);
+			}
+			if (event.key === "ArrowRight" && currentModalId) {
+				changeProject(1);
+			}
+		});
+
+		window.onclick = function (event) {
+			if (event.target.classList.contains('modal')) {
+				closeModal(event.target.id);
+			}
+		}
+
+		// --- 6. DARK MODE TOGGLE ---
+		function toggleTheme() {
+			const html = document.documentElement;
+			const currentTheme = html.getAttribute('data-theme');
+			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+			html.setAttribute('data-theme', newTheme);
+			localStorage.setItem('theme', newTheme);
+		}
+
+		// Initialize theme from localStorage or system preference
+		function initTheme() {
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		}
+		initTheme();
+
+		// --- 7. MOBILE MENU TOGGLE ---
+		function toggleMobileMenu() {
+			const hamburger = document.querySelector('.hamburger');
+			const navLinks = document.querySelector('.nav-links');
+			hamburger.classList.toggle('active');
+			navLinks.classList.toggle('active');
+		}
+
+		// Close mobile menu when a nav link is clicked
+		document.querySelectorAll('.nav-links a').forEach(link => {
+			link.addEventListener('click', () => {
+				const hamburger = document.querySelector('.hamburger');
+				const navLinks = document.querySelector('.nav-links');
+				hamburger.classList.remove('active');
+				navLinks.classList.remove('active');
+			});
+		});
+
+		// --- 8. SCROLL ANIMATIONS ---
+		function initScrollAnimations() {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible');
+					}
+				});
+			}, { threshold: 0.1 });
+
+			document.querySelectorAll('.project-row, .job-item, .contact-card').forEach(el => {
+				el.classList.add('fade-in');
+				observer.observe(el);
+			});
+		}
+
+		// Run scroll animations when Projects/Experience/Contact sections become active
+		const originalSwitchTab = switchTab;
+		switchTab = function (tabId) {
+			originalSwitchTab(tabId);
+			setTimeout(initScrollAnimations, 100);
+		};
+
+		// --- 9. DYNAMIC FOOTER YEAR ---
+		document.getElementById('current-year').textContent = new Date().getFullYear();
+
+		// --- 10. INITIAL SCROLL ANIMATION SETUP ---
+		document.addEventListener('DOMContentLoaded', initScrollAnimations);
+	</script>
 
 </body>
+
 </html>
