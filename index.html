@@ -1345,6 +1345,7 @@
 			}
 
 			.nav-btn {
+				position: absolute;
 				top: auto;
 				bottom: 20px;
 				width: 44px;
@@ -2562,6 +2563,33 @@
 
 		// --- 10. INITIAL SCROLL ANIMATION SETUP ---
 		document.addEventListener('DOMContentLoaded', initScrollAnimations);
+
+		// --- 11. MOBILE SWIPE & SCROLL BUTTON LOGIC ---
+		let touchStartX = 0;
+		let touchEndX = 0;
+
+		document.addEventListener('touchstart', e => {
+			touchStartX = e.changedTouches[0].screenX;
+		});
+
+		document.addEventListener('touchend', e => {
+			touchEndX = e.changedTouches[0].screenX;
+			handleSwipe();
+		});
+
+		function handleSwipe() {
+			if (!currentModalId) return;
+
+			const swipeThreshold = 50; // Minimum distance for swipe
+			if (touchEndX < touchStartX - swipeThreshold) {
+				// Swipe Left -> Next Project
+				changeProject(1);
+			}
+			if (touchEndX > touchStartX + swipeThreshold) {
+				// Swipe Right -> Previous Project
+				changeProject(-1);
+			}
+		}
 	</script>
 
 </body>
