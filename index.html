@@ -33,14 +33,10 @@
 			--text-secondary: #86868b;
 			--accent: #0071e3;
 			--accent-hover: #0077ed;
-			--accent: #0071e3;
-			--accent-hover: #0077ed;
 			--divider: #d2d2d7;
 
 			/* High contrast secondary background for pills/buttons on cards */
 			--bg-secondary: #f5f5f7;
-
-			--radius-card: 24px;
 
 			--radius-card: 24px;
 			--radius-btn: 980px;
@@ -59,13 +55,9 @@
 			--text-secondary: #a1a1a6;
 			--accent: #2997ff;
 			--accent-hover: #0a84ff;
-			--accent: #2997ff;
-			--accent-hover: #0a84ff;
 			--divider: #38383a;
 
 			--bg-secondary: #2c2c2e;
-
-			--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
 
 			--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
 			--shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
@@ -850,7 +842,7 @@
 			height: 100%;
 			max-height: none;
 			border-radius: 0;
-			padding: 80px 20px 40px;
+			padding: 30px;
 			overflow-y: auto;
 			/* Enable scroll on mobile */
 			display: flex;
@@ -978,9 +970,8 @@
 
 		.modal-text {
 			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 60px;
-			margin-bottom: 60px;
+			grid-template-columns: 1fr;
+			gap: 30px;
 		}
 
 		.modal-section h4 {
@@ -1331,17 +1322,15 @@
 			}
 
 			.modal-content {
+				width: auto;
+				height: auto;
+				max-height: calc(100vh - 120px);
 				margin: 60px 20px;
-				padding: 30px;
-			}
-
-			.modal-text {
-				grid-template-columns: 1fr;
-				gap: 30px;
+				border-radius: 20px;
 			}
 
 			.nav-btn {
-				position: absolute;
+				position: fixed;
 				top: auto;
 				bottom: 20px;
 				width: 44px;
@@ -2266,27 +2255,7 @@
 	</div>
 
 	<script>
-		// --- 1. TAB NAVIGATION LOGIC ---
-		function switchTab(tabId) {
-			// Hide all sections
-			const sections = document.querySelectorAll('.view-section');
-			sections.forEach(sec => sec.classList.remove('active-view'));
-
-			// Show target section
-			const target = document.getElementById(tabId);
-			if (target) target.classList.add('active-view');
-
-			// Update Nav Link Styles
-			const links = document.querySelectorAll('nav a');
-			links.forEach(link => link.classList.remove('active-tab'));
-
-			// Highlight active link
-			const activeLink = document.getElementById('nav-' + tabId);
-			if (activeLink) activeLink.classList.add('active-tab');
-
-			// Reset scroll position to top
-			window.scrollTo(0, 0);
-		}
+		// --- 1. TAB NAVIGATION LOGIC --- (defined below with scroll animations)
 
 		// --- 2. PROJECT FILTERING ---
 		let currentFilter = 'all';
@@ -2326,6 +2295,11 @@
 			modal.classList.add('active');
 			document.body.style.overflow = "hidden";
 			currentModalId = modalId;
+
+			// Reset scroll to top
+			modal.scrollTop = 0;
+			const content = modal.querySelector('.modal-content');
+			if (content) content.scrollTop = 0;
 
 			updateNavButtons();
 			updateProjectCounter();
@@ -2376,6 +2350,9 @@
 
 			// Show new modal with slide animation
 			if (newModal) {
+				newModal.scrollTop = 0;
+				const content = newModal.querySelector('.modal-content');
+				if (content) content.scrollTop = 0;
 				newModal.style.transition = 'none';
 				newModal.classList.remove('slide-left', 'slide-right');
 				newModal.classList.add('active', slideClass);
@@ -2404,6 +2381,7 @@
 			const currentIndex = visibleProjectIds.indexOf(currentModalId);
 
 			const currentModalEl = document.getElementById(currentModalId);
+			if (!currentModalEl) return;
 			const prevBtn = currentModalEl.querySelector('.prev-btn');
 			const nextBtn = currentModalEl.querySelector('.next-btn');
 
