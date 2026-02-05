@@ -321,6 +321,13 @@
 			background: rgba(255, 255, 255, 0.05);
 		}
 
+		.nav-controls {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-left: 12px;
+		}
+
 		/* SLIDING BACKGROUND */
 		.nav-slider {
 			position: absolute;
@@ -411,7 +418,8 @@
 		#about.view-section {
 			display: none;
 			/* Default hidden */
-			min-height: calc(100vh - 140px);
+			min-height: calc(100vh - 170px);
+			/* Increased substraction to fit footer */
 			/* Full height minus header/footer approx */
 			align-items: center;
 			/* Vertical Center */
@@ -422,12 +430,40 @@
 			display: flex;
 		}
 
+		/* --- CONTACT SECTION OPTIMIZATION --- */
+		#contact.view-section {
+			display: none;
+			min-height: calc(100vh - 170px);
+			/* Fit within viewport */
+			align-items: center;
+			padding-top: 40px;
+		}
+
+		#contact.view-section.active-view {
+			display: flex;
+		}
+
 		.hero-grid {
 			display: grid;
 			grid-template-columns: 1.2fr 1fr;
 			gap: 80px;
 			align-items: center;
 			width: 100%;
+		}
+
+		/* ... lines skipped ... */
+		/* FOOTER */
+		footer {
+			background-color: rgba(255, 255, 255, 0.4);
+			backdrop-filter: blur(20px) saturate(180%);
+			-webkit-backdrop-filter: blur(20px) saturate(180%);
+			color: var(--text-primary);
+			padding: 15px 0;
+			/* Reduced padding */
+			text-align: center;
+			border-top: var(--glass-border);
+			margin-top: auto;
+			/* Push to bottom */
 		}
 
 		.hero-content {
@@ -1566,54 +1602,120 @@
 
 			/* Mobile nav */
 			nav {
-				top: 0;
-				left: 0;
-				transform: none;
-				width: 100%;
+				top: 24px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: calc(100% - 40px);
+				max-width: 480px;
 				min-width: 0;
-				border-radius: 0;
-				padding: 0 20px;
-				height: 60px;
-				background: rgba(255, 255, 255, 0.85);
-				/* More opaque for mobile */
+				border-radius: 999px;
+				padding: 6px 20px;
+				height: 64px;
+				background: var(--bg-nav);
+				border: var(--glass-border);
+				backdrop-filter: var(--glass-blur);
+				-webkit-backdrop-filter: var(--glass-blur);
+				box-shadow: var(--shadow-lg);
 			}
 
 			[data-theme="dark"] nav {
-				background: rgba(30, 30, 35, 0.85);
+				background: var(--bg-nav);
 			}
 
-			/* Hide slider on mobile (vertical menu) */
+			/* Slider VISIBLE on mobile for vertical list */
 			.nav-slider {
-				display: none !important;
+				display: block !important;
+				/* Reset positioning for JS control */
+				top: 0;
+				bottom: auto;
+				left: 0;
+				right: auto;
+			}
+
+			.brand-logo {
+				font-size: 0.8rem;
+				white-space: nowrap;
+				margin-right: 8px;
 			}
 
 			.nav-links {
-				position: fixed;
-				top: 60px;
+				position: absolute;
+				top: 74px;
+				/* Nav height (64) + gap (10) */
 				left: 0;
-				right: 0;
-				background: rgba(255, 255, 255, 0.9);
-				/* High opacity for menu list */
+				width: 100%;
+				max-width: none;
+				right: auto;
+				background: rgba(242, 242, 247, 0.95);
+				/* Light Gray for Contrast */
 				backdrop-filter: saturate(180%) blur(20px);
+
+				flex: 0;
+				min-width: 0;
+
 				flex-direction: column;
-				padding: 30px;
-				gap: 20px;
-				transform: translateY(-150%);
-				transition: transform 0.3s ease;
-				border-bottom: 1px solid var(--divider);
-				z-index: 4999;
+				/* Vertical Dropdown */
+				padding: 24px;
+				gap: 16px;
+				border-radius: 24px;
+				/* Card border radius */
+
+				transform: translateY(-20px);
+				opacity: 0;
+				visibility: hidden;
+				transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+				border: var(--glass-border);
+				box-shadow: var(--shadow-lg);
+
+				display: flex;
+				align-items: center;
+				overflow: visible;
+				/* No scroll */
+				white-space: normal;
+
+				margin: 0;
+			}
+
+			/* No spacer needed */
+			.nav-links::after {
+				display: none;
+			}
+
+			.nav-links::-webkit-scrollbar {
+				display: none;
 			}
 
 			[data-theme="dark"] .nav-links {
-				background: rgba(20, 20, 25, 0.9);
+				background: rgba(30, 30, 35, 0.9);
+			}
+
+			/* Nav Links Items */
+			nav a {
+				font-size: 14px;
+				font-weight: 500;
+				/* Match desktop toolbar feel */
+				padding: 12px;
+				width: 100%;
+				text-align: center;
+				/* Ensure text is above slider */
+				z-index: 2;
+			}
+
+			/* Controls */
+			.nav-controls {
+				margin-left: 12px;
+				gap: 12px;
+			}
+
+			.hamburger {
+				display: flex !important;
 			}
 
 			.nav-links.active {
 				transform: translateY(0);
-			}
-
-			.hamburger {
-				display: flex;
+				opacity: 1;
+				visibility: visible;
 			}
 		}
 
@@ -1774,19 +1876,15 @@
 		<a onclick="switchTab('about')" class="brand-logo" role="button" tabindex="0"
 			aria-label="Go to About section">Minjae Kim</a>
 
-		<div class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" role="button" tabindex="0">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-
 		<div class="nav-links">
 			<div class="nav-slider"></div> <!-- SLIDING BACKGROUND -->
 			<a onclick="switchTab('about')" id="nav-about" class="active-tab" role="button" tabindex="0">About</a>
 			<a onclick="switchTab('projects')" id="nav-projects" role="button" tabindex="0">Projects</a>
 			<a onclick="switchTab('experience')" id="nav-experience" role="button" tabindex="0">Experience</a>
 			<a onclick="switchTab('contact')" id="nav-contact" role="button" tabindex="0">Contact</a>
+		</div>
 
+		<div class="nav-controls">
 			<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
 				<svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 					stroke-width="2">
@@ -1805,6 +1903,12 @@
 					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
 				</svg>
 			</button>
+
+			<div class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" role="button" tabindex="0">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
 		</div>
 	</nav>
 
@@ -2731,6 +2835,15 @@
 			const navLinks = document.querySelector('.nav-links');
 			hamburger.classList.toggle('active');
 			navLinks.classList.toggle('active');
+
+			// Force update slider position when opening menu
+			if (navLinks.classList.contains('active')) {
+				const activeLink = document.querySelector('nav a.active-tab');
+				if (activeLink) {
+					// Small delay to ensure display:flex is rendered
+					setTimeout(() => updateNavSlider(activeLink), 50);
+				}
+			}
 		}
 
 		// Close mobile menu when a nav link is clicked
@@ -2829,11 +2942,25 @@
 			// If targetLink is not inside nav-links (e.g. mobile?), abort or handle differently
 			if (!parent) return;
 
+			// Calculate position relative to the scroll container
+			// For horizontal scrolling, we need to account for scrollLeft if the parent is scrolling?
+			// Actually, since the slider is absolute inside the relative parent, 
+			// offsetLeft gives the distance from the left edge of the *content*, which scrolls *with* the content.
+			// So simple offsetLeft should work fine provided the parent is positioned relative.
+
 			const relativeLeft = targetLink.offsetLeft;
+			const relativeTop = targetLink.offsetTop;
 			const width = targetLink.offsetWidth;
+			const height = targetLink.offsetHeight;
 
 			slider.style.width = `${width}px`;
-			slider.style.transform = `translateX(${relativeLeft}px)`;
+			slider.style.height = `${height}px`;
+
+			// Reset top to 0 so translate() works from the parent's origin,
+			// avoiding conflict with CSS top: 4px in desktop mode
+			slider.style.top = '0';
+
+			slider.style.transform = `translate(${relativeLeft}px, ${relativeTop}px)`;
 			slider.classList.add('visible');
 		}
 
@@ -2843,7 +2970,7 @@
 			if (activeLink) updateNavSlider(activeLink);
 		});
 
-		// Update on Resize
+		// Update on Resize & Scroll (if needed)
 		window.addEventListener('resize', () => {
 			const activeLink = document.querySelector('nav a.active-tab');
 			if (activeLink) updateNavSlider(activeLink);
